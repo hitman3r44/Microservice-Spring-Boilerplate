@@ -1,4 +1,4 @@
-package com.devd.spring.bookstoreeurekadiscoveryservice;
+package com.wolverine.solutions.eurekadiscoveryservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
 @EnableEurekaServer
-public class BookstoreEurekaDiscoveryServiceApplication {
+public class EurekaDiscoveryServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookstoreEurekaDiscoveryServiceApplication.class, args);
+		SpringApplication.run(EurekaDiscoveryServiceApplication.class, args);
 	}
 
 }
