@@ -14,10 +14,10 @@ import org.springframework.context.annotation.FilterType;
     @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = GlobalResourceServerConfig.class)})
 @EnableFeignClients
 @EnableDiscoveryClient
-public class BookstoreAccountServiceApplication {
+public class AccountServiceApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(BookstoreAccountServiceApplication.class, args);
+    SpringApplication.run(AccountServiceApplication.class, args);
   }
 
 }
