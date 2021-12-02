@@ -1,6 +1,6 @@
 package com.devd.spring.bookstoreorderservice.repository.dao;
 
-import com.devd.spring.bookstorecommons.util.DateAudit;
+import com.wolverine.solutions.commons.util.DateAudit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

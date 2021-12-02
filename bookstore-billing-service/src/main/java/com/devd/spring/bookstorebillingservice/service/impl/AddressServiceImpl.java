@@ -6,7 +6,7 @@ import com.devd.spring.bookstorebillingservice.service.AddressService;
 import com.devd.spring.bookstorebillingservice.web.CreateAddressRequest;
 import com.devd.spring.bookstorebillingservice.web.GetAddressResponse;
 import com.devd.spring.bookstorebillingservice.web.UpdateAddressRequest;
-import com.devd.spring.bookstorecommons.util.CommonUtilityMethods;
+import com.wolverine.solutions.commons.util.CommonUtilityMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

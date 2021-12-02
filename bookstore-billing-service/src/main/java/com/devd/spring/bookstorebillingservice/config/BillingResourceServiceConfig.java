@@ -1,6 +1,6 @@
 package com.devd.spring.bookstorebillingservice.config;
 
-import com.devd.spring.bookstorecommons.security.GlobalResourceServerConfig;
+import com.wolverine.solutions.commons.security.GlobalResourceServerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;

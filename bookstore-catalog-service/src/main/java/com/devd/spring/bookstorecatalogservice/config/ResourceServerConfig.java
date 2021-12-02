@@ -1,6 +1,6 @@
 package com.devd.spring.bookstorecatalogservice.config;
 
-import com.devd.spring.bookstorecommons.security.GlobalResourceServerConfig;
+import com.wolverine.solutions.commons.security.GlobalResourceServerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

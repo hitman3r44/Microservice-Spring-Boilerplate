@@ -1,13 +1,13 @@
 package com.devd.spring.bookstoreorderservice.service.impl;
 
-import com.devd.spring.bookstorecommons.exception.RunTimeExceptionPlaceHolder;
-import com.devd.spring.bookstorecommons.feign.BillingFeignClient;
-import com.devd.spring.bookstorecommons.feign.PaymentFeignClient;
-import com.devd.spring.bookstorecommons.util.CommonUtilityMethods;
-import com.devd.spring.bookstorecommons.web.CreatePaymentRequest;
-import com.devd.spring.bookstorecommons.web.CreatePaymentResponse;
-import com.devd.spring.bookstorecommons.web.GetAddressResponse;
-import com.devd.spring.bookstorecommons.web.GetPaymentMethodResponse;
+import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
+import com.wolverine.solutions.commons.feign.BillingFeignClient;
+import com.wolverine.solutions.commons.feign.PaymentFeignClient;
+import com.wolverine.solutions.commons.util.CommonUtilityMethods;
+import com.wolverine.solutions.commons.web.CreatePaymentRequest;
+import com.wolverine.solutions.commons.web.CreatePaymentResponse;
+import com.wolverine.solutions.commons.web.GetAddressResponse;
+import com.wolverine.solutions.commons.web.GetPaymentMethodResponse;
 import com.devd.spring.bookstoreorderservice.repository.OrderBillingAddressRepository;
 import com.devd.spring.bookstoreorderservice.repository.OrderItemRepository;
 import com.devd.spring.bookstoreorderservice.repository.OrderRepository;

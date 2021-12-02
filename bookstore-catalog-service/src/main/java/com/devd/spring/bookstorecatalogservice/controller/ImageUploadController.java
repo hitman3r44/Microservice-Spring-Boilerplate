@@ -1,6 +1,6 @@
 package com.devd.spring.bookstorecatalogservice.controller;
 
-import com.devd.spring.bookstorecommons.exception.RunTimeExceptionPlaceHolder;
+import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

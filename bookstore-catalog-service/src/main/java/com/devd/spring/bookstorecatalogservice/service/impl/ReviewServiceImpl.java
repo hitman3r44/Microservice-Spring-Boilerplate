@@ -6,7 +6,7 @@ import com.devd.spring.bookstorecatalogservice.service.ProductService;
 import com.devd.spring.bookstorecatalogservice.service.ReviewService;
 import com.devd.spring.bookstorecatalogservice.web.CreateOrUpdateReviewRequest;
 import com.devd.spring.bookstorecatalogservice.web.ProductResponse;
-import com.devd.spring.bookstorecommons.feign.AccountFeignClient;
+import com.wolverine.solutions.commons.feign.AccountFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.devd.spring.bookstorecommons.util.CommonUtilityMethods.getUserIdFromToken;
-import static com.devd.spring.bookstorecommons.util.CommonUtilityMethods.getUserNameFromToken;
+import static com.wolverine.solutions.commons.util.CommonUtilityMethods.getUserIdFromToken;
+import static com.wolverine.solutions.commons.util.CommonUtilityMethods.getUserNameFromToken;
 
 
 @Service

@@ -1,8 +1,8 @@
 package com.devd.spring.bookstoreorderservice.service.impl;
 
-import com.devd.spring.bookstorecommons.feign.AccountFeignClient;
-import com.devd.spring.bookstorecommons.feign.CatalogFeignClient;
-import com.devd.spring.bookstorecommons.web.GetProductResponse;
+import com.wolverine.solutions.commons.feign.AccountFeignClient;
+import com.wolverine.solutions.commons.feign.CatalogFeignClient;
+import com.wolverine.solutions.commons.web.GetProductResponse;
 import com.devd.spring.bookstoreorderservice.repository.CartItemRepository;
 import com.devd.spring.bookstoreorderservice.repository.dao.Cart;
 import com.devd.spring.bookstoreorderservice.repository.dao.CartItem;

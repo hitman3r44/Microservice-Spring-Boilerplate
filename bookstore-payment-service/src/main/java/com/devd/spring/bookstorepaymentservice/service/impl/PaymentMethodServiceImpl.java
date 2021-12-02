@@ -1,6 +1,6 @@
 package com.devd.spring.bookstorepaymentservice.service.impl;
 
-import com.devd.spring.bookstorecommons.exception.RunTimeExceptionPlaceHolder;
+import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
 import com.devd.spring.bookstorepaymentservice.repository.UserPaymentCustomerRepository;
 import com.devd.spring.bookstorepaymentservice.repository.dao.UserPaymentCustomer;
 import com.devd.spring.bookstorepaymentservice.service.PaymentMethodService;
@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.devd.spring.bookstorecommons.util.CommonUtilityMethods.getUserIdFromToken;
-import static com.devd.spring.bookstorecommons.util.CommonUtilityMethods.getUserNameFromToken;
+import static com.wolverine.solutions.commons.util.CommonUtilityMethods.getUserIdFromToken;
+import static com.wolverine.solutions.commons.util.CommonUtilityMethods.getUserNameFromToken;
 
 
 @Service
