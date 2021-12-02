@@ -1,4 +1,4 @@
-package com.devd.spring.bookstoreapigatewayservice.config;
+package com.wolverine.solutions.apigatewayservice.config;
 
 import brave.Span;
 import brave.Tracer;

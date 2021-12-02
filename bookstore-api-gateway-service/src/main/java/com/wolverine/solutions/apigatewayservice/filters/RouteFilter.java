@@ -1,14 +1,16 @@
-package com.devd.spring.bookstoreapigatewayservice.filters;
+package com.wolverine.solutions.apigatewayservice.filters;
 
 import com.netflix.zuul.ZuulFilter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 
 
-public class PostFilter extends ZuulFilter {
+@Slf4j
+public class RouteFilter extends ZuulFilter {
 
   @Override
   public String filterType() {
-    return FilterConstants.POST_TYPE;
+    return FilterConstants.ROUTE_TYPE;
   }
 
   @Override
@@ -23,7 +25,7 @@ public class PostFilter extends ZuulFilter {
 
   @Override
   public Object run() {
-    System.out.println("Inside Response Filter");
+    System.out.println("Inside Route Filter");
     return null;
   }
 }

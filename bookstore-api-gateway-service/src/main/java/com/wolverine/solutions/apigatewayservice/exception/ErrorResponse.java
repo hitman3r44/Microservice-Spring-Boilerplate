@@ -1,4 +1,4 @@
-package com.devd.spring.bookstoreapigatewayservice.exception;
+package com.wolverine.solutions.apigatewayservice.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

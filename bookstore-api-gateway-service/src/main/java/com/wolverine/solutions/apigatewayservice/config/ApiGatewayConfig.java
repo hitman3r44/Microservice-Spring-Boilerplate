@@ -1,9 +1,9 @@
-package com.devd.spring.bookstoreapigatewayservice.config;
+package com.wolverine.solutions.apigatewayservice.config;
 
 import brave.sampler.Sampler;
-import com.devd.spring.bookstoreapigatewayservice.filters.PostFilter;
-import com.devd.spring.bookstoreapigatewayservice.filters.PreFilter;
-import com.devd.spring.bookstoreapigatewayservice.filters.RouteFilter;
+import com.wolverine.solutions.apigatewayservice.filters.PostFilter;
+import com.wolverine.solutions.apigatewayservice.filters.PreFilter;
+import com.wolverine.solutions.apigatewayservice.filters.RouteFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

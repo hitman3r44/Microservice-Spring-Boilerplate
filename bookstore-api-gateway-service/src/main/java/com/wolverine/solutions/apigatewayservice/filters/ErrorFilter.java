@@ -1,6 +1,6 @@
-package com.devd.spring.bookstoreapigatewayservice.filters;
+package com.wolverine.solutions.apigatewayservice.filters;
 
-import com.devd.spring.bookstoreapigatewayservice.exception.RunTimeExceptionPlaceHolder;
+import com.wolverine.solutions.apigatewayservice.exception.RunTimeExceptionPlaceHolder;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;

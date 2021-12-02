@@ -1,4 +1,4 @@
-package com.devd.spring.bookstoreapigatewayservice;
+package com.wolverine.solutions.apigatewayservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableZuulProxy
 @EnableDiscoveryClient
-public class BookstoreApiGatewayServiceApplication {
+public class ApiGatewayServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookstoreApiGatewayServiceApplication.class, args);
+		SpringApplication.run(ApiGatewayServiceApplication.class, args);
 	}
 
 }

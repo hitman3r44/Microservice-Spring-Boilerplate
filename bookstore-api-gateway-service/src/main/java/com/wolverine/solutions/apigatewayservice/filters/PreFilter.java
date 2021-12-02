@@ -1,4 +1,4 @@
-package com.devd.spring.bookstoreapigatewayservice.filters;
+package com.wolverine.solutions.apigatewayservice.filters;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

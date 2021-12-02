@@ -1,4 +1,4 @@
-package com.devd.spring.bookstoreapigatewayservice.exception;
+package com.wolverine.solutions.apigatewayservice.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.extern.slf4j.Slf4j;
