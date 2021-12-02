@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.devd.spring</groupId>
+		<groupId>com.wolverine.solutions</groupId>
 		<artifactId>bookstore-application-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
