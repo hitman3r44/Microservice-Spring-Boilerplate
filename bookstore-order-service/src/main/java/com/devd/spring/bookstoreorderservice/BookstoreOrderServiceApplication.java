@@ -1,0 +1,22 @@
+package com.devd.spring.bookstoreorderservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
+
+
+@SpringBootApplication(scanBasePackages = {"com.devd.spring.bookstorecommons"})
+@ComponentScan(basePackages = {"com.devd.spring"})
+//, excludeFilters={
+//		@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=GlobalSecurityConfig.class)})
+@EnableFeignClients(value = "com.devd.spring")
+@EnableEurekaClient
+public class BookstoreOrderServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(BookstoreOrderServiceApplication.class, args);
+    }
+
+}
