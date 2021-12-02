@@ -32,7 +32,7 @@ spring:
 
 logging:
   level:
-    com.devd.spring.*: DEBUG
+    com.wolverine.solutions.*: DEBUG
 
 ---
 

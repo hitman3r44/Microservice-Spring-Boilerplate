@@ -74,7 +74,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.devd.spring</groupId>
+            <groupId>com.wolverine.solutions</groupId>
             <artifactId>bookstore-feign</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
