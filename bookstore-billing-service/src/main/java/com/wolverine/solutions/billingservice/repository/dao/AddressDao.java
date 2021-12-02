@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice.repository.dao;
+package com.wolverine.solutions.billingservice.repository.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

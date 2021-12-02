@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice.config;
+package com.wolverine.solutions.billingservice.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +44,7 @@ public class SwaggerConfig {
                        .securitySchemes(Arrays.asList(apiKey()))
                        .securityContexts(Collections.singletonList(securityContext()))
                        .select()
-                       .apis(RequestHandlerSelectors.basePackage("com.devd.spring"))
+                       .apis(RequestHandlerSelectors.basePackage("com.wolverine.solutions"))
                        .paths(PathSelectors.any())
                        .build()
                        .apiInfo(apiInfo);

@@ -1,8 +1,8 @@
-package com.devd.spring.bookstorebillingservice.service;
+package com.wolverine.solutions.billingservice.service;
 
-import com.devd.spring.bookstorebillingservice.web.CreateAddressRequest;
-import com.devd.spring.bookstorebillingservice.web.GetAddressResponse;
-import com.devd.spring.bookstorebillingservice.web.UpdateAddressRequest;
+import com.wolverine.solutions.billingservice.web.CreateAddressRequest;
+import com.wolverine.solutions.billingservice.web.GetAddressResponse;
+import com.wolverine.solutions.billingservice.web.UpdateAddressRequest;
 
 import java.util.List;
 

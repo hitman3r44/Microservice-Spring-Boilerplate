@@ -1,9 +1,9 @@
-package com.devd.spring.bookstorebillingservice.controller;
+package com.wolverine.solutions.billingservice.controller;
 
-import com.devd.spring.bookstorebillingservice.service.AddressService;
-import com.devd.spring.bookstorebillingservice.web.CreateAddressRequest;
-import com.devd.spring.bookstorebillingservice.web.GetAddressResponse;
-import com.devd.spring.bookstorebillingservice.web.UpdateAddressRequest;
+import com.wolverine.solutions.billingservice.service.AddressService;
+import com.wolverine.solutions.billingservice.web.CreateAddressRequest;
+import com.wolverine.solutions.billingservice.web.GetAddressResponse;
+import com.wolverine.solutions.billingservice.web.UpdateAddressRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

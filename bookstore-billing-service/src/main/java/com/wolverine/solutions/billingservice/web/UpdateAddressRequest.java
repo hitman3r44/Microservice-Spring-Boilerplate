@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice.web;
+package com.wolverine.solutions.billingservice.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 
@@ -13,7 +14,10 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateAddressRequest {
+public class UpdateAddressRequest {
+
+    @NotBlank
+    private String addressId;
 
     @NonNull
     private String addressLine1;

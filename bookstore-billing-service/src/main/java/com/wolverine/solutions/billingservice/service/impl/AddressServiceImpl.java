@@ -1,11 +1,11 @@
-package com.devd.spring.bookstorebillingservice.service.impl;
+package com.wolverine.solutions.billingservice.service.impl;
 
-import com.devd.spring.bookstorebillingservice.repository.AddressRepository;
-import com.devd.spring.bookstorebillingservice.repository.dao.AddressDao;
-import com.devd.spring.bookstorebillingservice.service.AddressService;
-import com.devd.spring.bookstorebillingservice.web.CreateAddressRequest;
-import com.devd.spring.bookstorebillingservice.web.GetAddressResponse;
-import com.devd.spring.bookstorebillingservice.web.UpdateAddressRequest;
+import com.wolverine.solutions.billingservice.repository.AddressRepository;
+import com.wolverine.solutions.billingservice.repository.dao.AddressDao;
+import com.wolverine.solutions.billingservice.service.AddressService;
+import com.wolverine.solutions.billingservice.web.CreateAddressRequest;
+import com.wolverine.solutions.billingservice.web.GetAddressResponse;
+import com.wolverine.solutions.billingservice.web.UpdateAddressRequest;
 import com.wolverine.solutions.commons.util.CommonUtilityMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice.web;
+package com.wolverine.solutions.billingservice.web;
 
 import lombok.Builder;
 import lombok.Data;

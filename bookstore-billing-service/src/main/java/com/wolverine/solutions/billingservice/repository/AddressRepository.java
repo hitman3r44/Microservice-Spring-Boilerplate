@@ -1,6 +1,6 @@
-package com.devd.spring.bookstorebillingservice.repository;
+package com.wolverine.solutions.billingservice.repository;
 
-import com.devd.spring.bookstorebillingservice.repository.dao.AddressDao;
+import com.wolverine.solutions.billingservice.repository.dao.AddressDao;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

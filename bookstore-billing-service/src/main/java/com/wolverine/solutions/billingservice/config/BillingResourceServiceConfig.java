@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice.config;
+package com.wolverine.solutions.billingservice.config;
 
 import com.wolverine.solutions.commons.security.GlobalResourceServerConfig;
 import org.springframework.beans.factory.annotation.Autowired;

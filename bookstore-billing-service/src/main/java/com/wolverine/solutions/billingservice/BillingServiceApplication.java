@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice;
+package com.wolverine.solutions.billingservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,13 +7,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.devd.spring"})
-@EnableFeignClients(basePackages = {"com.devd.spring"})
+@ComponentScan(basePackages = {"com.wolverine.solutions"})
+@EnableFeignClients(basePackages = {"com.wolverine.solutions"})
 @EnableDiscoveryClient
-public class BookstoreBillingServiceApplication {
+public class BillingServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BookstoreBillingServiceApplication.class, args);
+		SpringApplication.run(BillingServiceApplication.class, args);
 	}
 
 }

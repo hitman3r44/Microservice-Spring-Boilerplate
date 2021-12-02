@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice.config;
+package com.wolverine.solutions.billingservice.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

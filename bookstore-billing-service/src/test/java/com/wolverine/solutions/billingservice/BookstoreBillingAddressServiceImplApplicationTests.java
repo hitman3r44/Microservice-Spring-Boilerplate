@@ -1,4 +1,4 @@
-package com.devd.spring.bookstorebillingservice;
+package com.wolverine.solutions.billingservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
