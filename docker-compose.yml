@@ -6,36 +6,38 @@ services:
   bookstore-mysql-db:
     image: mysql:5.7
     container_name: bookstore-mysql-db
-    hostname: bookstore-mysql-db
+    hostname: ${MYSQL_DOCKER_HOSTNAME}
     restart: always
     environment:
-      MYSQL_DATABASE: 'bookstore_db'
-      MYSQL_USER: 'bookstoreDBA'
-      MYSQL_PASSWORD: 'PaSSworD'
-      MYSQL_ROOT_PASSWORD: 'r00tPaSSworD'
+      MYSQL_DATABASE: ${MYSQL_DATABASE_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "3306:3306"
+      - "${MYSQL_PORT}:3306"
     expose:
-      - "3306"
+      - "${MYSQL_PORT}"
     volumes:
-      - bookstore-db-volume:/var/lib/mysql
+      - ${MYSQL_DB_VOLUME_NAME}:/var/lib/mysql
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   # Database Manager
   adminer:
     image: adminer:latest
     container_name: adminer
+    hostname: adminer
     environment:
-      ADMINER_DEFAULT_SERVER: bookstore-mysql-db
+      ADMINER_DEFAULT_SERVER: ${MYSQL_DOCKER_HOSTNAME}
       ADMINER_DESIGN: pepa-linha
+      ADMINER_PLUGINS: tables-filter tinymce
     restart: always
     ports:
-      - 7777:8080
+      - ${ADMINER_PORT}:8080
     expose:
-      - "7777"
+      - ${ADMINER_PORT}"
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   # Core services
   bookstore-consul-discovery:
@@ -46,7 +48,7 @@ services:
     ports:
       - "8500:8500"
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   bookstore-zuul-api-gateway-server:
     build:

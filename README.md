@@ -203,5 +203,17 @@ password: 'cores.devd123'
 *To get the accessToken (Admin User)* 
 
 ```curl 93ed453e-b7ac-4192-a6d4-c45fae0d99ac:client.devd123@localhost:4001/oauth/token -d grant_type=password -d username=admin.admin -d password=admin.devd123```
+## Docker Command
+```bash
+docker-compose config <CONTAINER_NAME> ## To check the value of .env file:  
+docker-compose up  <CONTAINER_NAME> -d ## Start a particular image
+docker-compose logs -f <CONTAINER_NAME> ## See the particular image logs
 
+docker build -t <CONTAINER_NAME> . ## Build a the particular image
+docker run <CONTAINER_NAME> -it bin/sh ## Run Bash
+docker stop $(docker ps -a -q) ## stops all running containers
+docker kill $(docker ps -q) ## kill all running containers
+docker rm $(docker ps -a -q) ## delete all stopped containers
+docker rmi $(docker images -q) ## delete all images with
+```
 <hr>
