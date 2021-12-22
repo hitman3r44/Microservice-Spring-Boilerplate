@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "oauth_client_details")
+@Table(name = "OAUTH_CLIENT_DETAILS")
 @Builder
 public class OAuthClient extends DateAudit {
 
@@ -30,9 +30,16 @@ public class OAuthClient extends DateAudit {
 
   @Column(name = "CLIENT_SECRET", updatable = false, nullable = false)
   private String client_secret;
+  @Column(name = "AUTHORIZED_GRANT_TYPES", updatable = false, nullable = false)
   private String authorized_grant_types;
   private String authorities;
+  @Column(name = "SCOPE", updatable = false, nullable = false)
   private String scope;
   private String resource_ids;
+  private String web_server_redirect_uri;
+  private String access_token_validity;
+  private String refresh_token_validity;
+  private String additional_information;
+  private String auto_approve;
 
 }
