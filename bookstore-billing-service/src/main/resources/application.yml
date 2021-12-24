@@ -17,10 +17,23 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+  jpa:
+    open-in-view: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
   flyway:
     table: billing_service_flyway_history
     baseline-on-migrate: true
     baseline-version: 0.9
+    enabled: off
   main:
     allow-bean-definition-overriding: true
   hateoas:
