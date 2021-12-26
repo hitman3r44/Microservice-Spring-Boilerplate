@@ -36,9 +36,9 @@ VALUES ('rertertr-6727-4229-a4ab-erererererer', '9601409f-4691-4281-886e-8f89877
 INSERT INTO USER_ROLES(USER_ID, ROLE_ID)
 VALUES ('dfgdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb', 'tytryyrt-rtyr-rtyr-rtyr-fghfghfggfhg');
 
-INSERT INTO OAUTH_CLIENT_DETAILS (CLIENT_ID, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, WEB_SERVER_REDIRECT_URI,
+INSERT INTO oauth_client_details (CLIENT_ID, CLIENT_SECRET, SCOPE, AUTHORIZED_GRANT_TYPES, WEB_SERVER_REDIRECT_URI,
                                   AUTHORITIES, ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY, ADDITIONAL_INFORMATION,
-                                  AUTO_APPROVE, RESOURCE_IDS)
+                                  AUTOAPPROVE, RESOURCE_IDS)
 VALUES ('93ed453e-b7ac-4192-a6d4-c45fae0d99ac', '$2a$10$LulvWhcpUv8lFGmd9NbIG.PB46E5/tcivjGbELWMMWeBuDHKtrVKa',
         'read,write', 'password,authorization_code,refresh_token,client_credentials', 'http://localhost:5678',
         'ADMIN_USER', 259200, 604800, null, true, 'web');

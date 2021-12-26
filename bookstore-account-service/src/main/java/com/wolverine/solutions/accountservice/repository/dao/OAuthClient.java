@@ -40,7 +40,7 @@ public class OAuthClient extends DateAudit {
   private String access_token_validity;
   private String refresh_token_validity;
   private String additional_information;
-  @Column(name = "AUTO_APPROVE", updatable = false, nullable = false)
+  @Column(name = "AUTOAPPROVE", updatable = false, nullable = false)
   private String auto_approve;
 
 }

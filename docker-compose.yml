@@ -83,7 +83,7 @@ services:
       - bookstore-app-network
     environment:
       - SERVER_PORT=4001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - ZIPKIN_HOST=bookstore-zipkin:9411
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-billing-service:
