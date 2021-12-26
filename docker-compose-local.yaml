@@ -70,21 +70,25 @@ services:
 
   bookstore-account-service:
     build:
-      context: ./bookstore-account-service
-      args:
-        JAR_FILE: bookstore-account-service-0.0.1-SNAPSHOT.jar
-      dockerfile: Dockerfile
+      context: bookstore-account-service
+      dockerfile: bookstore-account-service/local.Dockerfile
     image: bookstore-account-service
     container_name: bookstore-account-service
     hostname: bookstore-account-service
-    ports:
-      - "4001:4001"
+    volumes:
+      - ./bookstore-account-service:/app
+      - ${HOME}/.m2:/root/.m2
+    working_dir: /app
+    command: sh run.sh
     networks:
       - bookstore-app-network
     environment:
-      - SERVER_PORT=4001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
       - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=4001
+    ports:
+      - 4001:4001
+      - 35729:35729
+      - 5005:5005
 
   bookstore-billing-service:
     build:
@@ -101,7 +105,7 @@ services:
       - bookstore-app-network
     environment:
       - SERVER_PORT=5001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      #      - ZIPKIN_HOST=bookstore-zipkin:9411
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-catalog-service:
@@ -119,7 +123,7 @@ services:
       - bookstore-app-network
     environment:
       - SERVER_PORT=6001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      #      - ZIPKIN_HOST=bookstore-zipkin:9411
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-order-service:
@@ -137,7 +141,7 @@ services:
       - bookstore-app-network
     environment:
       - SERVER_PORT=7001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      #      - ZIPKIN_HOST=bookstore-zipkin:9411
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-payment-service:
@@ -155,7 +159,7 @@ services:
       - bookstore-app-network
     environment:
       - SERVER_PORT=8001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      #      - ZIPKIN_HOST=bookstore-zipkin:9411
       - SPRING_PROFILES_ACTIVE=docker
 
   # Tracing service

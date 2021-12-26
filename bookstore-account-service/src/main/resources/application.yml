@@ -21,10 +21,33 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+  devtools:
+    remote:
+      secret: KALSDJFLNVMSDJFGIERJGLESALRGJLAJFGLASDFJLASDFM
+    livereload:
+      enabled: true
+
+  jpa:
+    open-in-view: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  datasource:
+    dbcp2:
+      validation-query: SELECT 1;
+    tomcat:
+      validation-interval: 80000
+    initialization-mode: always
+#    data: classpath*:data.sql
+
   flyway:
     table: account_service_flyway_history
     baseline-on-migrate: true
     baseline-version: 0.9
+    enabled: true
   main:
     allow-bean-definition-overriding: true
 
