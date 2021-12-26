@@ -25,7 +25,7 @@ services:
   # Database Manager
   adminer:
     image: ${ADMINER_IMAGE_NAME}
-    container_name: ${ADMINER_CONTAINER_DOCKER_NAME}
+    container_name: ${ADMINER_DOCKER_CONTAINER_NAME}
     hostname: ${ADMINER_HOST_NAME}
     environment:
       ADMINER_DEFAULT_SERVER: ${MYSQL_DOCKER_HOSTNAME}
