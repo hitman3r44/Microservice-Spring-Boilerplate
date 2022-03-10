@@ -49,9 +49,8 @@ public class UserController {
 
   @GetMapping("/user")
   @PreAuthorize("hasAuthority('ADMIN_USER')")
-  public ResponseEntity<GetUserResponse> getUser(
-      @RequestParam("userName") Optional<String> userName
-      , @RequestParam("userId") Optional<String> userId) {
+  public ResponseEntity<GetUserResponse> getUser(@RequestParam("userName") Optional<String> userName,
+                                                 @RequestParam("userId") Optional<String> userId) {
 
     GetUserResponse user = null;
     if (userName.isPresent()) {
@@ -73,8 +72,9 @@ public class UserController {
 
   @GetMapping("/users")
   @PreAuthorize("hasAuthority('ADMIN_USER')")
-  public ResponseEntity<List<GetUserResponse>> getAllUsers() {
-    List<GetUserResponse> allUsers = userService.getAllUsers();
+  public ResponseEntity<List<GetUserResponse>> getAllUsers(
+          @RequestParam(value = "isDeleted", required = false, defaultValue = "false") boolean isDeleted) {
+    List<GetUserResponse> allUsers = userService.getAllUsers(isDeleted);
     return ResponseEntity.ok(allUsers);
   }
 

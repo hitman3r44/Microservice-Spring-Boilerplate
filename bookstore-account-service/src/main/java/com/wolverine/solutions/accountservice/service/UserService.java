@@ -23,7 +23,7 @@ public interface UserService {
 
   void deleteUserById(String userId);
 
-  List<GetUserResponse> getAllUsers();
+  List<GetUserResponse> getAllUsers(boolean isDeleted);
 
   void updateUser(String userId, UpdateUserRequestFromAdmin updateUserRequestFromAdmin);
 }

@@ -16,12 +16,15 @@ import com.wolverine.solutions.accountservice.web.UpdateUserRequestFromAdmin;
 import com.wolverine.solutions.commons.exception.Error;
 import com.wolverine.solutions.commons.exception.ErrorResponse;
 import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -44,6 +47,9 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private UserRoleService userRoleService;
+
+  @Autowired
+  private EntityManager entityManager;
 
   @Override
   public String createUser(CreateUserRequest createUserRequest) {
@@ -121,7 +127,7 @@ public class UserServiceImpl implements UserService {
   public GetUserResponse getUserByUserId(String userId) {
     Optional<User> userIdOptional = userRepository.findByUserId(userId);
     User userById = userIdOptional.orElseThrow(() ->
-        new RunTimeExceptionPlaceHolder("UserName or Email doesn't exist!!")
+        new RunTimeExceptionPlaceHolder("User doesn't exist!!")
     );
 
     return GetUserResponse.builder()
@@ -182,6 +188,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void deleteUserById(String userId) {
+
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String userName = (String) authentication.getPrincipal();
     GetUserResponse userByUserId = getUserByUserId(userId);
@@ -194,9 +201,16 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<GetUserResponse> getAllUsers() {
+  public List<GetUserResponse> getAllUsers(boolean isDeleted) {
+
+    Session session = entityManager.unwrap(Session.class);
+    Filter filter = session.enableFilter("deletedUserFilter");
+    filter.setParameter("isDeleted", isDeleted);
 
     Iterable<User> all = userRepository.findAll();
+
+    session.disableFilter("deletedUserFilter");
+
     List<GetUserResponse> allUsers = new ArrayList<>();
     all.iterator().forEachRemaining(u->{
       GetUserResponse userResponse = GetUserResponse.builder()
@@ -206,6 +220,7 @@ public class UserServiceImpl implements UserService {
               .lastName(u.getLastName())
               .email(u.getEmail())
               .roles(u.getRoles())
+              .isDeleted(u.getIsDeleted())
               .build();
       allUsers.add(userResponse);
     });
@@ -239,7 +254,7 @@ public class UserServiceImpl implements UserService {
       userRoleService.removeRolesFromUser(user.getUserName(), mapUserToRolesRequest);
     }
 
-    if (updateUserRequestFromAdmin.getRoles().size() > 0) {
+    if (updateUserRequestFromAdmin.getRoles() != null && updateUserRequestFromAdmin.getRoles().size() > 0) {
       MapUserToRolesRequest mapUserToRolesRequest = new MapUserToRolesRequest();
       mapUserToRolesRequest.setRoleNames(updateUserRequestFromAdmin.getRoles());
       userRoleService.mapUserToRoles(user.getUserName(), mapUserToRolesRequest);

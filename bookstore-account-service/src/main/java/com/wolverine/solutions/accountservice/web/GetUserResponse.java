@@ -20,5 +20,5 @@ public class GetUserResponse {
   private String lastName;
   private String email;
   private Set<Role> roles;
-
+  private Boolean isDeleted;
 }

@@ -18,9 +18,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-
-
+import org.hibernate.annotations.*;
 
 @Entity
 @Getter
@@ -29,10 +27,19 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @Table(name = "USER")
 @Builder
+@SQLDelete(sql = "UPDATE USER SET IS_DELETED = true WHERE USER_ID=?")
+//@Where(clause = "IS_DELETED = false")
+@FilterDef(
+        name = "deletedUserFilter",
+        parameters = @ParamDef(name = "isDeleted", type = "boolean")
+)
+@Filter(
+        name = "deletedUserFilter",
+        condition = "IS_DELETED = :isDeleted"
+)
 public class User extends DateAudit {
 
-  @ManyToMany(fetch = FetchType.EAGER,
-      cascade = CascadeType.DETACH)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
   @JoinTable(name = "USER_ROLES",
       joinColumns = {@JoinColumn(name = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "role_id")})
@@ -58,6 +65,9 @@ public class User extends DateAudit {
 
   @Column(name = "EMAIL", nullable = false)
   private String email;
+
+  @Column(name = "IS_DELETED", columnDefinition = "boolean default false")
+  private Boolean isDeleted = Boolean.FALSE;
 
   public User(String userName, String password, String firstName, String lastName, String email) {
     this.userName = userName;
