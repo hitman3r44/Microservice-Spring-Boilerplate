@@ -25,9 +25,9 @@ import org.hibernate.annotations.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "USER")
+@Table(name = "user")
 @Builder
-@SQLDelete(sql = "UPDATE USER SET IS_DELETED = true WHERE USER_ID=?")
+@SQLDelete(sql = "UPDATE user SET IS_DELETED = true WHERE user_id=?")
 //@Where(clause = "IS_DELETED = false")
 @FilterDef(
         name = "deletedUserFilter",
@@ -40,7 +40,7 @@ import org.hibernate.annotations.*;
 public class User extends DateAudit {
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-  @JoinTable(name = "USER_ROLES",
+  @JoinTable(name = "user_roles",
       joinColumns = {@JoinColumn(name = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "role_id")})
   Set<Role> roles;
@@ -48,22 +48,22 @@ public class User extends DateAudit {
   @Id
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid2")
-  @Column(name = "USER_ID", updatable = false, nullable = false)
+  @Column(name = "user_id", updatable = false, nullable = false)
   private String userId;
 
-  @Column(name = "USER_NAME", updatable = false, nullable = false)
+  @Column(name = "user_name", updatable = false, nullable = false)
   private String userName;
 
-  @Column(name = "PASSWORD", nullable = false)
+  @Column(name = "password", nullable = false)
   private String password;
 
-  @Column(name = "FIRST_NAME", nullable = false)
+  @Column(name = "first_name", nullable = false)
   private String firstName;
 
-  @Column(name = "LAST_NAME")
+  @Column(name = "last_name")
   private String lastName;
 
-  @Column(name = "EMAIL", nullable = false)
+  @Column(name = "email", nullable = false)
   private String email;
 
   @Column(name = "IS_DELETED", columnDefinition = "boolean default false")

@@ -25,17 +25,17 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ROLE")
+@Table(name = "role")
 @Builder
 public class Role extends DateAudit {
 
   @Id
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid2")
-  @Column(name = "ROLE_ID", updatable = false, nullable = false)
+  @Column(name = "role_id", updatable = false, nullable = false)
   private String id;
 
-  @Column(name = "ROLE_NAME", nullable = false)
+  @Column(name = "role_name", nullable = false)
   private String roleName;
 
   @ManyToMany(fetch = FetchType.LAZY,
@@ -44,7 +44,7 @@ public class Role extends DateAudit {
   @JsonIgnore
   private Set<User> users = new HashSet<>();
 
-  @Column(name = "ROLE_DESCRIPTION")
+  @Column(name = "role_description")
   private String roleDescription;
 
   public void addUser(User user) {
