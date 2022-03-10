@@ -31,4 +31,7 @@ HELP.md
 *.vscode/
 *.mvn
 */Logs
+
+### Application Level ###
 /Logs
+*.db
