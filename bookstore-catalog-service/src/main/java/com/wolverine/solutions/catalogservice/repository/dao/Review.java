@@ -20,7 +20,7 @@ import javax.validation.constraints.Min;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "REVIEW")
+@Table(name = "review")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +35,7 @@ public class Review extends DateAudit {
     @Column(name = "PRODUCT_ID", updatable = false, nullable = false)
     private String productId;
 
-    @Column(name = "USER_ID", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private String userId;
 
     @Column(name = "USER_NAME", nullable = false)

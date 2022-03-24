@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PRODUCT_CATEGORY")
+@Table(name = "product_category")
 @Builder
 public class ProductCategory extends DateAudit {
 

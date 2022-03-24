@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "product")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

@@ -36,25 +36,25 @@ public class OrderBillingAddress extends DateAudit {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String orderId;
 
-    @Column(name = "ADDRESS_LINE1", nullable = false)
+    @Column(name = "address_line1", nullable = false)
     private String addressLine1;
 
-    @Column(name = "ADDRESS_LINE2")
+    @Column(name = "address_line2")
     private String addressLine2;
 
-    @Column(name = "CITY", nullable = false)
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "STATE", nullable = false)
+    @Column(name = "state", nullable = false)
     private String state;
 
-    @Column(name = "POSTAL_CODE", nullable = false)
+    @Column(name = "postal_code", nullable = false)
     private String postalCode;
 
     @Pattern(regexp = "[A-Z]{2}", message = "2-letter ISO country code required")
     @NonNull
     private String country;
 
-    @Column(name = "PHONE")
+    @Column(name = "phone")
     private String phone;
 }

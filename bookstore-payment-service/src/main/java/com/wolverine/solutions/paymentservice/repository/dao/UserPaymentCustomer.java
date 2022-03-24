@@ -28,7 +28,7 @@ public class UserPaymentCustomer extends DateAudit {
     @Column(name = "ID", updatable = false, nullable = false)
     private String userPaymentCustomerId;
 
-    @Column(name = "USER_ID", nullable = false, unique = true)
+    @Column(name = "user_id", nullable = false, unique = true)
     private String userId;
 
     @Column(name = "USER_NAME", nullable = false, unique = true)
