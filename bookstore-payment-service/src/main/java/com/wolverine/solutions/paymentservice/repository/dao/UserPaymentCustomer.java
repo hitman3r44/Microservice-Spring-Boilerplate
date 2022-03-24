@@ -19,13 +19,13 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "USER_PAYMENT_CUSTOMER")
+@Table(name = "user_payment_customer")
 @Builder
 public class UserPaymentCustomer extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "ID", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false)
     private String userPaymentCustomerId;
 
     @Column(name = "user_id", nullable = false, unique = true)
@@ -34,6 +34,6 @@ public class UserPaymentCustomer extends DateAudit {
     @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "PAYMENT_CUSTOMER_ID", nullable = false, unique = true)
+    @Column(name = "payment_customer_id", nullable = false, unique = true)
     private String paymentCustomerId;
 }
