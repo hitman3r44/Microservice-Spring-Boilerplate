@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "ORDER_TABLE")
+@Table(name = "order_table")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,10 +28,10 @@ public class Order extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "ORDER_ID", updatable = false, nullable = false)
+    @Column(name = "order_id", updatable = false, nullable = false)
     private String orderId;
     
-    @Column(name = "USER_NAME", nullable = false)
+    @Column(name = "user_name", nullable = false)
     private String userName;
 
     @Column(name = "user_id", nullable = false)
@@ -40,37 +40,37 @@ public class Order extends DateAudit {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @Column(name = "TOTAL_ITEMS_PRICE", nullable = false)
+    @Column(name = "total_items_price", nullable = false)
     private double totalItemsPrice;
 
-    @Column(name = "TOTAL_ORDER_PRICE", nullable = false)
+    @Column(name = "total_order_price", nullable = false)
     private double totalOrderPrice;
 
-    @Column(name = "PAYMENT_METHOD_ID", nullable = false)
+    @Column(name = "payment_method_id", nullable = false)
     private String paymentMethodId;
 
-    @Column(name = "TAX_PRICE", nullable = false)
+    @Column(name = "tax_price", nullable = false)
     private double taxPrice;
 
-    @Column(name = "SHIPPING_PRICE", nullable = false)
+    @Column(name = "shipping_price", nullable = false)
     private double shippingPrice;
 
-    @Column(name = "IS_PAID")
+    @Column(name = "is_paid")
     private boolean isPaid;
 
-    @Column(name = "PAYMENT_ID")
+    @Column(name = "payment_id")
     private String paymentId;
 
-    @Column(name = "PAYMENT_DATE")
+    @Column(name = "payment_date")
     private LocalDateTime paymentDate;
 
-    @Column(name = "PAYMENT_RECEIPT_URL")
+    @Column(name = "payment_receipt_url")
     private String paymentReceiptUrl;
 
-    @Column(name = "DELIVERED_DATE")
+    @Column(name = "delivered_date")
     private LocalDateTime deliveredDate;
 
-    @Column(name = "IS_DELIVERED")
+    @Column(name = "is_delivered")
     private boolean isDelivered;
 
 }

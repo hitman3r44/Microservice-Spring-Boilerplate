@@ -18,7 +18,7 @@ import javax.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "ORDER_BILLING_ADDRESS")
+@Table(name = "order_billing_address")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,11 +28,11 @@ public class OrderBillingAddress extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "ORDER_BILLING_ID", updatable = false, nullable = false)
+    @Column(name = "order_billing_id", updatable = false, nullable = false)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String orderBillingId;
 
-    @Column(name = "ORDER_ID", updatable = false, nullable = false)
+    @Column(name = "order_id", updatable = false, nullable = false)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String orderId;
 

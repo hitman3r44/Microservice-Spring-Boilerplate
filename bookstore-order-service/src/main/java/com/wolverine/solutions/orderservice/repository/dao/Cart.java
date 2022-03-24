@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "CART")
+@Table(name = "cart")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,18 +32,18 @@ public class Cart extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "CART_ID", updatable = false, nullable = false)
+    @Column(name = "cart_id", updatable = false, nullable = false)
     private String cartId;
 
     @NotEmpty
     @NotNull
-    @Column(name = "USER_NAME", nullable = false)
+    @Column(name = "user_name", nullable = false)
     private String userName;
     
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems = new ArrayList<>();
     
-    @Column(name = "TOTAL_PRICE", nullable = false)
+    @Column(name = "total_price", nullable = false)
     private double totalPrice;
 
     public void dismissChild(CartItem cartItem) {
