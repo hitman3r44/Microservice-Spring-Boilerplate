@@ -2,7 +2,7 @@ spring:
   application:
     name: bookstore-order-service
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:local}
+    active: ${SPRING_PROFILES_ACTIVE:mysql}
 
 management:
   endpoints:
