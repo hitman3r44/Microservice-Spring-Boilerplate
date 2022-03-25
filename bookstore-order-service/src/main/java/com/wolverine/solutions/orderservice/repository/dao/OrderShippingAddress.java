@@ -18,7 +18,7 @@ import javax.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "ORDER_SHIPPING_ADDRESS")
+@Table(name = "order_shipping_address")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,33 +28,33 @@ public class OrderShippingAddress extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "ORDER_SHIPPING_ID", updatable = false, nullable = false)
+    @Column(name = "order_shipping_id", updatable = false, nullable = false)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String orderShippingId;
 
-    @Column(name = "ORDER_ID", updatable = false, nullable = false)
+    @Column(name = "order_id", updatable = false, nullable = false)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String orderId;
 
-    @Column(name = "ADDRESS_LINE1", nullable = false)
+    @Column(name = "address_line1", nullable = false)
     private String addressLine1;
 
-    @Column(name = "ADDRESS_LINE2")
+    @Column(name = "address_line2")
     private String addressLine2;
 
-    @Column(name = "CITY", nullable = false)
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "STATE", nullable = false)
+    @Column(name = "state", nullable = false)
     private String state;
 
-    @Column(name = "POSTAL_CODE", nullable = false)
+    @Column(name = "postal_code", nullable = false)
     private String postalCode;
 
     @Pattern(regexp = "[A-Z]{2}", message = "2-letter ISO country code required")
     @NonNull
     private String country;
 
-    @Column(name = "PHONE")
+    @Column(name = "phone")
     private String phone;
 }

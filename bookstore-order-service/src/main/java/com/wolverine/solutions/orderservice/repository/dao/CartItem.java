@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "CART_ITEM")
+@Table(name = "cart_item")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,26 +30,26 @@ public class CartItem extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "CART_ITEM_ID", updatable = false, nullable = false)
+    @Column(name = "cart_item_id", updatable = false, nullable = false)
     private String cartItemId;
 
-    @Column(name = "QUANTITY", nullable = false)
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "ITEM_PRICE", nullable = false)
+    @Column(name = "item_price", nullable = false)
     private double itemPrice;
 
-    @Column(name = "EXTENDED_PRICE", nullable = false)
+    @Column(name = "extended_price", nullable = false)
     private double extendedPrice;
     
-    @Column(name = "PRODUCT_ID", nullable = false)
+    @Column(name = "product_id", nullable = false)
     private String productId;
 
-    @Column(name = "PRODUCT_NAME", nullable = false)
+    @Column(name = "product_name", nullable = false)
     private String productName;
     
     @ManyToOne
-    @JoinColumn(name = "CART_ID")
+    @JoinColumn(name = "cart_id")
     @JsonIgnore
     private Cart cart;
     

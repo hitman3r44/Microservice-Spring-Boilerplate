@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "address")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,31 +27,31 @@ public class AddressDao extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "ADDRESS_ID", updatable = false, nullable = false)
+    @Column(name = "address_id", updatable = false, nullable = false)
     private String addressId;
     
-    @Column(name = "USER_ID", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private String userId;
     
-    @Column(name = "ADDRESS_LINE1", nullable = false)
+    @Column(name = "address_line1", nullable = false)
     private String addressLine1;
     
-    @Column(name = "ADDRESS_LINE2")
+    @Column(name = "address_line2")
     private String addressLine2;
     
-    @Column(name = "CITY", nullable = false)
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "STATE", nullable = false)
+    @Column(name = "state", nullable = false)
     private String state;
     
-    @Column(name = "POSTAL_CODE", nullable = false)
+    @Column(name = "postal_code", nullable = false)
     private String postalCode;
     
     @Pattern(regexp = "[A-Z]{2}", message = "2-letter ISO country code required")
     @NonNull
     private String country;
 
-    @Column(name = "PHONE")
+    @Column(name = "phone")
     private String phone;
 }
