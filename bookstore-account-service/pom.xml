@@ -15,7 +15,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <jjwt.version>0.9.1</jjwt.version>
         <skip-docker-plugin>true</skip-docker-plugin>
         <docker-image-name>account-service</docker-image-name>

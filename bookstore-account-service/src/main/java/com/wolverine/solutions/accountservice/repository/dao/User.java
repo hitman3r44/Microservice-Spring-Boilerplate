@@ -27,15 +27,15 @@ import org.hibernate.annotations.*;
 @AllArgsConstructor
 @Table(name = "user")
 @Builder
-@SQLDelete(sql = "UPDATE user SET IS_DELETED = true WHERE user_id=?")
-//@Where(clause = "IS_DELETED = false")
+@SQLDelete(sql = "UPDATE user SET is_deleted = true WHERE user_id=?")
+//@Where(clause = "is_deleted = false")
 @FilterDef(
         name = "deletedUserFilter",
         parameters = @ParamDef(name = "isDeleted", type = "boolean")
 )
 @Filter(
         name = "deletedUserFilter",
-        condition = "IS_DELETED = :isDeleted"
+        condition = "is_deleted = :isDeleted"
 )
 public class User extends DateAudit {
 
@@ -66,7 +66,7 @@ public class User extends DateAudit {
   @Column(name = "email", nullable = false)
   private String email;
 
-  @Column(name = "IS_DELETED", columnDefinition = "boolean default false")
+  @Column(name = "is_deleted", columnDefinition = "boolean default false")
   private Boolean isDeleted = Boolean.FALSE;
 
   public User(String userName, String password, String firstName, String lastName, String email) {

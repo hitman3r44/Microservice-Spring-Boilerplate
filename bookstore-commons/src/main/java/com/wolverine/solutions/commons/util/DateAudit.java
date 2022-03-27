@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -24,11 +24,11 @@ import java.time.Instant;
 public abstract class DateAudit implements Serializable {
 
   @CreatedDate
-  @Column(name = "created_at")
-  private Instant createdAt;
+  @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  private LocalDateTime createdAt;
 
   @LastModifiedDate
-  @Column(name = "updated_at")
-  private Instant updatedAt;
+  @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  private LocalDateTime updatedAt;
 
 }

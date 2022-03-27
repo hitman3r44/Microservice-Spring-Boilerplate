@@ -31,6 +31,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,7 +183,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         createOrderResponse.setOrderId(save.getOrderId());
-        createOrderResponse.setCreated_at(save.getCreatedAt());
+        createOrderResponse.setCreated_at(save.getCreatedAt().toInstant(ZoneOffset.UTC));
 
         //set Payment info
         createOrderResponse.setPaid(createPaymentResponse.isCaptured());
@@ -348,7 +349,7 @@ public class OrderServiceImpl implements OrderService {
                     .paymentReceiptUrl(o.getPaymentReceiptUrl())
                     .taxPrice(o.getTaxPrice())
                     .totalPrice(o.getTotalOrderPrice())
-                    .created_at(o.getCreatedAt())
+                    .created_at(o.getCreatedAt().toInstant(ZoneOffset.UTC))
                     .build();
             createOrderResponseList.add(createOrderResponse);
         });

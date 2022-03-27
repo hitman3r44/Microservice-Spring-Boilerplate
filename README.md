@@ -1,3 +1,4 @@
+
 # BookStoreApp-Distributed-Application [![HitCount](http://hits.dwyl.io/devdcores/BookStoreApp-Distributed-Application.svg)](http://hits.dwyl.io/devdcores/BookStoreApp-Distributed-Application)
 
 <hr>
@@ -44,7 +45,7 @@ To Start Backend Services follow below steps.
 >Using Intellij/Eclipse or Command Line
 
 Import this project into IDE and run all Spring boot projects or 
-build all the jars running `mvn clean install` command in root parent pom, which builds all jars.
+build all the jars running `mvn clean install -DskipTests` command in root parent pom, which builds all jars.
 All services will be up in the below mentioned ports.
 
 But running this way we wont get monitoring of microservices. 
