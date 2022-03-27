@@ -35,3 +35,4 @@ HELP.md
 ### Application Level ###
 /Logs
 *.db
+*.log
