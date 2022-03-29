@@ -215,7 +215,7 @@ public class UserControllerTest {
         headers.add("Authorization", TOKEN);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + "user/"+userId,
+                SERVER_NAME + PORT + URI + "user/" + userId,
                 HttpMethod.DELETE,
                 new HttpEntity<>(headers), String.class);
         Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());

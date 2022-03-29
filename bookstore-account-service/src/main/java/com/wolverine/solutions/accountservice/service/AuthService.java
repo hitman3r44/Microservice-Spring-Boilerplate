@@ -7,7 +7,7 @@ import com.wolverine.solutions.accountservice.web.SignUpRequest;
 
 public interface AuthService {
 
-  CreateOAuthClientResponse createOAuthClient(CreateOAuthClientRequest createOAuthClientRequest);
+    CreateOAuthClientResponse createOAuthClient(CreateOAuthClientRequest createOAuthClientRequest);
 
-  CreateUserResponse registerUser(SignUpRequest signUpRequest);
+    CreateUserResponse registerUser(SignUpRequest signUpRequest);
 }

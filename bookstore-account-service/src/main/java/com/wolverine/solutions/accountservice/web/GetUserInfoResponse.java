@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GetUserInfoResponse {
 
-  private String userId;
-  private String userName;
-  private String firstName;
-  private String lastName;
-  private String email;
-
+    private String userId;
+    private String userName;
+    private String firstName;
+    private String lastName;
+    private String email;
 }

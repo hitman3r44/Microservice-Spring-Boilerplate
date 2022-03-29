@@ -1,9 +1,10 @@
 package com.wolverine.solutions.accountservice.web;
 
-import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
 
 
 @Data
@@ -11,10 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SignInRequest {
 
-  @NotBlank
-  private String usernameOrEmail;
+    @NotBlank
+    private String usernameOrEmail;
 
-  @NotBlank
-  private String password;
+    @NotBlank
+    private String password;
 }
-

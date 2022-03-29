@@ -1,29 +1,25 @@
 package com.wolverine.solutions.accountservice.service;
 
-import com.wolverine.solutions.accountservice.web.CreateUserRequest;
-import com.wolverine.solutions.accountservice.web.GetUserInfoResponse;
-import com.wolverine.solutions.accountservice.web.GetUserResponse;
-import com.wolverine.solutions.accountservice.web.UpdateUserRequest;
-import com.wolverine.solutions.accountservice.web.UpdateUserRequestFromAdmin;
+import com.wolverine.solutions.accountservice.web.*;
 
 import java.util.List;
 
 
 public interface UserService {
 
-  String createUser(CreateUserRequest createUserRequest);
+    String createUser(CreateUserRequest createUserRequest);
 
-  GetUserResponse getUserByUserName(String userName);
+    GetUserResponse getUserByUserName(String userName);
 
-  GetUserResponse getUserByUserId(String userId);
+    GetUserResponse getUserByUserId(String userId);
 
-  GetUserInfoResponse getUserInfo();
+    GetUserInfoResponse getUserInfo();
 
-  void updateUserInfo(UpdateUserRequest updateUserRequest);
+    void updateUserInfo(UpdateUserRequest updateUserRequest);
 
-  void deleteUserById(String userId);
+    void deleteUserById(String userId);
 
-  List<GetUserResponse> getAllUsers(boolean isDeleted);
+    List<GetUserResponse> getAllUsers(boolean isDeleted);
 
-  void updateUser(String userId, UpdateUserRequestFromAdmin updateUserRequestFromAdmin);
+    void updateUser(String userId, UpdateUserRequestFromAdmin updateUserRequestFromAdmin);
 }

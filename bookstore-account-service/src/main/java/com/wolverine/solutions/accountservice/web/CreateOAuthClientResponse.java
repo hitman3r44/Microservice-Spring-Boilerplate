@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateOAuthClientResponse {
 
-  private String client_id;
-  private String client_secret;
-
+    private String client_id;
+    private String client_secret;
 }

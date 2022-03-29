@@ -21,23 +21,20 @@ import javax.validation.Valid;
 @CrossOrigin
 public class AuthController {
 
-  @Autowired
-  AuthService authService;
+    @Autowired
+    AuthService authService;
 
-  @PostMapping("/client")
-  @PreAuthorize("hasAuthority('ADMIN_USER')")
-  public ResponseEntity<CreateOAuthClientResponse> createOAuthClient(
-      @Valid @RequestBody CreateOAuthClientRequest createOAuthClientRequest) {
+    @PostMapping("/client")
+    @PreAuthorize("hasAuthority('ADMIN_USER')")
+    public ResponseEntity<CreateOAuthClientResponse> createOAuthClient(
+            @Valid @RequestBody CreateOAuthClientRequest createOAuthClientRequest) {
+        CreateOAuthClientResponse oAuthClient = authService.createOAuthClient(createOAuthClientRequest);
+        return new ResponseEntity<>(oAuthClient, HttpStatus.CREATED);
+    }
 
-    CreateOAuthClientResponse oAuthClient = authService.createOAuthClient(createOAuthClientRequest);
-    return new ResponseEntity<>(oAuthClient, HttpStatus.CREATED);
-  }
-
-  @PostMapping("/signup")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-
-    CreateUserResponse createUserResponse = authService.registerUser(signUpRequest);
-
-    return new ResponseEntity<>(createUserResponse, HttpStatus.CREATED);
-  }
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+        CreateUserResponse createUserResponse = authService.registerUser(signUpRequest);
+        return new ResponseEntity<>(createUserResponse, HttpStatus.CREATED);
+    }
 }

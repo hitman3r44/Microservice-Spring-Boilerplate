@@ -11,13 +11,12 @@ import org.springframework.context.annotation.FilterType;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.wolverine.solutions"}, excludeFilters = {
-    @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = GlobalResourceServerConfig.class)})
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = GlobalResourceServerConfig.class)})
 @EnableFeignClients
 @EnableDiscoveryClient
 public class AccountServiceApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(AccountServiceApplication.class, args);
-  }
-
+    public static void main(String[] args) {
+        SpringApplication.run(AccountServiceApplication.class, args);
+    }
 }

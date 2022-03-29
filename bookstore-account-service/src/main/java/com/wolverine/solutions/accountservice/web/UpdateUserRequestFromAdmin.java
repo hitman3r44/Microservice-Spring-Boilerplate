@@ -25,6 +25,4 @@ public class UpdateUserRequestFromAdmin {
     private String email;
 
     private List<String> roles = new ArrayList<>();
-
-
 }

@@ -24,5 +24,4 @@ public class UpdateUserRequest {
     @Size(max = 40, message = "email length should not be grater than 40 characters")
     @Email
     private String email;
-
 }
