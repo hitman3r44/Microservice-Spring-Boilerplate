@@ -44,7 +44,7 @@ spring:
     tomcat:
       validation-interval: 80000
     initialization-mode: always
-#    data: classpath*:data.sql
+  #    data: classpath*:data.sql
 
   flyway:
     table: account_service_flyway_history
@@ -58,8 +58,8 @@ logging:
   level:
     com.wolverine.solutions.*: DEBUG
     org.hibernate:
-        SQL: DEBUG
-        type.descriptor.sql.BasicBinder: TRACE
+      SQL: DEBUG
+      type.descriptor.sql.BasicBinder: TRACE
 
 management:
   endpoint:
