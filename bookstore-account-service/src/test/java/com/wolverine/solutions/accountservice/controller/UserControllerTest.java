@@ -3,7 +3,7 @@ package com.wolverine.solutions.accountservice.controller;
 import com.github.javafaker.Faker;
 import com.wolverine.solutions.accountservice.BaseTest;
 import com.wolverine.solutions.accountservice.ConstentVariableTests;
-import com.wolverine.solutions.accountservice.repository.dao.User;
+import com.wolverine.solutions.accountservice.dao.User;
 import com.wolverine.solutions.accountservice.service.UserService;
 import com.wolverine.solutions.accountservice.web.CreateUserRequest;
 import com.wolverine.solutions.accountservice.web.GetUserInfoResponse;
@@ -26,7 +26,10 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.UUID;
 
-import static com.wolverine.solutions.accountservice.BaseTest.*;
+import static com.wolverine.solutions.accountservice.BaseTest.PORT;
+import static com.wolverine.solutions.accountservice.BaseTest.SERVER_NAME;
+import static com.wolverine.solutions.accountservice.BaseTest.URI;
+import static com.wolverine.solutions.accountservice.BaseTest.getRequestHeader;
 
 /**
  * @author Sumit Sarkar

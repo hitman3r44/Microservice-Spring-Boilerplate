@@ -1,6 +1,6 @@
 package com.wolverine.solutions.accountservice.controller;
 
-import com.wolverine.solutions.accountservice.repository.dao.Role;
+import com.wolverine.solutions.accountservice.dao.Role;
 import com.wolverine.solutions.accountservice.service.RoleService;
 import com.wolverine.solutions.accountservice.web.CreateRoleRequest;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,18 @@
 package com.wolverine.solutions.accountservice.service.impl;
 
+import com.wolverine.solutions.accountservice.dao.Role;
+import com.wolverine.solutions.accountservice.dao.User;
 import com.wolverine.solutions.accountservice.exception.SuccessCodeWithErrorResponse;
 import com.wolverine.solutions.accountservice.repository.RoleRepository;
 import com.wolverine.solutions.accountservice.repository.UserRepository;
-import com.wolverine.solutions.accountservice.repository.dao.Role;
-import com.wolverine.solutions.accountservice.repository.dao.User;
 import com.wolverine.solutions.accountservice.service.UserRoleService;
 import com.wolverine.solutions.accountservice.service.UserService;
-import com.wolverine.solutions.accountservice.web.*;
+import com.wolverine.solutions.accountservice.web.CreateUserRequest;
+import com.wolverine.solutions.accountservice.web.GetUserInfoResponse;
+import com.wolverine.solutions.accountservice.web.GetUserResponse;
+import com.wolverine.solutions.accountservice.web.MapUserToRolesRequest;
+import com.wolverine.solutions.accountservice.web.UpdateUserRequest;
+import com.wolverine.solutions.accountservice.web.UpdateUserRequestFromAdmin;
 import com.wolverine.solutions.commons.exception.Error;
 import com.wolverine.solutions.commons.exception.ErrorResponse;
 import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
@@ -20,9 +25,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
-
 
 @Service
 public class UserServiceImpl implements UserService {

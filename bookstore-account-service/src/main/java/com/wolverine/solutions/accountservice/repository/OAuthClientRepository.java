@@ -1,6 +1,6 @@
 package com.wolverine.solutions.accountservice.repository;
 
-import com.wolverine.solutions.accountservice.repository.dao.OAuthClient;
+import com.wolverine.solutions.accountservice.dao.OAuthClient;
 import org.springframework.data.repository.CrudRepository;
 
 

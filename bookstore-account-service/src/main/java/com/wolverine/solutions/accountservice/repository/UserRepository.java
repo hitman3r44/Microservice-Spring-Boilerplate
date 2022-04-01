@@ -1,7 +1,7 @@
 package com.wolverine.solutions.accountservice.repository;
 
 
-import com.wolverine.solutions.accountservice.repository.dao.User;
+import com.wolverine.solutions.accountservice.dao.User;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;

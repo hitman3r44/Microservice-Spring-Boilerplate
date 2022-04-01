@@ -1,6 +1,6 @@
 package com.wolverine.solutions.accountservice.repository;
 
-import com.wolverine.solutions.accountservice.repository.dao.Role;
+import com.wolverine.solutions.accountservice.dao.Role;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

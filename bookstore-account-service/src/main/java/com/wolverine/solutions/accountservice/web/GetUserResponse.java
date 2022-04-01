@@ -1,6 +1,6 @@
 package com.wolverine.solutions.accountservice.web;
 
-import com.wolverine.solutions.accountservice.repository.dao.Role;
+import com.wolverine.solutions.accountservice.dao.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

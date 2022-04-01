@@ -106,9 +106,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
       public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
         User principal = (User) authentication.getUserAuthentication().getPrincipal();
-          Optional<com.wolverine.solutions.accountservice.repository.dao.User> userDetail
-                  = userRepository.findByUserName(principal.getUsername());
-          final Map<String, Object> additionalInfo = new HashMap<>();
+        Optional<com.wolverine.solutions.accountservice.dao.User> userDetail
+                = userRepository.findByUserName(principal.getUsername());
+        final Map<String, Object> additionalInfo = new HashMap<>();
         userDetail.ifPresent(user -> additionalInfo.put("user_id", user.getUserId()));
           ((DefaultOAuth2AccessToken) accessToken)
                   .setAdditionalInformation(additionalInfo);

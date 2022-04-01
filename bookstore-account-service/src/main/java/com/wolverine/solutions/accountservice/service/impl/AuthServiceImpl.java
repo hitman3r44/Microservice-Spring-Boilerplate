@@ -1,11 +1,11 @@
 package com.wolverine.solutions.accountservice.service.impl;
 
+import com.wolverine.solutions.accountservice.dao.OAuthClient;
+import com.wolverine.solutions.accountservice.dao.Role;
+import com.wolverine.solutions.accountservice.dao.User;
 import com.wolverine.solutions.accountservice.repository.OAuthClientRepository;
 import com.wolverine.solutions.accountservice.repository.RoleRepository;
 import com.wolverine.solutions.accountservice.repository.UserRepository;
-import com.wolverine.solutions.accountservice.repository.dao.OAuthClient;
-import com.wolverine.solutions.accountservice.repository.dao.Role;
-import com.wolverine.solutions.accountservice.repository.dao.User;
 import com.wolverine.solutions.accountservice.service.AuthService;
 import com.wolverine.solutions.accountservice.web.CreateOAuthClientRequest;
 import com.wolverine.solutions.accountservice.web.CreateOAuthClientResponse;
