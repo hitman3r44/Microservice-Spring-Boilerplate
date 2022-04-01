@@ -1,4 +1,4 @@
-package com.wolverine.solutions.accountservice.controller;
+package com.wolverine.solutions.accountservice.controller.feature;
 
 import com.github.javafaker.Faker;
 import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
