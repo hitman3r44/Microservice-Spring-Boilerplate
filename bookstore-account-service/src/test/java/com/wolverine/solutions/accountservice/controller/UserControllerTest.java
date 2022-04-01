@@ -1,40 +1,47 @@
 package com.wolverine.solutions.accountservice.controller;
 
 import com.github.javafaker.Faker;
+import com.wolverine.solutions.accountservice.BaseTest;
+import com.wolverine.solutions.accountservice.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.repository.dao.User;
+import com.wolverine.solutions.accountservice.service.UserService;
 import com.wolverine.solutions.accountservice.web.CreateUserRequest;
 import com.wolverine.solutions.accountservice.web.GetUserInfoResponse;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.UUID;
+
+import static com.wolverine.solutions.accountservice.BaseTest.*;
 
 /**
  * @author Sumit Sarkar
  */
 @SpringBootTest
+@ExtendWith(BaseTest.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserControllerTest {
-    public static final String TOKEN = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsid2ViIl0sInVzZXJfaWQiOiJ4Y3ZjdmJ2di1iYTVkLTRiOTItODViZS1kZmdkZmdkZmdkZmciLCJ1c2VyX25hbWUiOiJhZG1pbi5hZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE2NDYzMTQyNjQsImF1dGhvcml0aWVzIjpbIlNUQU5EQVJEX1VTRVIiLCJBRE1JTl9VU0VSIl0sImp0aSI6InZZbU1Sc19aMXhEazFLNFV1WmtVUGxtMGpJMCIsImNsaWVudF9pZCI6IjkzZWQ0NTNlLWI3YWMtNDE5Mi1hNmQ0LWM0NWZhZTBkOTlhYyJ9.CCEDqsBtEn5e1yciDHWHbV_z8oyFb65mV5vhBQZ1CSm3uSIwoakwcM48-i3NY9E5V2R8iiD7nELrORl-MrX3E89B3NmCbFgACA11bPYRrZM5dQwfICbjVjFZMNv9_iZS07Xs9yOpCplGBMs9rx1lMd_s-buLP4utPc-_OmvlBLgm4pNPNQAV5Q3qaGGetuRoPk1ulefN9iLBF_Sxb7-NcsdzFeh0zO3mNWTZt5XPcuaRMmQ6bplL35yt7Kurd2VuTZv72hyDZCiOgIN3xkdGDUc2P5PQMIZ-yIwomsv90mLNbSDVxP-q3Lw3qxwTGhRDBsLH1gnnnR74uUbqRQeBXA";
-    public static final String SERVER_NAME = "http://localhost:";
-    public static final String PORT = "8765";
-    public static final String URI = "/api/account/";
+    @Autowired
+    UserService userService;
 
     @Test
     public void createUserTest() {
 
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         CreateUserRequest createUserRequest = new CreateUserRequest();
         Faker faker = new Faker(new Locale("en-US"));
@@ -44,7 +51,7 @@ public class UserControllerTest {
         createUserRequest.setLastName(faker.name().lastName());
         createUserRequest.setPassword("iloveyou");
         createUserRequest.setRoleNames(new ArrayList<>(Arrays.asList("STANDARD_USER", "ADMIN_USER")));
-        createUserRequest.setUserId(String.valueOf(faker.number().numberBetween(20, 70)));
+        createUserRequest.setUserId(String.valueOf(UUID.randomUUID()));
         createUserRequest.setUserName(faker.name().username());
 
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
@@ -57,66 +64,8 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateUserTest() {
-
-        String userId = "dfgdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb";
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
-
-        User updateUserRequest = new User();
-        Faker faker = new Faker(new Locale("en-US"));
-
-        updateUserRequest.setEmail(faker.internet().emailAddress());
-        updateUserRequest.setFirstName(faker.name().firstName());
-        updateUserRequest.setLastName(faker.name().lastName());
-        updateUserRequest.setPassword("iloveyou");
-
-        updateUserRequest.setUserId(String.valueOf(faker.number().numberBetween(20, 70)));
-        updateUserRequest.setUserName(faker.name().username());
-
-        ResponseEntity<?> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + "user/" + userId,
-                HttpMethod.PUT,
-                new HttpEntity<>(updateUserRequest, headers),
-                String.class);
-
-        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
-    }
-
-    @Test
-    public void updateUserInfoTest() {
-
-        String userName = "5f9135fc-a22a-4666-bd29-aed229673496";
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
-
-        User updateUserRequest = new User();
-        Faker faker = new Faker(new Locale("en-US"));
-
-        updateUserRequest.setEmail(faker.internet().emailAddress());
-        updateUserRequest.setFirstName(faker.name().firstName());
-        updateUserRequest.setLastName(faker.name().lastName());
-        updateUserRequest.setPassword("iloveyou");
-
-        updateUserRequest.setUserId(String.valueOf(faker.number().numberBetween(20, 70)));
-        updateUserRequest.setUserName(userName);
-
-        ResponseEntity<?> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + "userInfo",
-                HttpMethod.PUT,
-                new HttpEntity<>(updateUserRequest, headers),
-                String.class);
-
-        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
-    }
-
-    @Test
     public void getUserInfoTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<GetUserInfoResponse> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "userInfo",
@@ -128,9 +77,7 @@ public class UserControllerTest {
 
     @Test
     public void getUserByNameAndIdTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "user?userName=admin.admin&userId=xcvcvbvv-ba5d-4b92-85be-dfgdfgdfgdfg",
@@ -144,9 +91,7 @@ public class UserControllerTest {
 
     @Test
     public void getUserByNameTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "user?userName=admin.admin",
@@ -160,9 +105,7 @@ public class UserControllerTest {
 
     @Test
     public void getUserByIdTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "user?userId=xcvcvbvv-ba5d-4b92-85be-dfgdfgdfgdfg",
@@ -176,9 +119,7 @@ public class UserControllerTest {
 
     @Test
     public void getUserNoParamsTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "user",
@@ -192,9 +133,7 @@ public class UserControllerTest {
 
     @Test
     public void getAllUsersTest() {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "users",
@@ -207,16 +146,77 @@ public class UserControllerTest {
     }
 
     @Test
-//    @Disabled
+    @Disabled
+    public void updateUserTest() {
+        String userId = ConstentVariableTests.TEST_USER_ID;
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        User updateUserRequest = new User();
+        Faker faker = new Faker(new Locale("en-US"));
+
+        updateUserRequest.setEmail(ConstentVariableTests.TEST_USER_EMAIL);
+        updateUserRequest.setFirstName(faker.name().firstName());
+        updateUserRequest.setLastName(faker.name().lastName());
+        updateUserRequest.setPassword("iloveyou");
+
+        updateUserRequest.setUserId(String.valueOf(UUID.randomUUID()));
+        updateUserRequest.setUserName(ConstentVariableTests.TEST_USER_NAME);
+
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + "user/" + userId,
+                HttpMethod.PUT,
+                new HttpEntity<>(updateUserRequest, headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+    }
+
+    @Test
+    @Disabled
+    public void updateUserInfoTest() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        User updateUserRequest = new User();
+        Faker faker = new Faker(new Locale("en-US"));
+
+        updateUserRequest.setEmail(ConstentVariableTests.TEST_USER_EMAIL);
+        updateUserRequest.setFirstName(faker.name().firstName());
+        updateUserRequest.setLastName(faker.name().lastName());
+        updateUserRequest.setPassword("iloveyou");
+        updateUserRequest.setUserId(ConstentVariableTests.TEST_USER_ID);
+        updateUserRequest.setUserName(ConstentVariableTests.TEST_USER_NAME);
+
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + "userInfo",
+                HttpMethod.PUT,
+                new HttpEntity<>(updateUserRequest, headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+    }
+
+    @Test
+    @Disabled
     public void deleteUserByIdTest() {
-        String userId = "asdasdsa-6727-4229-a4ab-zxczxcxczxcc";
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Content-Type", "application/json");
-        headers.add("Authorization", TOKEN);
+        String userId = ConstentVariableTests.TEST_USER_ID;
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + "user/" + userId,
                 HttpMethod.DELETE,
+                new HttpEntity<>(headers), String.class);
+        Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
+    }
+
+    @Test
+    @Disabled
+    public void restoreUserByIdTest() {
+        String userId = ConstentVariableTests.TEST_USER_ID;
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        ResponseEntity<String> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + "user/" + userId,
+                HttpMethod.PATCH,
                 new HttpEntity<>(headers), String.class);
         Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
     }

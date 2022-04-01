@@ -79,4 +79,11 @@ public class UserController {
         userService.deleteUserById(userId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @PatchMapping("/user/{userId}")
+    @PreAuthorize("hasAuthority('ADMIN_USER')")
+    public ResponseEntity<?> restoreUserById(@PathVariable("userId") String userId) {
+        userService.restoreUserById(userId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

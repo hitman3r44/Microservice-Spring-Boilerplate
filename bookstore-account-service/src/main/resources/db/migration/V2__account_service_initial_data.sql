@@ -14,7 +14,9 @@ VALUES ('asdasdsa-6727-4229-a4ab-zxczxcxczxcc', 'Cores', 'DevD',
        ('ddfgdfgh-6727-4229-a4ab-ertdfgfdgdfg', 'Cores', 'DevD',
         '$2a$10$2XWkMz42.EApOBnx7nJaSupInwvBfPCGb5HZwWM.2RsC92joeAQzq', 'reddy.rale', 'reddy.rale@gmail.com'),
        ('dfgdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb', 'Admin', 'Admin',
-        '$2a$10$br7HrUzeQQ0ddR2ogg7L1.aRQ1sGC1rud.mL8VQBEKaMkx1G5zXR6', 'devd.bro', 'devd.bro@gmail.com');
+        '$2a$10$br7HrUzeQQ0ddR2ogg7L1.aRQ1sGC1rud.mL8VQBEKaMkx1G5zXR6', 'devd.bro', 'devd.bro@gmail.com'),
+       ('abcdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb', 'Test', 'User',
+        '$2a$10$br7HrUzeQQ0ddR2ogg7L1.aRQ1sGC1rud.mL8VQBEKaMkx1G5zXR6', 'test.user', 'test.user@gmail.com');
 
 INSERT INTO role (role_id, role_name, role_description)
 VALUES ('9601409f-4691-4281-886e-8f8987763b56', 'STANDARD_USER', 'Standard User - Has no admin rights');
@@ -35,6 +37,8 @@ INSERT INTO user_roles(user_id, role_id)
 VALUES ('rertertr-6727-4229-a4ab-erererererer', '9601409f-4691-4281-886e-8f8987763b56');
 INSERT INTO user_roles(user_id, role_id)
 VALUES ('dfgdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb', 'tytryyrt-rtyr-rtyr-rtyr-fghfghfggfhg');
+INSERT INTO user_roles(user_id, role_id)
+VALUES ('abcdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb', '9601409f-4691-4281-886e-8f8987763b56');
 
 INSERT INTO oauth_client_details (client_id, client_secret, scope, authorized_grant_types, web_server_redirect_uri,
                                   authorities, access_token_validity, refresh_token_validity, additional_information,

@@ -1,12 +1,16 @@
 package com.wolverine.solutions.accountservice.web;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 @Value
+@NoArgsConstructor
+//@AllArgsConstructor
 public class JwtAuthenticationResponse {
 
-    private String access_token;
-    private String token_type = "Bearer";
-    private String refresh_token;
-    private Long expires_in;
+    String access_token = null;
+    String token_type = "Bearer";
+    String refresh_token = null;
+    Long expires_in = null;
 }

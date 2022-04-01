@@ -151,10 +151,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserInfo(UpdateUserRequest updateUserRequest) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userName = (String) authentication.getPrincipal();
+        // MotherFucker always change the admin or login userInfo
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String userName = (String) authentication.getPrincipal();
 
-        Optional<User> userNameOrEmailOptional = userRepository.findByUserNameOrEmail(userName, userName);
+        Optional<User> userNameOrEmailOptional = userRepository.findByUserNameOrEmail(updateUserRequest.getEmail(), updateUserRequest.getEmail());
 
         User userByUserName = userNameOrEmailOptional.orElseThrow(() ->
                 new RunTimeExceptionPlaceHolder("UserName or Email doesn't exist!!")
@@ -254,4 +255,17 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void restoreUserById(String userId) {
+        Optional<User> existingUser = userRepository.findByUserId(userId);
+
+        User user = existingUser.orElseThrow(() ->
+                new RunTimeExceptionPlaceHolder("UserId doesn't exist!!")
+        );
+
+        if (!user.getIsDeleted())
+            throw new RunTimeExceptionPlaceHolder("User is not deleted!!");
+        user.setIsDeleted(false);
+        userRepository.save(user);
+    }
 }

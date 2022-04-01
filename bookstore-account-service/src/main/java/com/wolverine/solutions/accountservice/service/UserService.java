@@ -22,4 +22,6 @@ public interface UserService {
     List<GetUserResponse> getAllUsers(boolean isDeleted);
 
     void updateUser(String userId, UpdateUserRequestFromAdmin updateUserRequestFromAdmin);
+
+    void restoreUserById(String userId);
 }
