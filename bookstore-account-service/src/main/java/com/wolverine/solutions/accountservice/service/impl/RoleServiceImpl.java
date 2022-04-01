@@ -1,9 +1,9 @@
 package com.wolverine.solutions.accountservice.service.impl;
 
-import com.wolverine.solutions.accountservice.dao.Role;
+import com.wolverine.solutions.accountservice.enums.entity.Role;
+import com.wolverine.solutions.accountservice.enums.request.CreateRoleRequest;
 import com.wolverine.solutions.accountservice.repository.RoleRepository;
 import com.wolverine.solutions.accountservice.service.RoleService;
-import com.wolverine.solutions.accountservice.web.CreateRoleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

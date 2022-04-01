@@ -1,6 +1,6 @@
 package com.wolverine.solutions.accountservice.service.impl;
 
-import com.wolverine.solutions.accountservice.dao.User;
+import com.wolverine.solutions.accountservice.enums.entity.User;
 import com.wolverine.solutions.accountservice.repository.UserRepository;
 import com.wolverine.solutions.accountservice.service.AppUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

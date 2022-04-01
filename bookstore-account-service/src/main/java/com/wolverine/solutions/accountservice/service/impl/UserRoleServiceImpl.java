@@ -1,13 +1,13 @@
 package com.wolverine.solutions.accountservice.service.impl;
 
-import com.wolverine.solutions.accountservice.dao.Role;
-import com.wolverine.solutions.accountservice.dao.User;
+import com.wolverine.solutions.accountservice.enums.entity.Role;
+import com.wolverine.solutions.accountservice.enums.entity.User;
+import com.wolverine.solutions.accountservice.enums.request.MapRoleToUsersRequest;
+import com.wolverine.solutions.accountservice.enums.request.MapUserToRolesRequest;
 import com.wolverine.solutions.accountservice.exception.SuccessCodeWithErrorResponse;
 import com.wolverine.solutions.accountservice.repository.RoleRepository;
 import com.wolverine.solutions.accountservice.repository.UserRepository;
 import com.wolverine.solutions.accountservice.service.UserRoleService;
-import com.wolverine.solutions.accountservice.web.MapRoleToUsersRequest;
-import com.wolverine.solutions.accountservice.web.MapUserToRolesRequest;
 import com.wolverine.solutions.commons.exception.Error;
 import com.wolverine.solutions.commons.exception.ErrorResponse;
 import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;

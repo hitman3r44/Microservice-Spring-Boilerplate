@@ -1,6 +1,6 @@
-package com.wolverine.solutions.accountservice.web;
+package com.wolverine.solutions.accountservice.enums.response;
 
-import com.wolverine.solutions.accountservice.dao.Role;
+import com.wolverine.solutions.accountservice.enums.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

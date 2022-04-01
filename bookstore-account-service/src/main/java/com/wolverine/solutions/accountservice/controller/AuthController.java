@@ -1,10 +1,10 @@
 package com.wolverine.solutions.accountservice.controller;
 
+import com.wolverine.solutions.accountservice.enums.request.CreateOAuthClientRequest;
+import com.wolverine.solutions.accountservice.enums.request.SignUpRequest;
+import com.wolverine.solutions.accountservice.enums.response.CreateOAuthClientResponse;
+import com.wolverine.solutions.accountservice.enums.response.CreateUserResponse;
 import com.wolverine.solutions.accountservice.service.AuthService;
-import com.wolverine.solutions.accountservice.web.CreateOAuthClientRequest;
-import com.wolverine.solutions.accountservice.web.CreateOAuthClientResponse;
-import com.wolverine.solutions.accountservice.web.CreateUserResponse;
-import com.wolverine.solutions.accountservice.web.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

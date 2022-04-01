@@ -1,6 +1,7 @@
-package com.wolverine.solutions.accountservice;
+package com.wolverine.solutions.accountservice.service;
 
-import com.wolverine.solutions.accountservice.web.JwtAuthenticationResponse;
+import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
+import com.wolverine.solutions.accountservice.enums.response.JwtAuthenticationResponse;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.springframework.boot.test.web.client.TestRestTemplate;

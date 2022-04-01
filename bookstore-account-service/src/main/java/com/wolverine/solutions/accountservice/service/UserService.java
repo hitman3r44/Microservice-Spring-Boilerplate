@@ -1,6 +1,10 @@
 package com.wolverine.solutions.accountservice.service;
 
-import com.wolverine.solutions.accountservice.web.*;
+import com.wolverine.solutions.accountservice.enums.request.CreateUserRequest;
+import com.wolverine.solutions.accountservice.enums.request.UpdateUserRequest;
+import com.wolverine.solutions.accountservice.enums.request.UpdateUserRequestFromAdmin;
+import com.wolverine.solutions.accountservice.enums.response.GetUserInfoResponse;
+import com.wolverine.solutions.accountservice.enums.response.GetUserResponse;
 
 import java.util.List;
 

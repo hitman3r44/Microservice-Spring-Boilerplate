@@ -1,4 +1,4 @@
-package com.wolverine.solutions.accountservice.web;
+package com.wolverine.solutions.accountservice.enums.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,15 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateUserRequest {
-
-    @Size(min = 6, max = 20, message = "password length should not be between 6 and 20 characters")
-    private String password;
+public class UpdateUserRequestFromAdmin {
 
     @Size(max = 40, message = "First Name length should not be grater than 40 characters")
     private String firstName;
@@ -24,4 +23,6 @@ public class UpdateUserRequest {
     @Size(max = 40, message = "email length should not be grater than 40 characters")
     @Email
     private String email;
+
+    private List<String> roles = new ArrayList<>();
 }

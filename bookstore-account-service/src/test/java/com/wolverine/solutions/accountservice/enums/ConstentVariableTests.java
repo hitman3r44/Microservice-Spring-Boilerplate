@@ -1,4 +1,4 @@
-package com.wolverine.solutions.accountservice;
+package com.wolverine.solutions.accountservice.enums;
 
 /**
  * @author Sumit Sarkar

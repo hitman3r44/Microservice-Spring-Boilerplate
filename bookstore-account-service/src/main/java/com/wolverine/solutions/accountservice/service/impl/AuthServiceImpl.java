@@ -1,16 +1,16 @@
 package com.wolverine.solutions.accountservice.service.impl;
 
-import com.wolverine.solutions.accountservice.dao.OAuthClient;
-import com.wolverine.solutions.accountservice.dao.Role;
-import com.wolverine.solutions.accountservice.dao.User;
+import com.wolverine.solutions.accountservice.enums.entity.OAuthClient;
+import com.wolverine.solutions.accountservice.enums.entity.Role;
+import com.wolverine.solutions.accountservice.enums.entity.User;
+import com.wolverine.solutions.accountservice.enums.request.CreateOAuthClientRequest;
+import com.wolverine.solutions.accountservice.enums.request.SignUpRequest;
+import com.wolverine.solutions.accountservice.enums.response.CreateOAuthClientResponse;
+import com.wolverine.solutions.accountservice.enums.response.CreateUserResponse;
 import com.wolverine.solutions.accountservice.repository.OAuthClientRepository;
 import com.wolverine.solutions.accountservice.repository.RoleRepository;
 import com.wolverine.solutions.accountservice.repository.UserRepository;
 import com.wolverine.solutions.accountservice.service.AuthService;
-import com.wolverine.solutions.accountservice.web.CreateOAuthClientRequest;
-import com.wolverine.solutions.accountservice.web.CreateOAuthClientResponse;
-import com.wolverine.solutions.accountservice.web.CreateUserResponse;
-import com.wolverine.solutions.accountservice.web.SignUpRequest;
 import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,7 +1,7 @@
 package com.wolverine.solutions.accountservice.service;
 
-import com.wolverine.solutions.accountservice.dao.Role;
-import com.wolverine.solutions.accountservice.web.CreateRoleRequest;
+import com.wolverine.solutions.accountservice.enums.entity.Role;
+import com.wolverine.solutions.accountservice.enums.request.CreateRoleRequest;
 
 import java.util.List;
 

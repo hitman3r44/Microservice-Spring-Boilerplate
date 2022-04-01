@@ -1,4 +1,4 @@
-package com.wolverine.solutions.accountservice.web;
+package com.wolverine.solutions.accountservice.enums.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,10 +10,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateRoleRequest {
+public class SignInRequest {
 
     @NotBlank
-    private String roleName;
+    private String usernameOrEmail;
+
     @NotBlank
-    private String roleDescription;
+    private String password;
 }

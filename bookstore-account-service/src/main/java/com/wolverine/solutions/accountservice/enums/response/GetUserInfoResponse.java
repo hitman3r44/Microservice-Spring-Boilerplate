@@ -1,4 +1,4 @@
-package com.wolverine.solutions.accountservice.web;
+package com.wolverine.solutions.accountservice.enums.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package com.wolverine.solutions.accountservice.service;
 
-import com.wolverine.solutions.accountservice.web.MapRoleToUsersRequest;
-import com.wolverine.solutions.accountservice.web.MapUserToRolesRequest;
+import com.wolverine.solutions.accountservice.enums.request.MapRoleToUsersRequest;
+import com.wolverine.solutions.accountservice.enums.request.MapUserToRolesRequest;
 
 
 public interface UserRoleService {

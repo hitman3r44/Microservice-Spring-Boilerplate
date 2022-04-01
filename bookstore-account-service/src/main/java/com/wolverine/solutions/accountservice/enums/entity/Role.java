@@ -1,4 +1,4 @@
-package com.wolverine.solutions.accountservice.dao;
+package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wolverine.solutions.commons.util.DateAudit;

@@ -1,12 +1,12 @@
 package com.wolverine.solutions.accountservice.controller;
 
 import com.github.javafaker.Faker;
-import com.wolverine.solutions.accountservice.BaseTest;
-import com.wolverine.solutions.accountservice.ConstentVariableTests;
-import com.wolverine.solutions.accountservice.dao.User;
+import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
+import com.wolverine.solutions.accountservice.enums.entity.User;
+import com.wolverine.solutions.accountservice.enums.request.CreateUserRequest;
+import com.wolverine.solutions.accountservice.enums.response.GetUserInfoResponse;
+import com.wolverine.solutions.accountservice.service.BaseTest;
 import com.wolverine.solutions.accountservice.service.UserService;
-import com.wolverine.solutions.accountservice.web.CreateUserRequest;
-import com.wolverine.solutions.accountservice.web.GetUserInfoResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
@@ -26,10 +26,10 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.UUID;
 
-import static com.wolverine.solutions.accountservice.BaseTest.PORT;
-import static com.wolverine.solutions.accountservice.BaseTest.SERVER_NAME;
-import static com.wolverine.solutions.accountservice.BaseTest.URI;
-import static com.wolverine.solutions.accountservice.BaseTest.getRequestHeader;
+import static com.wolverine.solutions.accountservice.service.BaseTest.PORT;
+import static com.wolverine.solutions.accountservice.service.BaseTest.SERVER_NAME;
+import static com.wolverine.solutions.accountservice.service.BaseTest.URI;
+import static com.wolverine.solutions.accountservice.service.BaseTest.getRequestHeader;
 
 /**
  * @author Sumit Sarkar
