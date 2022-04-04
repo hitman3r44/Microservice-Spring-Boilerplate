@@ -19,11 +19,12 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin
-public class AuthController {
+public class AuthController implements AuthControllerInterface {
 
     @Autowired
     AuthService authService;
 
+    @Override
     @PostMapping("/client")
     @PreAuthorize("hasAuthority('ADMIN_USER')")
     public ResponseEntity<CreateOAuthClientResponse> createOAuthClient(
@@ -32,6 +33,7 @@ public class AuthController {
         return new ResponseEntity<>(oAuthClient, HttpStatus.CREATED);
     }
 
+    @Override
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         CreateUserResponse createUserResponse = authService.registerUser(signUpRequest);

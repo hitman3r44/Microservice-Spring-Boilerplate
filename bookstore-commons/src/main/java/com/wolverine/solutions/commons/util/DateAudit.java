@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 public abstract class DateAudit implements Serializable {
 
   @CreatedDate
-  @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   private LocalDateTime createdAt;
 
   @LastModifiedDate
