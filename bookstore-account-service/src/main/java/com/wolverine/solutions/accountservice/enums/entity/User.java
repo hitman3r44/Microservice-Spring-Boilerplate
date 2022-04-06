@@ -70,9 +70,6 @@ public class User extends DateAudit {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "is_deleted", columnDefinition = "boolean default false")
-    private Boolean isDeleted = Boolean.FALSE;
-
     public User(String userName, String password, String firstName, String lastName, String email) {
         this.userName = userName;
         this.password = password;

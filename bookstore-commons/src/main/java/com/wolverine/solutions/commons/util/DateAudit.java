@@ -31,4 +31,6 @@ public abstract class DateAudit implements Serializable {
   @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   private LocalDateTime updatedAt;
 
+  @Column(name = "is_deleted", columnDefinition = "boolean default false")
+  private Boolean isDeleted = Boolean.FALSE;
 }

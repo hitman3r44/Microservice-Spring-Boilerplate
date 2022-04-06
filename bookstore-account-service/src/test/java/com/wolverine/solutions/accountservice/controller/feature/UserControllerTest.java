@@ -6,13 +6,11 @@ import com.wolverine.solutions.accountservice.enums.entity.User;
 import com.wolverine.solutions.accountservice.enums.request.CreateUserRequest;
 import com.wolverine.solutions.accountservice.enums.response.GetUserInfoResponse;
 import com.wolverine.solutions.accountservice.service.BaseTest;
-import com.wolverine.solutions.accountservice.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
@@ -38,9 +36,6 @@ import static com.wolverine.solutions.accountservice.service.BaseTest.getRequest
 @ExtendWith(BaseTest.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserControllerTest {
-    @Autowired
-    UserService userService;
-
     @Test
     public void createUserTest() {
 

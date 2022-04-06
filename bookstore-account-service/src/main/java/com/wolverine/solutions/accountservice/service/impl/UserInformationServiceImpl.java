@@ -63,6 +63,8 @@ public class UserInformationServiceImpl implements UserInformationService {
     public UserInformation update(UserInformation entity, String id) {
         Optional<UserInformation> optional = findById(id);
         if (optional.isPresent()) {
+            entity.setCreatedAt(optional.get().getCreatedAt());
+            entity.setIsDeleted(optional.get().getIsDeleted());
             return save(entity);
         }
         return null;

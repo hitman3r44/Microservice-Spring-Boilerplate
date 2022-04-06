@@ -1,5 +1,6 @@
-package com.wolverine.solutions.accountservice.controller;
+package com.wolverine.solutions.accountservice.controller.impl;
 
+import com.wolverine.solutions.accountservice.controller.UserInformationController;
 import com.wolverine.solutions.accountservice.enums.dto.UserInformationDTO;
 import com.wolverine.solutions.accountservice.enums.entity.UserInformation;
 import com.wolverine.solutions.accountservice.service.UserInformationService;
