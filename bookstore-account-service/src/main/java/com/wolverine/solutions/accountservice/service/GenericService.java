@@ -14,6 +14,8 @@ public interface GenericService<E, M> {
 
     void deleteById(M id);
 
+    void restoreById(String id);
+
     Optional<E> findById(M id);
 
     List<E> findAll();

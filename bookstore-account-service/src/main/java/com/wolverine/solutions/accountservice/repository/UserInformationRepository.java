@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserInformationRepository extends PagingAndSortingRepository<UserInformation, String> {
+    UserInformation findUserInformationByProfilePicture(String profilePicture);
 }

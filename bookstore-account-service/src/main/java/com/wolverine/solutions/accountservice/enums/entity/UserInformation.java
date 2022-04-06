@@ -6,7 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +29,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user_information")
 @Builder
+@SQLDelete(sql = "UPDATE user_information SET is_deleted = true WHERE id=?")
+//@Where(clause = "is_deleted = false")
+@FilterDef(
+        name = "deletedUserFilter",
+        parameters = @ParamDef(name = "isDeleted", type = "boolean")
+)
+@Filter(
+        name = "deletedUserFilter",
+        condition = "is_deleted = :isDeleted"
+)
 public class UserInformation extends DateAudit {
 
     @Id

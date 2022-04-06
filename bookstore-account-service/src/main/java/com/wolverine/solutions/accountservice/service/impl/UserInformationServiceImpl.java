@@ -4,6 +4,7 @@ import com.wolverine.solutions.accountservice.enums.dto.UserInformationDTO;
 import com.wolverine.solutions.accountservice.enums.entity.UserInformation;
 import com.wolverine.solutions.accountservice.repository.UserInformationRepository;
 import com.wolverine.solutions.accountservice.service.UserInformationService;
+import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,14 +19,12 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserInformationServiceImpl implements UserInformationService {
-    private final UserInformationRepository repository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    ModelMapper modelMapper;
 
-    public UserInformationServiceImpl(UserInformationRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    UserInformationRepository repository;
 
     @Override
     public UserInformation save(UserInformation entity) {
@@ -40,6 +39,19 @@ public class UserInformationServiceImpl implements UserInformationService {
     @Override
     public void deleteById(String id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void restoreById(String id) {
+        Optional<UserInformation> existingUserInformation = repository.findById(id);
+
+        UserInformation userInformation = existingUserInformation.orElseThrow(() -> new RunTimeExceptionPlaceHolder("userInformationId doesn't exist!!"));
+
+        if (Boolean.FALSE.equals(userInformation.getIsDeleted()))
+            throw new RunTimeExceptionPlaceHolder("UserInformation is not deleted!!");
+
+        userInformation.setIsDeleted(false);
+        repository.save(userInformation);
     }
 
     @Override
@@ -68,6 +80,11 @@ public class UserInformationServiceImpl implements UserInformationService {
             return save(entity);
         }
         return null;
+    }
+
+    @Override
+    public UserInformation findUserInformationByProfilePicture(String profilePicture) {
+        return repository.findUserInformationByProfilePicture(profilePicture);
     }
 
     public UserInformationDTO convertToDto(UserInformation userInformation) {

@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,4 +31,7 @@ public interface UserInformationController {
 
     @ApiOperation("Update one data")
     UserInformationDTO update(@RequestBody UserInformationDTO dto, @PathVariable("id") String id);
+
+    @PatchMapping("/{id}")
+    void restore(@PathVariable("id") String id);
 }

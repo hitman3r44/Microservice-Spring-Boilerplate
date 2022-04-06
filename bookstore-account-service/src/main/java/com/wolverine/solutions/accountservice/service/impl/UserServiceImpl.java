@@ -267,12 +267,11 @@ public class UserServiceImpl implements UserService {
     public void restoreUserById(String userId) {
         Optional<User> existingUser = userRepository.findByUserId(userId);
 
-        User user = existingUser.orElseThrow(() ->
-                new RunTimeExceptionPlaceHolder("UserId doesn't exist!!")
-        );
+        User user = existingUser.orElseThrow(() -> new RunTimeExceptionPlaceHolder("UserId doesn't exist!!"));
 
-        if (!user.getIsDeleted())
+        if (Boolean.FALSE.equals(user.getIsDeleted()))
             throw new RunTimeExceptionPlaceHolder("User is not deleted!!");
+
         user.setIsDeleted(false);
         userRepository.save(user);
     }

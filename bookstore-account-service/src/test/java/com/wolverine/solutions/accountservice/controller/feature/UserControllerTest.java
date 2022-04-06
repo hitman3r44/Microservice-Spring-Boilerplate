@@ -194,7 +194,6 @@ public class UserControllerTest {
     }
 
     @Test
-    @Disabled
     public void deleteUserByIdTest() {
         String userId = ConstentVariableTests.TEST_USER_ID;
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
@@ -207,7 +206,6 @@ public class UserControllerTest {
     }
 
     @Test
-    @Disabled
     public void restoreUserByIdTest() {
         String userId = ConstentVariableTests.TEST_USER_ID;
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);

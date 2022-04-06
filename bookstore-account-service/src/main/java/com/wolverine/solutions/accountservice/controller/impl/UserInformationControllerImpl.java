@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -48,12 +49,6 @@ class UserInformationControllerImpl implements UserInformationController {
     }
 
     @Override
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") String id) {
-        userInformationService.deleteById(id);
-    }
-
-    @Override
     @GetMapping
     public List<UserInformationDTO> list() {
         List<UserInformation> userInformationDTOList = userInformationService.findAll();
@@ -77,5 +72,17 @@ class UserInformationControllerImpl implements UserInformationController {
     public UserInformationDTO update(@RequestBody UserInformationDTO userInformationDTO, @PathVariable("id") String id) {
         UserInformation userInformation = userInformationService.convertToEntity(userInformationDTO);
         return userInformationService.convertToDto(userInformationService.update(userInformation, id));
+    }
+
+    @Override
+    @PatchMapping("/{id}")
+    public void restore(@PathVariable("id") String id) {
+        userInformationService.restoreById(id);
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") String id) {
+        userInformationService.deleteById(id);
     }
 }

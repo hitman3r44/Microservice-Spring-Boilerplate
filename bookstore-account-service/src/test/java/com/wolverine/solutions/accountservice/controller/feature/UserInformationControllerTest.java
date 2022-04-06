@@ -6,6 +6,7 @@ import com.wolverine.solutions.accountservice.enums.dto.UserInformationDTO;
 import com.wolverine.solutions.accountservice.service.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -116,13 +117,47 @@ public class UserInformationControllerTest {
         System.out.println(entity.getBody());
     }
 
-//    @Test
-//    public void testDelete() throws Exception {
-//        doNothing().when(this.userInformationService).deleteById((String) any());
-//        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/user-information/{id}", "42");
-//        MockMvcBuilders.standaloneSetup(this.userInformationControllerImpl)
-//                .build()
-//                .perform(requestBuilder)
-//                .andExpect(MockMvcResultMatchers.status().isOk());
-//    }
+    @Test
+    public void saveTest1() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        UserInformationDTO userInformationDTO = new UserInformationDTO();
+        userInformationDTO.setId(ConstentVariableTests.TEST_USER_INFORMATION_ID);
+        userInformationDTO.setProfilePicture("Sumit");
+
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
+                HttpMethod.POST,
+                new HttpEntity<>(userInformationDTO, headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
+    }
+
+    @Test
+    @Disabled
+    public void testDeleteById() {
+        // Change the ID according to DB
+        String userInformationId = "0db302f7-2a20-4456-96fc-c61414d480e8";
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        ResponseEntity<String> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInformationId,
+                HttpMethod.DELETE,
+                new HttpEntity<>(headers), String.class);
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+    }
+
+    @Test
+    @Disabled
+    public void testRestoreById() {
+        String userInformationId = "0db302f7-2a20-4456-96fc-c61414d480e8";
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        ResponseEntity<String> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInformationId,
+                HttpMethod.PATCH,
+                new HttpEntity<>(headers), String.class);
+        Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
+    }
 }

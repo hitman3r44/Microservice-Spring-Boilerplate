@@ -7,4 +7,6 @@ public interface UserInformationService extends GenericService<UserInformation, 
     UserInformation convertToEntity(UserInformationDTO userInformationDTO);
 
     UserInformationDTO convertToDto(UserInformation update);
+
+    UserInformation findUserInformationByProfilePicture(String profilePicture);
 }
