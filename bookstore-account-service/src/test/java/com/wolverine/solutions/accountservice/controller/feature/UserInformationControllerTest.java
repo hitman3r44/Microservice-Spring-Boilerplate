@@ -107,7 +107,7 @@ public class UserInformationControllerTest {
     public void testPageQuery() {
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "page-query?page=1&size=2&sort=profilePicture,asc",
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "page-query?page=1&size=20&sort=profilePicture,asc",
                 HttpMethod.GET,
                 new HttpEntity<>(headers),
                 String.class);
