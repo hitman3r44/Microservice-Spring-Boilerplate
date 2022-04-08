@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!--	<parent>-->
+	<!--		<groupId>com.wolverine.solutions</groupId>-->
+	<!--		<artifactId>bookstore-application-parent</artifactId>-->
+	<!--		<version>0.0.1-SNAPSHOT</version>-->
+	<!--	</parent>-->
+
 	<parent>
-		<groupId>com.wolverine.solutions</groupId>
-		<artifactId>bookstore-application-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.12.RELEASE</version>
+		<relativePath/>
 	</parent>
 
 	<artifactId>bookstore-api-gateway-service</artifactId>
@@ -20,6 +27,19 @@
 		<docker-image-name>gateway-server</docker-image-name>
 		<version>2.3.4.RELEASE</version>
 		<spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+		<lombok.version>1.18.22</lombok.version>
+		<unit-test-api.version>1.0.2</unit-test-api.version>
+		<javafaker.version>1.0.2</javafaker.version>
+		<logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
+		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+		<dozer.version>5.5.1</dozer.version>
+		<modelmapper.version>3.1.0</modelmapper.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<flyway-core.version>6.5.7</flyway-core.version>
+		<h2.version>1.4.200</h2.version>
+		<maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
+		<junit.version>4.13.2</junit.version>
+		<mapstruct.version>1.2.0.Final</mapstruct.version>
 	</properties>
 
 	<dependencies>
@@ -31,25 +51,131 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.cloud</groupId>-->
+		<!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.cloud</groupId>-->
+		<!--			<artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.boot</groupId>-->
+		<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback-encoder.version}</version>
+		</dependency>
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.boot</groupId>-->
+		<!--			<artifactId>spring-boot-starter-test</artifactId>-->
+		<!--			<scope>test</scope>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.github.xiaogangfan</groupId>-->
+		<!--			<artifactId>unit-test-api</artifactId>-->
+		<!--			<version>${unit-test-api.version}</version>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>ch.qos.logback</groupId>-->
+		<!--			<artifactId>logback-classic</artifactId>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
-		</dependency>
-		<!--for health check -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- Tests-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.cloud</groupId>-->
+		<!--			<artifactId>spring-cloud-starter-zipkin</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.cloud</groupId>-->
+		<!--			<artifactId>spring-cloud-sleuth-core</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.springfox</groupId>-->
+		<!--			<artifactId>springfox-swagger2</artifactId>-->
+		<!--			<version>${springfox-swagger2.version}</version>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.springfox</groupId>-->
+		<!--			<artifactId>springfox-swagger-ui</artifactId>-->
+		<!--			<version>${springfox-swagger2.version}</version>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.micrometer</groupId>-->
+		<!--			<artifactId>micrometer-registry-prometheus</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.micrometer</groupId>-->
+		<!--			<artifactId>micrometer-core</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.micrometer</groupId>-->
+		<!--			<artifactId>micrometer-registry-influx</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>net.sf.dozer</groupId>-->
+		<!--			<artifactId>dozer</artifactId>-->
+		<!--			<version>${dozer.version}</version>-->
+		<!--		</dependency>-->
+		<!-- hot swapping, enable live reload -->
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.boot</groupId>-->
+		<!--			<artifactId>spring-boot-devtools</artifactId>-->
+		<!--			<optional>true</optional>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>com.github.javafaker</groupId>-->
+		<!--			<artifactId>javafaker</artifactId>-->
+		<!--			<version>${javafaker.version}</version>-->
+		<!--		</dependency>-->
+
+		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.modelmapper/modelmapper &ndash;&gt;-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.modelmapper</groupId>-->
+		<!--			<artifactId>modelmapper</artifactId>-->
+		<!--			<version>${modelmapper.version}</version>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>junit</groupId>-->
+		<!--			<artifactId>junit</artifactId>-->
+		<!--			<version>${junit.version}</version>-->
+		<!--			<scope>test</scope>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.mapstruct</groupId>-->
+		<!--			<artifactId>mapstruct</artifactId>-->
+		<!--			<version>${mapstruct.version}</version>-->
+		<!--			<scope>compile</scope>-->
+		<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
