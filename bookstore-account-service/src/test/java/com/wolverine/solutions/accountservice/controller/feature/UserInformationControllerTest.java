@@ -3,10 +3,10 @@ package com.wolverine.solutions.accountservice.controller.feature;
 import com.github.javafaker.Faker;
 import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.dto.UserInformationDTO;
+import com.wolverine.solutions.accountservice.enums.entity.UserInformation;
 import com.wolverine.solutions.accountservice.service.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,11 +35,12 @@ public class UserInformationControllerTest {
 
     public static final String CONTROLLER_ROUTE = "user-information/";
     private final Faker faker = new Faker();
+    private static String lastID;
 
     @Test
     public void saveTest() {
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
-        IntStream.range(0, 500).forEach(i -> saveFunctionBody(headers));
+        IntStream.range(0, 20).forEach(i -> saveFunctionBody(headers));
     }
 
     private void saveFunctionBody(MultiValueMap<String, String> headers) {
@@ -51,15 +52,20 @@ public class UserInformationControllerTest {
                 SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
                 HttpMethod.POST,
                 new HttpEntity<>(userInformationDTO, headers),
-                String.class);
+                UserInformation.class);
 
         Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
+
+        UserInformation userInformation = (UserInformation) entity.getBody();
+
+        lastID = userInformation.getId();
+        System.out.println("lastId: " + lastID);
     }
 
     @Test
     public void findByIdTest() {
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
-        String userInfoId = "9a6ded81-617d-4eb1-a381-769247d8fe54";
+        String userInfoId = lastID;
 
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInfoId,
@@ -75,7 +81,7 @@ public class UserInformationControllerTest {
     @Test
     public void testUpdate() {
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
-        String userInfoId = "bb3b3d72-0c15-4c5b-8ff2-1e4ade51161c";
+        String userInfoId = lastID;
 
         UserInformationDTO userInformationDTO = new UserInformationDTO();
         userInformationDTO.setId(userInfoId);
@@ -88,6 +94,8 @@ public class UserInformationControllerTest {
                 String.class);
 
         Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+
+        lastID = userInformationDTO.getId();
     }
 
     @Test
@@ -135,10 +143,10 @@ public class UserInformationControllerTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     public void testDeleteById() {
         // Change the ID according to DB
-        String userInformationId = "0db302f7-2a20-4456-96fc-c61414d480e8";
+        String userInformationId = lastID;
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
 
         ResponseEntity<String> entity = new TestRestTemplate().exchange(
@@ -148,16 +156,16 @@ public class UserInformationControllerTest {
         Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 
-    @Test
-    @Disabled
-    public void testRestoreById() {
-        String userInformationId = "0db302f7-2a20-4456-96fc-c61414d480e8";
-        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
-
-        ResponseEntity<String> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInformationId,
-                HttpMethod.PATCH,
-                new HttpEntity<>(headers), String.class);
-        Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
-    }
+//    @Test
+////    @Disabled
+//    public void testRestoreById() {
+//        String userInformationId = lastID;
+//        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+//
+//        ResponseEntity<String> entity = new TestRestTemplate().exchange(
+//                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInformationId,
+//                HttpMethod.PATCH,
+//                new HttpEntity<>(headers), String.class);
+//        Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
+//    }
 }
