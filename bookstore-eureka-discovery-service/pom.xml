@@ -1,68 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.wolverine.solutions</groupId>
-		<artifactId>bookstore-application-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.12.RELEASE</version>
+        <relativePath/>
+    </parent>
 
-	<artifactId>bookstore-eureka-discovery-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>bookstore-eureka-discovery-service</name>
-	<description>Discovery Service for BookStore App</description>
+    <artifactId>bookstore-eureka-discovery-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>bookstore-eureka-discovery-service</name>
+    <description>Discovery Service for BookStore App</description>
 
-	<properties>
-		<skip-docker-plugin>true</skip-docker-plugin>
-		<docker-image-name>eureka-server</docker-image-name>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <skip-docker-plugin>true</skip-docker-plugin>
+        <docker-image-name>eureka-server</docker-image-name>
+        <version>2.3.4.RELEASE</version>
+        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <lombok.version>1.18.22</lombok.version>
+        <unit-test-api.version>1.0.2</unit-test-api.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
+        <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+        <dozer.version>5.5.1</dozer.version>
+        <modelmapper.version>3.1.0</modelmapper.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <flyway-core.version>6.5.7</flyway-core.version>
+        <h2.version>1.4.200</h2.version>
+        <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
+        <junit.version>4.13.2</junit.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
+        <eureka-consul-adapter.version>1.2.0</eureka-consul-adapter.version>
+    </properties>
 
-	<dependencies>
+    <dependencies>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>at.twinformatics</groupId>
+            <artifactId>eureka-consul-adapter</artifactId>
+            <version>${eureka-consul-adapter.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>at.twinformatics</groupId>
-			<artifactId>eureka-consul-adapter</artifactId>
-			<version>1.2.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.6</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<skip>${skip-docker-plugin}</skip>
-					<repository>${docker-image-name}</repository>
-					<buildArgs>
-						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-					</buildArgs>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.6</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>${skip-docker-plugin}</skip>
+                    <repository>${docker-image-name}</repository>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
