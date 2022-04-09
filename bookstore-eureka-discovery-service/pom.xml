@@ -21,7 +21,7 @@
         <docker-image-name>eureka-server</docker-image-name>
         <version>2.3.4.RELEASE</version>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <unit-test-api.version>1.0.2</unit-test-api.version>
         <javafaker.version>1.0.2</javafaker.version>
         <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>

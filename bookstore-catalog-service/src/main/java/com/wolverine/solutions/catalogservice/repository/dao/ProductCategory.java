@@ -4,7 +4,6 @@ import com.wolverine.solutions.commons.util.DateAudit;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,7 +17,6 @@ import javax.persistence.Table;
 import java.util.List;
 
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

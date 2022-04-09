@@ -1,0 +1,69 @@
+{
+  "_id": {
+    "$oid": "618c30bcc1c0ab517128f2d8"
+  },
+  "name": "1068879-7 Canada Corp",
+  "photo_url": "",
+  "contact_person": "Mahmoud Kabbani",
+  "user_id": "5fb82d1ec1e9f71d8257c18d",
+  "location": {
+    "street_number": "",
+    "street_name": "",
+    "postal_code": "",
+    "city": "Brampton",
+    "province": "ON"
+  },
+  "email": "kemia@kemiatech.com",
+  "phone": "",
+  "website": "https://www.google.com/search?q=1068879-7 Canada Corp",
+  "bio": "Humectants",
+  "category_ids": [
+    "5fad8eb89043bb3ea15dfcd2"
+  ],
+  "item_type_ids": [
+    "5fad8eb89043bb3ea15dfcd7"
+  ],
+  "post_ids": [],
+  "emergency_ids": [
+    "5fad8eb89043bb3ea15dfcd1"
+  ],
+  "tags": [
+    "Humectants"
+  ],
+  "short_description": "Suscipit quasi sequi harum omnis magnam.",
+  "long_description": "Ex dicta possimus consequatur qui ab deserunt. Nisi et molestias sit atque repellat. Quisquam voluptates ut corrupti adipisci.",
+  "logo": "suppliers/6200443525fc2f6664142389/17197b18-3a49-4bb4-bdf3-5e3de13a8223.png",
+  "header_image": "suppliers/6200443525fc2f6664142389/4a9063da-4633-40b3-ab11-3d4dff9cb640.jpg",
+  "foundation_year": 1988,
+  "employment_size": "10-100",
+  "media_images": [
+    "suppliers/618c30bcc1c0ab517128f218/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png",
+    "suppliers/618c30bcc1c0ab517128f218/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png",
+    "suppliers/618c30bcc1c0ab517128f218/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png"
+  ],
+  "certification": [
+    "suppliers/618c30bcc1c0ab517128f219/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png",
+    "suppliers/618c30bcc1c0ab517128f219/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png",
+    "suppliers/618c30bcc1c0ab517128f219/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png",
+    "suppliers/618c30bcc1c0ab517128f219/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png",
+    "suppliers/618c30bcc1c0ab517128f219/ab29b9aa-03da-4ac6-8b89-31a11d7162d0.png"
+  ],
+  "rating": 1,
+  "followers": 35,
+  "reviews": [
+    "Unde ut ipsam qui corporis modi.",
+    "Sequi reiciendis occaecati quis nam et aperiam rerum.",
+    "Ad autem blanditiis quia voluptate dolor minus."
+  ],
+  "badges": [
+    "verified"
+  ],
+  "isPublish": true,
+  "status": "approved",
+  "created_at": {
+    "$date": "2021-11-09T20:51:08.590Z"
+  },
+  "updated_at": {
+    "$date": "2021-11-10T20:51:08.590Z"
+  }
+}
