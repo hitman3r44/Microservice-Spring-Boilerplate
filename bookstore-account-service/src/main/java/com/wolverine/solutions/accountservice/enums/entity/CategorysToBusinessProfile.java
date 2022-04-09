@@ -1,8 +1,6 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "categorys_to_business_profile")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CategorysToBusinessProfile extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -23,20 +32,4 @@ public class CategorysToBusinessProfile extends DateAudit {
     @ManyToOne
     @JoinColumn(name = "business_profile_id")
     private BusinessProfile businessProfile;
-
-    public BusinessProfile getBusinessProfile() {
-        return businessProfile;
-    }
-
-    public void setBusinessProfile(BusinessProfile businessProfile) {
-        this.businessProfile = businessProfile;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
