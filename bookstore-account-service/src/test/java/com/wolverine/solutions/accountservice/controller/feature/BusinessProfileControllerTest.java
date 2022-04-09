@@ -26,24 +26,24 @@ import java.util.UUID;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-//@ExtendWith(BaseTest.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BusinessProfileControllerTest extends BaseTest {
     public static final String CONTROLLER_ROUTE = "business-profile/";
     private static String lastID;
     private final Faker faker = new Faker();
+    private final static String PAGE_QUERY = "page-query?page=1&size=20&sort=id,asc";
+
     @Autowired
     BusinessProfileService businessProfileService = new BusinessProfileServiceImpl();
 
     @Test
     public void saveTest() {
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
-        IntStream.range(0, 20).forEach(i -> saveFunctionBody(headers));
+        IntStream.range(0, 10).forEach(i -> saveFunctionBody(headers));
     }
 
     private void saveFunctionBody(MultiValueMap<String, String> headers) {
         BusinessProfileDTO businessProfileDTO = generateBusinessProfileDTO();
-
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
                 HttpMethod.POST,
@@ -53,6 +53,86 @@ public class BusinessProfileControllerTest extends BaseTest {
         Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
         BusinessProfile businessProfile = (BusinessProfile) entity.getBody();
         lastID = businessProfile.getId();
+    }
+
+    @Test
+    public void findByIdTest() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + lastID,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+
+        System.out.println(entity.getBody());
+    }
+
+    @Test
+    public void testList() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+    }
+
+    @Test
+    public void testPageQuery() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + PAGE_QUERY,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+
+        System.out.println(entity.getBody());
+    }
+
+    @Test
+    public void testUpdate() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+
+        BusinessProfileDTO businessProfileDTO = generateBusinessProfileDTO();
+        businessProfileDTO.setId(lastID);
+
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + lastID,
+                HttpMethod.PUT,
+                new HttpEntity<>(businessProfileDTO, headers),
+                String.class);
+
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+
+        lastID = businessProfileDTO.getId();
+    }
+
+    @Test
+//    @Disabled
+    public void testDeleteById() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+        ResponseEntity<String> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + lastID,
+                HttpMethod.DELETE,
+                new HttpEntity<>(headers), String.class);
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+    }
+
+    @Test
+//    @Disabled
+    public void testRestoreById() {
+        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+        ResponseEntity<String> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + lastID,
+                HttpMethod.PATCH,
+                new HttpEntity<>(headers), String.class);
+        Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
     }
 
     private BusinessProfileDTO generateBusinessProfileDTO() {
@@ -83,12 +163,11 @@ public class BusinessProfileControllerTest extends BaseTest {
         businessProfileDTO.setWebsite(faker.internet().domainName());
 
         BadgesToBusinessProfile badgesToBusinessProfile = new BadgesToBusinessProfile();
-        BusinessProfile businessProfile;
-        businessProfile = businessProfileService.asEntity(businessProfileDTO);
-//        badgesToBusinessProfile.getBusinessProfile().setId(businessProfileDTO.getId());
-        badgesToBusinessProfile.setBusinessProfile(businessProfile);
+
+        badgesToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
         badgesToBusinessProfile.setId(String.valueOf(UUID.randomUUID()));
         badgesToBusinessProfile.setBadgeName(faker.buffy().bigBads());
+
         businessProfileDTO.setBadges(Collections.singletonList(badgesToBusinessProfile));
 
 //        CategorysToBusinessProfile categorysToBusinessProfile = new CategorysToBusinessProfile();

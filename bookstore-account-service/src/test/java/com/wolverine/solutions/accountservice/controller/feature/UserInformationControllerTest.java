@@ -59,7 +59,6 @@ public class UserInformationControllerTest {
         UserInformation userInformation = (UserInformation) entity.getBody();
 
         lastID = userInformation.getId();
-        System.out.println("lastId: " + lastID);
     }
 
     @Test
@@ -76,26 +75,6 @@ public class UserInformationControllerTest {
         Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
 
         System.out.println(entity.getBody());
-    }
-
-    @Test
-    public void testUpdate() {
-        MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
-        String userInfoId = lastID;
-
-        UserInformationDTO userInformationDTO = new UserInformationDTO();
-        userInformationDTO.setId(userInfoId);
-        userInformationDTO.setProfilePicture("UpdatedWithDate");
-
-        ResponseEntity<?> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInfoId,
-                HttpMethod.PUT,
-                new HttpEntity<>(userInformationDTO, headers),
-                String.class);
-
-        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
-
-        lastID = userInformationDTO.getId();
     }
 
     @Test
@@ -126,20 +105,23 @@ public class UserInformationControllerTest {
     }
 
     @Test
-    public void saveTest1() {
+    public void testUpdate() {
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
+        String userInfoId = lastID;
 
         UserInformationDTO userInformationDTO = new UserInformationDTO();
-        userInformationDTO.setId(ConstentVariableTests.TEST_USER_INFORMATION_ID);
-        userInformationDTO.setProfilePicture("Sumit");
+        userInformationDTO.setId(userInfoId);
+        userInformationDTO.setProfilePicture("UpdatedWithDate");
 
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
-                HttpMethod.POST,
+                SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + userInfoId,
+                HttpMethod.PUT,
                 new HttpEntity<>(userInformationDTO, headers),
                 String.class);
 
-        Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
+        Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+
+        lastID = userInformationDTO.getId();
     }
 
     @Test

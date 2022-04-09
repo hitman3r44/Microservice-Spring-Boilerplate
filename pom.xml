@@ -29,7 +29,6 @@
         <junit.version>4.13.2</junit.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <jjwt.version>0.9.1</jjwt.version>
-        <speedment-maven-plugin.version>3.2.10</speedment-maven-plugin.version>
     </properties>
 
     <modules>
@@ -227,13 +226,6 @@
             <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.speedment/speedment-maven-plugin -->
-        <dependency>
-            <groupId>com.speedment</groupId>
-            <artifactId>speedment-maven-plugin</artifactId>
-            <version>${speedment-maven-plugin.version}</version>
-        </dependency>
-
 
     </dependencies>
 
@@ -259,19 +251,6 @@
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>${maven-dependency-plugin.version}</version>
-            </plugin>
-
-            <plugin>
-                <groupId>com.speedment</groupId>
-                <artifactId>speedment-maven-plugin</artifactId>
-                <version>${speedment-maven-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
             <plugin>
