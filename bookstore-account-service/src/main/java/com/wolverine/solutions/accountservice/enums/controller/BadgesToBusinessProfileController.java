@@ -2,14 +2,15 @@ package com.wolverine.solutions.accountservice.enums.controller;
 
 import com.wolverine.solutions.accountservice.enums.dto.BadgesToBusinessProfileDTO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
-
+@ApiModel
 @Api(tags = "BadgesToBusinessProfile API")
 public interface BadgesToBusinessProfileController {
     @ApiOperation("Add new data")
