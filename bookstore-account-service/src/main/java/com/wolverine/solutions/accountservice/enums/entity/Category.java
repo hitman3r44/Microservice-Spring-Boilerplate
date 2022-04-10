@@ -1,6 +1,7 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,20 +17,42 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "categorys_to_business_profile")
+@Table(name = "categories")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CategorysToBusinessProfile extends DateAudit {
+public class Category extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "isFeatured")
+    private boolean isfeatured;
+
+    @Column(name = "isForecastingEnabled")
+    private boolean isforecastingenabled;
+
+    @Column(name = "status")
+    private String status;
+
     @ManyToOne
-    @JoinColumn(name = "business_profile_id")
+    @JoinColumn(name = "parent_category_id_id")
+    private ParentCategory parentCategoryId;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
     private BusinessProfile businessProfile;
 }

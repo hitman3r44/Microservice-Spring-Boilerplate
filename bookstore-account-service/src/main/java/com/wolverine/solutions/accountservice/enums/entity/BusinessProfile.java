@@ -103,8 +103,8 @@ public class BusinessProfile extends DateAudit {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
     private List<BadgesToBusinessProfile> badges = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = CategorysToBusinessProfile.class)
-    private List<CategorysToBusinessProfile> categorieList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = Category.class)
+    private List<Category> categoryList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<TagsToBusinessProfile> tags = new ArrayList<>();
