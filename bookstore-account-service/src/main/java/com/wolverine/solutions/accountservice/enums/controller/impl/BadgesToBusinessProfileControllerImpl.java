@@ -4,6 +4,8 @@ import com.wolverine.solutions.accountservice.enums.controller.BadgesToBusinessP
 import com.wolverine.solutions.accountservice.enums.dto.BadgesToBusinessProfileDTO;
 import com.wolverine.solutions.accountservice.enums.entity.BadgesToBusinessProfile;
 import com.wolverine.solutions.accountservice.enums.service.BadgesToBusinessProfileService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequestMapping("/badges-to-business-profile")
 @RestController
@@ -52,7 +51,8 @@ public class BadgesToBusinessProfileControllerImpl implements BadgesToBusinessPr
     @Override
     @GetMapping
     public List<BadgesToBusinessProfileDTO> list() {
-        return null;
+        List<BadgesToBusinessProfile> badgesToBusinessProfiles = badgesToBusinessProfileService.findAll();
+        return badgesToBusinessProfiles.stream().map(badgesToBusinessProfileService::asDTO).collect(Collectors.toList());
     }
 
     @Override
