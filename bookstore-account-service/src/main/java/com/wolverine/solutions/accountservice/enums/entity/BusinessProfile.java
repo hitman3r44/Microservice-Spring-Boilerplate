@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,7 +32,9 @@ import org.hibernate.annotations.SQLDelete;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "business_profile")
+@Table(name = "business_profile", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_businessprofile_id", columnNames = {"id"})
+})
 @Builder
 @SQLDelete(sql = "UPDATE business_profile SET is_deleted = true WHERE id=?")
 //@Where(clause = "is_deleted = false")
@@ -100,11 +103,11 @@ public class BusinessProfile extends DateAudit {
     @Column(name = "isPublish")
     private boolean ispublish;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
     private List<BadgesToBusinessProfile> badges = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = Category.class)
-    private List<Category> categoryList = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = Category.class)
+//    private List<Category> categoryList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<TagsToBusinessProfile> tags = new ArrayList<>();

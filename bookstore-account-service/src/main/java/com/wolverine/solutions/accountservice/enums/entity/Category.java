@@ -4,6 +4,7 @@ import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -48,11 +49,11 @@ public class Category extends DateAudit {
     @Column(name = "status")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_category_id_id")
-    private ParentCategory parentCategoryId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_category_id_id", referencedColumnName = "id")
+    private ParentCategory parentCategory;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
     private BusinessProfile businessProfile;
 }

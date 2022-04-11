@@ -1,13 +1,18 @@
 package com.wolverine.solutions.accountservice.controller.feature;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.dto.BusinessProfileDTO;
 import com.wolverine.solutions.accountservice.enums.entity.BadgesToBusinessProfile;
 import com.wolverine.solutions.accountservice.enums.entity.BusinessProfile;
+import com.wolverine.solutions.accountservice.enums.entity.Category;
+import com.wolverine.solutions.accountservice.enums.entity.ParentCategory;
 import com.wolverine.solutions.accountservice.enums.service.BusinessProfileService;
 import com.wolverine.solutions.accountservice.enums.service.impl.BusinessProfileServiceImpl;
 import com.wolverine.solutions.accountservice.service.BaseTest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
@@ -34,12 +39,13 @@ public class BusinessProfileControllerTest extends BaseTest {
   private final Faker faker = new Faker();
   @Autowired
   BusinessProfileService businessProfileService = new BusinessProfileServiceImpl();
+  private static final String jsonDumpFileName = "businessProfile";
 
   @Test
   public void saveTest() {
     MultiValueMap<String, String> headers = getRequestHeader(
             ConstentVariableTests.APPLICATION_JSON);
-    IntStream.range(0, 10).forEach(i -> saveFunctionBody(headers));
+    IntStream.range(0, 5).forEach(i -> saveFunctionBody(headers));
   }
 
   private void saveFunctionBody(MultiValueMap<String, String> headers) {
@@ -60,14 +66,32 @@ public class BusinessProfileControllerTest extends BaseTest {
     MultiValueMap<String, String> headers = getRequestHeader(
             ConstentVariableTests.APPLICATION_JSON);
     ResponseEntity<?> entity = new TestRestTemplate().exchange(
-            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + lastID,
+            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "cbc69e3f-c8a8-4f41-aaa9-55b462742f01",
             HttpMethod.GET,
             new HttpEntity<>(headers),
-            String.class);
+            BusinessProfile.class);
 
+    objectToJsonMapper((BusinessProfile) entity.getBody(), jsonDumpFileName + "_findByIdTest()");
     Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
+  }
 
-    System.out.println(entity.getBody());
+  private void objectToJsonMapper(BusinessProfile objectToMapJson, String jsonDumpFileName) {
+    ObjectMapper mapper = new ObjectMapper();
+
+    File file = new File(jsonDumpFileName + ".json");
+    try {
+      // Serialize Java object info JSON file.
+      mapper.writeValue(file, objectToMapJson);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+//    try {
+//      // Deserialize JSON file into Java object.
+//      Objects objects = mapper.readValue(file, Objects.class);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
   }
 
   @Test
@@ -78,7 +102,9 @@ public class BusinessProfileControllerTest extends BaseTest {
             SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
             HttpMethod.GET,
             new HttpEntity<>(headers),
-            String.class);
+            BusinessProfile.class);
+
+    objectToJsonMapper((BusinessProfile) entity.getBody(), jsonDumpFileName + "_testList()");
 
     Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
   }
@@ -148,38 +174,32 @@ public class BusinessProfileControllerTest extends BaseTest {
     businessProfileDTO.setCity(faker.address().cityName());
     businessProfileDTO.setContactPerson(faker.name().username());
     businessProfileDTO.setEmail(faker.internet().emailAddress());
-    businessProfileDTO.setEmploymentSize("45");
+    businessProfileDTO.setEmploymentSize(String.valueOf(faker.number().numberBetween(100, 1000)));
     businessProfileDTO.setFollowers(faker.number().randomDigit());
     businessProfileDTO.setFoundationYear(faker.number().randomDigit());
     businessProfileDTO.setHeaderImage(faker.internet().image());
     businessProfileDTO.setId(String.valueOf(UUID.randomUUID()));
-    businessProfileDTO.setIspublish(true);
+    businessProfileDTO.setIspublish(faker.bool().bool());
     businessProfileDTO.setLogo(faker.company().logo());
     businessProfileDTO.setLongDescription(faker.weather().description());
     businessProfileDTO.setName(faker.name().name());
     businessProfileDTO.setPhone(faker.phoneNumber().cellPhone());
     businessProfileDTO.setPostalCode(faker.address().zipCode());
     businessProfileDTO.setProvince(faker.programmingLanguage().name());
-    businessProfileDTO.setRating(1);
+    businessProfileDTO.setRating(faker.number().numberBetween(0, 10));
     businessProfileDTO.setShortDescription(faker.weather().description());
     businessProfileDTO.setStatus(faker.pokemon().name());
     businessProfileDTO.setStreetName(faker.address().streetName());
     businessProfileDTO.setStreetNumber(faker.address().streetAddressNumber());
-    businessProfileDTO.setUserId("42");
+    businessProfileDTO.setUserId(String.valueOf(UUID.randomUUID()));
     businessProfileDTO.setWebsite(faker.internet().domainName());
 
-    BadgesToBusinessProfile badgesToBusinessProfile = new BadgesToBusinessProfile();
-
-    badgesToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
-    badgesToBusinessProfile.setId(String.valueOf(UUID.randomUUID()));
-    badgesToBusinessProfile.setBadgeName(faker.buffy().bigBads());
-
+    BadgesToBusinessProfile badgesToBusinessProfile = getBadgesToBusinessProfile(businessProfileDTO);
     businessProfileDTO.setBadges(Collections.singletonList(badgesToBusinessProfile));
 
-//        CategorysToBusinessProfile categorysToBusinessProfile = new CategorysToBusinessProfile();
-//        categorysToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
-//        businessProfileDTO.setCategorieList((List<CategorysToBusinessProfile>) categorysToBusinessProfile);
-    businessProfileDTO.setCategorieList(new ArrayList<>());
+//    Category category = getCategory(businessProfileDTO);
+//    businessProfileDTO.setCategoryList(Collections.singletonList(category));
+    businessProfileDTO.setCategoryList(new ArrayList<>());
 
 //        CertificationtoBusinessProfile certificationtoBusinessProfile = new CertificationtoBusinessProfile();
 //        certificationtoBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
@@ -218,6 +238,46 @@ public class BusinessProfileControllerTest extends BaseTest {
     businessProfileDTO.setTags(new ArrayList<>());
 
     return businessProfileDTO;
+  }
+
+  private Category getCategory(BusinessProfileDTO businessProfileDTO) {
+    Category category = new Category();
+
+    category.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
+    category.setName(faker.book().genre());
+    category.setDescription(faker.superhero().descriptor());
+    category.setStatus(faker.demographic().maritalStatus());
+    category.setImageUrl(faker.internet().image());
+    category.setIsfeatured(faker.bool().bool());
+    category.setId(UUID.randomUUID().toString());
+
+    ParentCategory parentCategory = getParentCategory(category);
+    category.setParentCategory(parentCategory);
+
+    return category;
+  }
+
+  private ParentCategory getParentCategory(Category category) {
+    ParentCategory parentCategory = new ParentCategory();
+
+    parentCategory.setName(faker.food().ingredient());
+    parentCategory.setDescription(faker.superhero().descriptor());
+    parentCategory.setStatus(faker.demographic().maritalStatus());
+    parentCategory.setImageUrl(faker.internet().image());
+    parentCategory.setIsfeatured(faker.bool().bool());
+    parentCategory.setId(UUID.randomUUID().toString());
+//    parentCategory.setCategoryList(Collections.singletonList(category));
+
+    return parentCategory;
+  }
+
+  private BadgesToBusinessProfile getBadgesToBusinessProfile(BusinessProfileDTO businessProfileDTO) {
+    BadgesToBusinessProfile badgesToBusinessProfile = new BadgesToBusinessProfile();
+
+    badgesToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
+    badgesToBusinessProfile.setId(String.valueOf(UUID.randomUUID()));
+    badgesToBusinessProfile.setBadgeName(faker.buffy().bigBads());
+    return badgesToBusinessProfile;
   }
 }
 
