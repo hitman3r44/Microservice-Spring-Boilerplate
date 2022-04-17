@@ -46,6 +46,10 @@ import org.hibernate.annotations.SQLDelete;
         name = "deletedUserFilter",
         condition = "is_deleted = :isDeleted"
 )
+//@JsonIgnoreProperties({
+//        "hibernateLazyInitializer",
+//        "handler",
+//})
 public class BusinessProfile extends DateAudit {
 
     @Id
@@ -103,9 +107,6 @@ public class BusinessProfile extends DateAudit {
     @Column(name = "isPublish")
     private boolean ispublish;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
-    private List<BadgesToBusinessProfile> badges = new ArrayList<>();
-
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = Category.class)
 //    private List<Category> categoryList = new ArrayList<>();
 
@@ -129,4 +130,7 @@ public class BusinessProfile extends DateAudit {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<ReviewsToBusinessProfile> reviewList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
+    private List<BadgesToBusinessProfile> badges = new ArrayList<>();
 }

@@ -66,7 +66,7 @@ public class BusinessProfileControllerTest extends BaseTest {
     MultiValueMap<String, String> headers = getRequestHeader(
             ConstentVariableTests.APPLICATION_JSON);
     ResponseEntity<?> entity = new TestRestTemplate().exchange(
-            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "cbc69e3f-c8a8-4f41-aaa9-55b462742f01",
+            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "4ffca1fa-d785-4be5-bc7e-aa9061b9f916",
             HttpMethod.GET,
             new HttpEntity<>(headers),
             BusinessProfile.class);
@@ -77,6 +77,7 @@ public class BusinessProfileControllerTest extends BaseTest {
 
   private void objectToJsonMapper(BusinessProfile objectToMapJson, String jsonDumpFileName) {
     ObjectMapper mapper = new ObjectMapper();
+    mapper.findAndRegisterModules();
 
     File file = new File(jsonDumpFileName + ".json");
     try {
@@ -104,7 +105,7 @@ public class BusinessProfileControllerTest extends BaseTest {
             new HttpEntity<>(headers),
             BusinessProfile.class);
 
-    objectToJsonMapper((BusinessProfile) entity.getBody(), jsonDumpFileName + "_testList()");
+//    objectToJsonMapper((BusinessProfile) entity.getBody(), jsonDumpFileName + "_testList()");
 
     Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
   }

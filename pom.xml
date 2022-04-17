@@ -200,24 +200,43 @@
             <artifactId>flyway-core</artifactId>
             <version>${flyway-core.version}</version>
         </dependency>
-        <!-- https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.13.1/jackson-core-2.13.1.jar -->
-        <dependency>
-            <artifactId>jackson-core</artifactId>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <version>2.13.1</version>
-        </dependency>
-        <!-- https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.13.1/jackson-annotations-2.13.1.jar -->
-        <dependency>
-            <artifactId>jackson-annotations</artifactId>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <version>2.13.1</version>
-        </dependency>
-        <!-- https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.13.1/jackson-databind-2.13.1.jar -->
-        <dependency>
-            <artifactId>jackson-databind</artifactId>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <version>2.13.1</version>
-        </dependency>
+
+        <!--        &lt;!&ndash; https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.13.1/jackson-core-2.13.1.jar &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <artifactId>jackson-core</artifactId>-->
+        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--            <version>2.13.2</version>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.13.1/jackson-annotations-2.13.1.jar &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <artifactId>jackson-annotations</artifactId>-->
+        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--            <version>2.13.2</version>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.13.1/jackson-databind-2.13.1.jar &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <artifactId>jackson-databind</artifactId>-->
+        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+        <!--            <version>2.13.2.2</version>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash;	Parameter names	&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.module</groupId>-->
+        <!--            <artifactId>jackson-module-parameter-names</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash;	Java 8 Date/time	&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.datatype</groupId>-->
+        <!--            <artifactId>jackson-datatype-jsr310</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash;	Java 8 Datatypes	&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.fasterxml.jackson.datatype</groupId>-->
+        <!--            <artifactId>jackson-datatype-jdk8</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.h2database</groupId>
@@ -249,12 +268,21 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <artifactId>jackson-bom</artifactId>
+                <groupId>com.fasterxml.jackson</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>2.13.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

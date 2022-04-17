@@ -24,6 +24,11 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@JsonIgnoreProperties({
+//        "hibernateLazyInitializer",
+//        "handler",
+//        "businessProfile"
+//})
 public class BadgesToBusinessProfile extends DateAudit {
 
     @Id
@@ -32,6 +37,7 @@ public class BadgesToBusinessProfile extends DateAudit {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
+    //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
     private BusinessProfile businessProfile;

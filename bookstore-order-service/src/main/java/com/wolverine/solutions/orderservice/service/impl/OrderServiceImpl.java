@@ -25,15 +25,13 @@ import com.wolverine.solutions.orderservice.web.CreateOrderRequest;
 import com.wolverine.solutions.orderservice.web.CreateOrderResponse;
 import com.wolverine.solutions.orderservice.web.PreviewOrderRequest;
 import com.wolverine.solutions.orderservice.web.PreviewOrderResponse;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Service
@@ -183,7 +181,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         createOrderResponse.setOrderId(save.getOrderId());
-        createOrderResponse.setCreated_at(save.getCreatedAt().toInstant(ZoneOffset.UTC));
+        createOrderResponse.setCreated_at(save.getCreatedAt());
 
         //set Payment info
         createOrderResponse.setPaid(createPaymentResponse.isCaptured());
@@ -349,7 +347,7 @@ public class OrderServiceImpl implements OrderService {
                     .paymentReceiptUrl(o.getPaymentReceiptUrl())
                     .taxPrice(o.getTaxPrice())
                     .totalPrice(o.getTotalOrderPrice())
-                    .created_at(o.getCreatedAt().toInstant(ZoneOffset.UTC))
+                    .created_at(o.getCreatedAt())
                     .build();
             createOrderResponseList.add(createOrderResponse);
         });
