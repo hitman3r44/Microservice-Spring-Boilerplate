@@ -24,11 +24,6 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@JsonIgnoreProperties({
-//        "hibernateLazyInitializer",
-//        "handler",
-//        "businessProfile"
-//})
 public class BadgesToBusinessProfile extends DateAudit {
 
     @Id
