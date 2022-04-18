@@ -1,7 +1,12 @@
 package com.wolverine.solutions.accountservice.service;
 
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.PORT;
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.SERVER_NAME;
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.URI;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
+import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.dto.BusinessProfileDTO;
 import com.wolverine.solutions.accountservice.enums.entity.BadgesToBusinessProfile;
 import com.wolverine.solutions.accountservice.enums.entity.BusinessProfile;
@@ -14,6 +19,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
+import org.junit.Assert;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 
 /**
  * @author Sumit Sarkar
@@ -22,6 +34,20 @@ public class BusinessProfileObjGenerator {
 
     private static final Faker faker = new Faker();
     private static final BusinessProfileService businessProfileService = new BusinessProfileServiceImpl();
+
+    public static void saveFunctionBody(MultiValueMap<String, String> headers) {
+        BusinessProfileDTO businessProfileDTO = BusinessProfileObjGenerator.generateBusinessProfileDTO();
+        ResponseEntity<?> entity = new TestRestTemplate().exchange(
+                SERVER_NAME + PORT + URI + ConstentVariableTests.CONTROLLER_ROUTE,
+                HttpMethod.POST,
+                new HttpEntity<>(businessProfileDTO, headers),
+                BusinessProfile.class);
+
+        Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
+        BusinessProfile businessProfile = (BusinessProfile) entity.getBody();
+        assert businessProfile != null;
+        ConstentVariableTests.lastID = businessProfile.getId();
+    }
 
     public static void objectToJsonMapper(BusinessProfile objectToMapJson, String jsonDumpFileName) {
         ObjectMapper mapper = new ObjectMapper();
