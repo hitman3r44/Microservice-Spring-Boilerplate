@@ -1,5 +1,7 @@
 package com.wolverine.solutions.accountservice.service;
 
+import static org.junit.jupiter.api.extension.ExtensionContext.Namespace.GLOBAL;
+
 import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.response.JwtAuthenticationResponse;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
@@ -13,13 +15,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
-import static org.junit.jupiter.api.extension.ExtensionContext.Namespace.GLOBAL;
-
 /**
  * @author Sumit Sarkar
  */
 public class BaseTest implements BeforeAllCallback, ExtensionContext.Store.CloseableResource {
 
+    protected final static String PAGE_QUERY = "page-query?page=1&size=20&sort=id,asc";
+    protected static String lastID;
     private static boolean started = false;
     private static boolean isNewTokenGenerated = false;
     public static String TOKEN = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsid2ViIl0sInVzZXJfaWQiOiJ4Y3ZjdmJ2di1iYTVkLTRiOTItODViZS1kZmdkZmdkZmdkZmciLCJ1c2VyX25hbWUiOiJhZG1pbi5hZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE2NDg5NjU3NTgsImF1dGhvcml0aWVzIjpbIlNUQU5EQVJEX1VTRVIiLCJBRE1JTl9VU0VSIl0sImp0aSI6IkE1VENyNmhNNVRIaV9rRk1NMlIxUERYLWxWOCIsImNsaWVudF9pZCI6IjkzZWQ0NTNlLWI3YWMtNDE5Mi1hNmQ0LWM0NWZhZTBkOTlhYyJ9.D64UgnfVUzqUVPHQsC7ShmE05AFqfNSIX6ozzscqI-TjAmuyZtStRyReW4SgYW22P78JzvxbNLWpnrmBUuU-TcjnAxiYZBSWobDQL1mEPNH3_arXDqQo0CFmjHqaE333I-dKi6LZY4kiua_V-jmMjlMWbZeQYKGz9makRHdlAkjncLqfk6uEfuCrg-5RXkl9bWjfleBwgZHDmu1ggtKxoOf6sxNKMGAxb8giwNEuoxGwi8eGkx2SiteFCU2u5hqVDiXOfjOCCTnisAPkFe1jLhl0YaJdkchfCp4V1kvEKLYwT2lRyjgK3PYw7k6rybl4BIBYeeIrlB9YP-FsrLMuJw";
