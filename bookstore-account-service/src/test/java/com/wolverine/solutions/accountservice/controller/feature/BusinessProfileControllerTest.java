@@ -18,8 +18,10 @@ import java.util.Collections;
 import java.util.UUID;
 import java.util.stream.IntStream;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -31,15 +33,17 @@ import org.springframework.util.MultiValueMap;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@FixMethodOrder(MethodSorters.DEFAULT)
 public class BusinessProfileControllerTest extends BaseTest {
 
   public static final String CONTROLLER_ROUTE = "business-profile/";
   private final static String PAGE_QUERY = "page-query?page=1&size=20&sort=id,asc";
   private static String lastID;
   private final Faker faker = new Faker();
+  private static final String jsonDumpFileName = "businessProfile";
+
   @Autowired
   BusinessProfileService businessProfileService = new BusinessProfileServiceImpl();
-  private static final String jsonDumpFileName = "businessProfile";
 
   @Test
   public void saveTest() {
@@ -48,51 +52,18 @@ public class BusinessProfileControllerTest extends BaseTest {
     IntStream.range(0, 5).forEach(i -> saveFunctionBody(headers));
   }
 
-  private void saveFunctionBody(MultiValueMap<String, String> headers) {
-    BusinessProfileDTO businessProfileDTO = generateBusinessProfileDTO();
-    ResponseEntity<?> entity = new TestRestTemplate().exchange(
-            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
-            HttpMethod.POST,
-            new HttpEntity<>(businessProfileDTO, headers),
-            BusinessProfile.class);
-
-    Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
-    BusinessProfile businessProfile = (BusinessProfile) entity.getBody();
-    lastID = businessProfile.getId();
-  }
-
   @Test
   public void findByIdTest() {
     MultiValueMap<String, String> headers = getRequestHeader(
             ConstentVariableTests.APPLICATION_JSON);
     ResponseEntity<?> entity = new TestRestTemplate().exchange(
-            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "4ffca1fa-d785-4be5-bc7e-aa9061b9f916",
+            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE + "10add7c5-1794-42a9-84da-c2de1bf47e9c",
             HttpMethod.GET,
             new HttpEntity<>(headers),
             BusinessProfile.class);
 
     objectToJsonMapper((BusinessProfile) entity.getBody(), jsonDumpFileName + "_findByIdTest()");
     Assert.assertEquals(HttpStatus.OK, entity.getStatusCode());
-  }
-
-  private void objectToJsonMapper(BusinessProfile objectToMapJson, String jsonDumpFileName) {
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.findAndRegisterModules();
-
-    File file = new File(jsonDumpFileName + ".json");
-    try {
-      // Serialize Java object info JSON file.
-      mapper.writeValue(file, objectToMapJson);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-//    try {
-//      // Deserialize JSON file into Java object.
-//      Objects objects = mapper.readValue(file, Objects.class);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
   }
 
   @Test
@@ -103,7 +74,7 @@ public class BusinessProfileControllerTest extends BaseTest {
             SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
             HttpMethod.GET,
             new HttpEntity<>(headers),
-            BusinessProfile.class);
+            String.class);
 
 //    objectToJsonMapper((BusinessProfile) entity.getBody(), jsonDumpFileName + "_testList()");
 
@@ -166,6 +137,39 @@ public class BusinessProfileControllerTest extends BaseTest {
             HttpMethod.PATCH,
             new HttpEntity<>(headers), String.class);
     Assert.assertEquals(HttpStatus.NO_CONTENT, entity.getStatusCode());
+  }
+
+  private void saveFunctionBody(MultiValueMap<String, String> headers) {
+    BusinessProfileDTO businessProfileDTO = generateBusinessProfileDTO();
+    ResponseEntity<?> entity = new TestRestTemplate().exchange(
+            SERVER_NAME + PORT + URI + CONTROLLER_ROUTE,
+            HttpMethod.POST,
+            new HttpEntity<>(businessProfileDTO, headers),
+            BusinessProfile.class);
+
+    Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
+    BusinessProfile businessProfile = (BusinessProfile) entity.getBody();
+    lastID = businessProfile.getId();
+  }
+
+  private void objectToJsonMapper(BusinessProfile objectToMapJson, String jsonDumpFileName) {
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.findAndRegisterModules();
+
+    File file = new File(jsonDumpFileName + ".json");
+    try {
+      // Serialize Java object info JSON file.
+      mapper.writeValue(file, objectToMapJson);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+//    try {
+//      // Deserialize JSON file into Java object.
+//      Objects objects = mapper.readValue(file, Objects.class);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
   }
 
   private BusinessProfileDTO generateBusinessProfileDTO() {

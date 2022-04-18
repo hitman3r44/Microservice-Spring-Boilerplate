@@ -1,5 +1,6 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wolverine.solutions.commons.util.DateAudit;
 import java.util.ArrayList;
 import java.util.List;
@@ -131,6 +132,8 @@ public class BusinessProfile extends DateAudit {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<ReviewsToBusinessProfile> reviewList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
+    //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
+    @JsonIgnoreProperties("businessProfile")
     private List<BadgesToBusinessProfile> badges = new ArrayList<>();
 }

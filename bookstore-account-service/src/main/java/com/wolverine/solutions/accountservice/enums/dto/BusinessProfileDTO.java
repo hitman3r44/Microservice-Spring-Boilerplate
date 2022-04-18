@@ -21,11 +21,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@JsonIgnoreProperties({
-//        "hibernateLazyInitializer",
-//        "handler",
-////        "badges"
-//})
 public class BusinessProfileDTO extends AbstractDTO<String> {
     private String id;
     private String province;
