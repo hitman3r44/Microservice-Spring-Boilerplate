@@ -4,6 +4,7 @@ import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests
 import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.PORT;
 import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.SERVER_NAME;
 import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.URI;
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.lastID;
 
 import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.dto.BusinessProfileDTO;
@@ -66,7 +67,7 @@ public class BusinessProfileControllerTest extends BaseTest {
                 ConstentVariableTests.APPLICATION_JSON);
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + ConstentVariableTests.CONTROLLER_ROUTE +
-                        "ac95c2ad-70a1-4fa6-80d5-e46c90b0397e",
+                        lastID,
 //                        ConstentVariableTests.lastID,
                 HttpMethod.GET,
                 new HttpEntity<>(headers),

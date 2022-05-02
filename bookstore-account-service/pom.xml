@@ -15,18 +15,82 @@
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
+
+        <dependency>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+        </dependency>
+
         <dependency>
             <artifactId>flyway-core</artifactId>
             <groupId>org.flywaydb</groupId>
             <version>${flyway-core.version}</version>
         </dependency>
+
+        <dependency>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-boot-devtools</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-security-oauth2</artifactId>
+            <groupId>org.springframework.security.oauth</groupId>
+            <version>2.5.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-security-jwt</artifactId>
+            <groupId>org.springframework.security</groupId>
+            <version>1.1.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-security-test</artifactId>
+            <groupId>org.springframework.security</groupId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <artifactId>h2</artifactId>
+            <groupId>com.h2database</groupId>
+            <version>${h2.version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>mysql-connector-java</artifactId>
+            <groupId>mysql</groupId>
+            <scope>runtime</scope>
+            <version>${mysql.version}</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
         <!--        <java.version>1.8</java.version>-->
         <skip-docker-plugin>true</skip-docker-plugin>
         <docker-image-name>account-service</docker-image-name>
+        <dozer.version>5.5.1</dozer.version>
+        <h2.version>1.4.200</h2.version>
+        <java.version>11</java.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <junit.version>4.13.2</junit.version>
+        <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
+        <lombok.version>1.18.22</lombok.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
+        <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
         <flyway-core.version>6.5.7</flyway-core.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <modelmapper.version>3.1.0</modelmapper.version>
+        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+        <unit-test-api.version>1.0.2</unit-test-api.version>
     </properties>
 
     <dependencyManagement>
