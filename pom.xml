@@ -8,6 +8,7 @@
         <version>2.3.12.RELEASE</version>
         <relativePath/>
     </parent>
+
     <groupId>com.wolverine.solutions</groupId>
     <artifactId>bookstore-application-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -47,33 +48,83 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+      <!--        <dependency>-->
+      <!--            <artifactId>bookstore-commons</artifactId>-->
+      <!--            <groupId>com.wolverine.solutions</groupId>-->
+      <!--            <scope>compile</scope>-->
+      <!--            <version>0.0.1-SNAPSHOT</version>-->
+      <!--        </dependency>-->
 
-        <dependency>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <groupId>org.springframework.boot</groupId>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+        <artifactId>h2</artifactId>
+        <groupId>com.h2database</groupId>
+        <version>1.4.197</version>
+      </dependency>
 
-        <!-- hot swapping, enable live reload -->
-        <dependency>
-            <artifactId>spring-boot-devtools</artifactId>
-            <groupId>org.springframework.boot</groupId>
-            <optional>false</optional>
-        </dependency>
+      <dependency>
+        <artifactId>mysql-connector-java</artifactId>
+        <groupId>mysql</groupId>
+        <scope>runtime</scope>
+      </dependency>
 
-        <dependency>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-            <groupId>org.springframework.cloud</groupId>
-        </dependency>
+      <dependency>
+        <artifactId>junit</artifactId>
+        <groupId>junit</groupId>
+        <scope>test</scope>
+        <version>4.13.2</version>
+      </dependency>
 
-        <dependency>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-            <groupId>org.springframework.cloud</groupId>
-        </dependency>
+      <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+      <dependency>
+        <artifactId>modelmapper</artifactId>
+        <groupId>org.modelmapper</groupId>
+        <version>${modelmapper.version}</version>
+      </dependency>
+
+      <dependency>
+        <artifactId>mapstruct</artifactId>
+        <groupId>org.mapstruct</groupId>
+        <scope>compile</scope>
+        <version>${mapstruct.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+
+      <dependency>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- hot swapping, enable live reload -->
+      <dependency>
+        <artifactId>spring-boot-devtools</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <optional>false</optional>
+      </dependency>
+
+      <dependency>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <groupId>org.springframework.boot</groupId>
+      </dependency>
+
+      <!--        <dependency>-->
+      <!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+      <!--            <groupId>org.springframework.boot</groupId>-->
+      <!--        </dependency>-->
+
+      <dependency>
+        <artifactId>spring-cloud-starter-sleuth</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+      </dependency>
+
+      <dependency>
+        <artifactId>spring-cloud-starter-zipkin</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+      </dependency>
 
         <dependency>
             <artifactId>spring-cloud-sleuth-core</artifactId>
@@ -83,11 +134,6 @@
         <dependency>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
             <groupId>org.springframework.cloud</groupId>
-        </dependency>
-
-        <dependency>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <groupId>org.springframework.boot</groupId>
         </dependency>
 
         <dependency>
@@ -166,8 +212,11 @@
         </dependencies>
     </dependencyManagement>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-    </properties>
+  <properties>
+    <java.version>1.8</java.version>
+    <mapstruct.version>1.2.0.Final</mapstruct.version>
+    <modelmapper.version>3.1.0</modelmapper.version>
+    <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+  </properties>
+
 </project>
