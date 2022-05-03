@@ -87,7 +87,7 @@ public class BusinessProfileObjGenerator {
         businessProfileDTO.setName(faker.name().name());
         businessProfileDTO.setPhone(faker.phoneNumber().cellPhone());
         businessProfileDTO.setPostalCode(faker.address().zipCode());
-        businessProfileDTO.setProvince(faker.programmingLanguage().name());
+        businessProfileDTO.setProvince(faker.address().state());
         businessProfileDTO.setRating(faker.number().numberBetween(0, 10));
         businessProfileDTO.setShortDescription(faker.weather().description());
         businessProfileDTO.setStatus(faker.pokemon().name());
@@ -147,7 +147,7 @@ public class BusinessProfileObjGenerator {
 
         badgesToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
         badgesToBusinessProfile.setId(String.valueOf(UUID.randomUUID()));
-        badgesToBusinessProfile.setBadgeName(faker.buffy().bigBads());
+        badgesToBusinessProfile.setBadgeName(faker.rockBand().name());
         return badgesToBusinessProfile;
     }
 
