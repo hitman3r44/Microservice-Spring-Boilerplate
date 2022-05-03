@@ -53,21 +53,47 @@
         </dependency>
 
         <dependency>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <groupId>net.logstash.logback</groupId>
-            <version>7.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.springframework.boot</groupId>
             <scope>test</scope>
         </dependency>
 
+        <!-- hot swapping, enable live reload -->
         <dependency>
-            <artifactId>unit-test-api</artifactId>
-            <groupId>io.github.xiaogangfan</groupId>
-            <version>1.0.2</version>
+            <artifactId>spring-boot-devtools</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <optional>false</optional>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-cloud-sleuth-core</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <groupId>net.logstash.logback</groupId>
+            <version>7.0.1</version>
         </dependency>
 
         <dependency>
@@ -75,24 +101,16 @@
             <groupId>ch.qos.logback</groupId>
         </dependency>
 
+        <!--        <dependency>-->
+        <!--            <artifactId>unit-test-api</artifactId>-->
+        <!--            <groupId>io.github.xiaogangfan</groupId>-->
+        <!--            <version>1.0.2</version>-->
+        <!--        </dependency>-->
+
+
         <dependency>
             <artifactId>lombok</artifactId>
             <groupId>org.projectlombok</groupId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-core</artifactId>
         </dependency>
 
         <dependency>
@@ -122,17 +140,11 @@
             <artifactId>micrometer-registry-influx</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <version>5.5.1</version>
-        </dependency>
-        <!-- hot swapping, enable live reload -->
-        <dependency>
-            <artifactId>spring-boot-devtools</artifactId>
-            <groupId>org.springframework.boot</groupId>
-            <optional>true</optional>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>net.sf.dozer</groupId>-->
+        <!--            <artifactId>dozer</artifactId>-->
+        <!--            <version>5.5.1</version>-->
+        <!--        </dependency>        -->
 
         <dependency>
             <artifactId>javafaker</artifactId>
