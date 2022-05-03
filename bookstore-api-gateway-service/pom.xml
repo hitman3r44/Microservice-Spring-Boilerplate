@@ -1,97 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>bookstore-api-gateway-service</artifactId>
 
-	<parent>
-		<groupId>com.wolverine.solutions</groupId>
-		<artifactId>bookstore-application-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <configuration>
+          <buildArgs>
+            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
+          <repository>${docker-image-name}</repository>
+          <skip>${skip-docker-plugin}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <id>default</id>
+          </execution>
+        </executions>
+        <groupId>com.spotify</groupId>
+        <version>1.4.6</version>
+      </plugin>
+    </plugins>
+  </build>
 
-	<artifactId>bookstore-api-gateway-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>bookstore-api-gateway-service</name>
-	<description>Discovery Server for BookStore App</description>
+  <dependencies>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<skip-docker-plugin>true</skip-docker-plugin>
-		<docker-image-name>gateway-server</docker-image-name>
-		<version>2.3.4.RELEASE</version>
-		<spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
-	</properties>
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
 
-	<dependencies>
+    <dependency>
+      <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
 
-		<!--		<dependency>-->
-		<!--			<groupId>org.springframework.boot</groupId>-->
-		<!--			<artifactId>spring-boot-starter-web</artifactId>-->
-		<!--		</dependency>-->
+  </dependencies>
+  <description>Discovery Server for BookStore App</description>
+  <modelVersion>4.0.0</modelVersion>
+  <name>bookstore-api-gateway-service</name>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-		</dependency>
+  <parent>
+    <artifactId>bookstore-application-parent</artifactId>
+    <groupId>com.wolverine.solutions</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
 
-		<!--		<dependency>-->
-		<!--			<groupId>org.springframework.cloud</groupId>-->
-		<!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-		<!--		</dependency>-->
+  <properties>
+    <docker-image-name>gateway-server</docker-image-name>
+    <java.version>1.8</java.version>
+    <skip-docker-plugin>true</skip-docker-plugin>
+    <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+    <version>2.3.4.RELEASE</version>
+  </properties>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
-		</dependency>
-		<!--for health check -->
-		<!--		<dependency>-->
-		<!--			<groupId>org.springframework.boot</groupId>-->
-		<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
-		<!--		</dependency>-->
-		<!-- Tests-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.springframework.boot</groupId>-->
-		<!--			<artifactId>spring-boot-starter-test</artifactId>-->
-		<!--			<scope>test</scope>-->
-		<!--		</dependency>-->
-
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.6</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<skip>${skip-docker-plugin}</skip>
-					<repository>${docker-image-name}</repository>
-					<buildArgs>
-						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-					</buildArgs>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	<!--	<dependencyManagement>-->
-	<!--		<dependencies>-->
-	<!--			<dependency>-->
-	<!--				<groupId>org.springframework.cloud</groupId>-->
-	<!--				<artifactId>spring-cloud-dependencies</artifactId>-->
-	<!--				<version>${spring-cloud.version}</version>-->
-	<!--				<type>pom</type>-->
-	<!--				<scope>import</scope>-->
-	<!--			</dependency>-->
-	<!--		</dependencies>-->
-	<!--	</dependencyManagement>-->
+  <version>0.0.1-SNAPSHOT</version>
 
 </project>

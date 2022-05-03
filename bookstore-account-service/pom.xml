@@ -1,151 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>bookstore-account-service</artifactId>
 
-    <parent>
-        <groupId>com.wolverine.solutions</groupId>
-        <artifactId>bookstore-application-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <configuration>
+          <buildArgs>
+            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
+          <repository>${docker-image-name}</repository>
+          <skip>${skip-docker-plugin}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <id>default</id>
+          </execution>
+        </executions>
+        <groupId>com.spotify</groupId>
+        <version>${dockerfile-maven-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
 
-    <artifactId>bookstore-account-service</artifactId>
+  <dependencies>
+
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-security-test</artifactId>
+      <groupId>org.springframework.security</groupId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <artifactId>flyway-core</artifactId>
+      <groupId>org.flywaydb</groupId>
+      <version>${flyway-core.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>bookstore-commons</artifactId>
+      <groupId>com.wolverine.solutions</groupId>
+      <scope>compile</scope>
+      <version>${bookstore-commons.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-security-jwt</artifactId>
+      <groupId>org.springframework.security</groupId>
+      <version>${spring-security-jwt.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-security-oauth2</artifactId>
+      <groupId>org.springframework.security.oauth</groupId>
+      <version>${spring-security-oauth2.version}</version>
+    </dependency>
+
+  </dependencies>
+  <description>Demo project for Spring Boot</description>
+  <modelVersion>4.0.0</modelVersion>
+  <name>bookstore-account-service</name>
+
+  <parent>
+    <artifactId>bookstore-application-parent</artifactId>
+    <groupId>com.wolverine.solutions</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bookstore-account-service</name>
-    <description>Demo project for Spring Boot</description>
+  </parent>
 
-    <dependencies>
+  <properties>
+    <bookstore-commons.version>0.0.1-SNAPSHOT</bookstore-commons.version>
+    <docker-image-name>account-service</docker-image-name>
+    <dockerfile-maven-plugin.version>1.4.6</dockerfile-maven-plugin.version>
+    <flyway-core.version>6.5.7</flyway-core.version>
+    <jjwt.version>0.9.1</jjwt.version>
+    <skip-docker-plugin>true</skip-docker-plugin>
+    <spring-security-jwt.version>1.1.1.RELEASE</spring-security-jwt.version>
+    <spring-security-oauth2.version>2.5.1.RELEASE</spring-security-oauth2.version>
+  </properties>
 
-      <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.modelmapper/modelmapper &ndash;&gt;-->
-      <!--        <dependency>-->
-      <!--            <artifactId>modelmapper</artifactId>-->
-      <!--            <groupId>org.modelmapper</groupId>-->
-      <!--            <version>${modelmapper.version}</version>-->
-      <!--        </dependency>-->
-
-      <!--        <dependency>-->
-      <!--            <artifactId>mapstruct</artifactId>-->
-      <!--            <groupId>org.mapstruct</groupId>-->
-      <!--            <version>${mapstruct.version}</version>-->
-      <!--            <scope>compile</scope>-->
-      <!--        </dependency>-->
-
-      <!--        <dependency>-->
-      <!--            <artifactId>h2</artifactId>-->
-      <!--            <groupId>com.h2database</groupId>-->
-      <!--            <version>1.4.197</version>-->
-      <!--        </dependency>-->
-
-      <!--        <dependency>-->
-      <!--            <artifactId>mysql-connector-java</artifactId>-->
-      <!--            <groupId>mysql</groupId>-->
-      <!--            <scope>runtime</scope>-->
-      <!--        </dependency>-->
-
-      <dependency>
-        <artifactId>flyway-core</artifactId>
-        <groupId>org.flywaydb</groupId>
-        <version>6.5.7</version>
-      </dependency>
-
-      <dependency>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-        <groupId>org.springframework.boot</groupId>
-      </dependency>
-
-      <!--        <dependency>-->
-      <!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-      <!--            <groupId>org.springframework.cloud</groupId>-->
-      <!--        </dependency>-->
-
-      <!--        <dependency>-->
-      <!--            <artifactId>spring-boot-starter-web</artifactId>-->
-      <!--            <groupId>org.springframework.boot</groupId>-->
-      <!--        </dependency>-->
-
-
-
-        <dependency>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
-            <groupId>org.springframework.boot</groupId>
-        </dependency>
-
-        <dependency>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <groupId>org.springframework.boot</groupId>
-        </dependency>
-
-        <dependency>
-            <artifactId>spring-security-jwt</artifactId>
-            <groupId>org.springframework.security</groupId>
-            <version>1.1.1.RELEASE</version>
-        </dependency>
-
-        <dependency>
-          <artifactId>spring-security-test</artifactId>
-          <groupId>org.springframework.security</groupId>
-          <scope>test</scope>
-        </dependency>
-
-      <dependency>
-        <artifactId>spring-security-oauth2</artifactId>
-        <groupId>org.springframework.security.oauth</groupId>
-        <version>2.5.1.RELEASE</version>
-      </dependency>
-
-      <!--        <dependency>-->
-      <!--            <artifactId>jjwt</artifactId>-->
-      <!--            <groupId>io.jsonwebtoken</groupId>-->
-      <!--            <version>${jjwt.version}</version>-->
-      <!--        </dependency>-->
-
-
-      <dependency>
-        <artifactId>bookstore-commons</artifactId>
-        <groupId>com.wolverine.solutions</groupId>
-        <scope>compile</scope>
-        <version>0.0.1-SNAPSHOT</version>
-      </dependency>
-
-      <!--        <dependency>-->
-      <!--            <artifactId>junit</artifactId>-->
-      <!--            <groupId>junit</groupId>-->
-      <!--            <scope>test</scope>-->
-      <!--            <version>4.13.2</version>-->
-      <!--        </dependency>-->
-
-    </dependencies>
-
-    <properties>
-        <docker-image-name>account-service</docker-image-name>
-        <java.version>1.8</java.version>
-        <jjwt.version>0.9.1</jjwt.version>
-        <skip-docker-plugin>true</skip-docker-plugin>
-    </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.6</version>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <skip>${skip-docker-plugin}</skip>
-                    <repository>${docker-image-name}</repository>
-                    <buildArgs>
-                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <version>0.0.1-SNAPSHOT</version>
 
 </project>
