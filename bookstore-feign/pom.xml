@@ -94,19 +94,19 @@
 
 		<dependency>
 			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.9.2</version>
-		</dependency>
-
-		<dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
+      <artifactId>springfox-swagger2</artifactId>
       <version>2.9.2</version>
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>2.9.2</version>
+    </dependency>
+
+    <dependency>
       <artifactId>spring-boot-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
     </dependency>
 
     <dependency>
@@ -118,23 +118,23 @@
 
   </dependencies>
 
-  <properties>
-    <java.version>1.8</java.version>
-    <jjwt.version>0.9.0</jjwt.version>
-    <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
-    <lombok.version>1.18.22</lombok.version>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
+        <groupId>org.springframework.cloud</groupId>
         <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud.version}</version>
       </dependency>
-		</dependencies>
-	</dependencyManagement>
+    </dependencies>
+  </dependencyManagement>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <jjwt.version>0.9.0</jjwt.version>
+    <lombok.version>1.18.22</lombok.version>
+    <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+  </properties>
 
 </project>

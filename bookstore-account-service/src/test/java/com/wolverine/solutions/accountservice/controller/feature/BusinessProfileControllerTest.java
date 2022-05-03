@@ -66,8 +66,8 @@ public class BusinessProfileControllerTest extends BaseTest {
                 ConstentVariableTests.APPLICATION_JSON);
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + ConstentVariableTests.CONTROLLER_ROUTE +
-                        "ac95c2ad-70a1-4fa6-80d5-e46c90b0397e",
-//                        ConstentVariableTests.lastID,
+//                        "ac95c2ad-70a1-4fa6-80d5-e46c90b0397e",
+                        ConstentVariableTests.lastID,
                 HttpMethod.GET,
                 new HttpEntity<>(headers),
                 BusinessProfile.class);

@@ -26,15 +26,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Builder
 public class BadgesToBusinessProfile extends DateAudit {
 
-    @Column(name = "badge_name")
-    String badgeName;
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
+
     @JsonIgnoreProperties("badges")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
     private BusinessProfile businessProfile;
+
+    @Column(name = "badge_name")
+    String badgeName;
 }

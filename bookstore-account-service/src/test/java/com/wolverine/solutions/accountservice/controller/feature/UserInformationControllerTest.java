@@ -33,8 +33,8 @@ import org.springframework.util.MultiValueMap;
 public class UserInformationControllerTest {
 
     public static final String CONTROLLER_ROUTE = "user-information/";
-    private static String lastID;
     private final Faker faker = new Faker();
+    private static String lastID;
 
     @Test
     public void saveTest() {
