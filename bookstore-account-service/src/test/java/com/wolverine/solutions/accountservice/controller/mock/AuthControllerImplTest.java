@@ -1,12 +1,16 @@
 package com.wolverine.solutions.accountservice.controller.mock;
 
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wolverine.solutions.accountservice.controller.AuthController;
+import com.wolverine.solutions.accountservice.controller.impl.AuthControllerImpl;
 import com.wolverine.solutions.accountservice.enums.request.CreateOAuthClientRequest;
 import com.wolverine.solutions.accountservice.enums.request.SignUpRequest;
 import com.wolverine.solutions.accountservice.enums.response.CreateOAuthClientResponse;
 import com.wolverine.solutions.accountservice.enums.response.CreateUserResponse;
 import com.wolverine.solutions.accountservice.service.AuthService;
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +24,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.ArrayList;
-
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
-
-@ContextConfiguration(classes = {AuthController.class})
+@ContextConfiguration(classes = {AuthControllerImpl.class})
 @ExtendWith(SpringExtension.class)
-class AuthControllerTest {
+class AuthControllerImplTest {
     @Autowired
-    private AuthController authController;
+    private AuthControllerImpl authControllerImpl;
 
     @MockBean
     private AuthService authService;
@@ -50,7 +49,7 @@ class AuthControllerTest {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/client")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content);
-        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.authController)
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.authControllerImpl)
                 .build()
                 .perform(requestBuilder);
         actualPerformResult.andExpect(MockMvcResultMatchers.status().isCreated())
@@ -74,7 +73,7 @@ class AuthControllerTest {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content);
-        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.authController)
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.authControllerImpl)
                 .build()
                 .perform(requestBuilder);
         actualPerformResult.andExpect(MockMvcResultMatchers.status().isCreated())

@@ -16,6 +16,13 @@ import com.wolverine.solutions.accountservice.service.UserService;
 import com.wolverine.solutions.commons.exception.Error;
 import com.wolverine.solutions.commons.exception.ErrorResponse;
 import com.wolverine.solutions.commons.exception.RunTimeExceptionPlaceHolder;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import javax.persistence.EntityManager;
 import org.hibernate.Filter;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +30,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -267,12 +266,11 @@ public class UserServiceImpl implements UserService {
     public void restoreUserById(String userId) {
         Optional<User> existingUser = userRepository.findByUserId(userId);
 
-        User user = existingUser.orElseThrow(() ->
-                new RunTimeExceptionPlaceHolder("UserId doesn't exist!!")
-        );
+        User user = existingUser.orElseThrow(() -> new RunTimeExceptionPlaceHolder("UserId doesn't exist!!"));
 
-        if (!user.getIsDeleted())
+        if (Boolean.FALSE.equals(user.getIsDeleted()))
             throw new RunTimeExceptionPlaceHolder("User is not deleted!!");
+
         user.setIsDeleted(false);
         userRepository.save(user);
     }

@@ -49,5 +49,4 @@ public class GlobalSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable();
     }
-
 }

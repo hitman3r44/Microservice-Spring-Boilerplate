@@ -1,18 +1,25 @@
 package com.wolverine.solutions.accountservice.controller.feature;
 
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.PORT;
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.SERVER_NAME;
+import static com.wolverine.solutions.accountservice.enums.ConstentVariableTests.URI;
+import static com.wolverine.solutions.accountservice.service.BaseTest.getRequestHeader;
+
 import com.github.javafaker.Faker;
 import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.entity.User;
 import com.wolverine.solutions.accountservice.enums.request.CreateUserRequest;
 import com.wolverine.solutions.accountservice.enums.response.GetUserInfoResponse;
 import com.wolverine.solutions.accountservice.service.BaseTest;
-import com.wolverine.solutions.accountservice.service.UserService;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
@@ -21,16 +28,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.UUID;
-
-import static com.wolverine.solutions.accountservice.service.BaseTest.PORT;
-import static com.wolverine.solutions.accountservice.service.BaseTest.SERVER_NAME;
-import static com.wolverine.solutions.accountservice.service.BaseTest.URI;
-import static com.wolverine.solutions.accountservice.service.BaseTest.getRequestHeader;
-
 /**
  * @author Sumit Sarkar
  */
@@ -38,9 +35,6 @@ import static com.wolverine.solutions.accountservice.service.BaseTest.getRequest
 @ExtendWith(BaseTest.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserControllerTest {
-    @Autowired
-    UserService userService;
-
     @Test
     public void createUserTest() {
 
@@ -199,7 +193,6 @@ public class UserControllerTest {
     }
 
     @Test
-    @Disabled
     public void deleteUserByIdTest() {
         String userId = ConstentVariableTests.TEST_USER_ID;
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);
@@ -212,7 +205,6 @@ public class UserControllerTest {
     }
 
     @Test
-    @Disabled
     public void restoreUserByIdTest() {
         String userId = ConstentVariableTests.TEST_USER_ID;
         MultiValueMap<String, String> headers = getRequestHeader(ConstentVariableTests.APPLICATION_JSON);

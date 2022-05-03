@@ -36,3 +36,4 @@ HELP.md
 /Logs
 *.db
 *.log
+rebel.xml

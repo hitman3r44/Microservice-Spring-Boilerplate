@@ -1,17 +1,7 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ParamDef;
-import org.hibernate.annotations.SQLDelete;
-
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +12,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Getter
@@ -69,9 +68,6 @@ public class User extends DateAudit {
 
     @Column(name = "email", nullable = false)
     private String email;
-
-    @Column(name = "is_deleted", columnDefinition = "boolean default false")
-    private Boolean isDeleted = Boolean.FALSE;
 
     public User(String userName, String password, String firstName, String lastName, String email) {
         this.userName = userName;
