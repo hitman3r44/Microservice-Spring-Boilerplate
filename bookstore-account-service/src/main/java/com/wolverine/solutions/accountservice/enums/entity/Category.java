@@ -50,7 +50,7 @@ public class Category extends DateAudit {
     private String status;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_category_id_id", referencedColumnName = "id")
+    @JoinColumn(name = "parent_category_id", referencedColumnName = "id")
     private ParentCategory parentCategory;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
