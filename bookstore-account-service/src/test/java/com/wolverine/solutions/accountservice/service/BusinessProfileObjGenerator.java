@@ -99,9 +99,9 @@ public class BusinessProfileObjGenerator {
         BadgesToBusinessProfile badgesToBusinessProfile = BusinessProfileObjGenerator.getBadgesToBusinessProfile(businessProfileDTO);
         businessProfileDTO.setBadges(Collections.singletonList(badgesToBusinessProfile));
 
-//        Category category = getCategory(businessProfileDTO);
-//        businessProfileDTO.setCategoryList(Collections.singletonList(category));
-        businessProfileDTO.setCategoryList(new ArrayList<>());
+        Category category = getCategory(businessProfileDTO);
+        businessProfileDTO.setCategoryList(Collections.singletonList(category));
+//        businessProfileDTO.setCategoryList(new ArrayList<>());
 
 //        CertificationtoBusinessProfile certificationtoBusinessProfile = new CertificationtoBusinessProfile();
 //        certificationtoBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
@@ -163,7 +163,7 @@ public class BusinessProfileObjGenerator {
         category.setId(UUID.randomUUID().toString());
 
         ParentCategory parentCategory = getParentCategory(category);
-        category.setParentCategory(parentCategory);
+//        category.setParentCategory(parentCategory);
 
         return category;
     }
@@ -177,7 +177,7 @@ public class BusinessProfileObjGenerator {
         parentCategory.setImageUrl(faker.internet().image());
         parentCategory.setIsfeatured(faker.bool().bool());
         parentCategory.setId(UUID.randomUUID().toString());
-        parentCategory.setCategoryList(Collections.singletonList(category));
+//        parentCategory.setCategoryList(Collections.singletonList(category));
 
         return parentCategory;
     }

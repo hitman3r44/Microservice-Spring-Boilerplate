@@ -108,8 +108,14 @@ public class BusinessProfile extends DateAudit {
     @Column(name = "isPublish")
     private boolean ispublish;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = Category.class)
-//    private List<Category> categoryList = new ArrayList<>();
+    //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
+    @JsonIgnoreProperties("businessProfile")
+    private List<BadgesToBusinessProfile> badges = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = Category.class)
+    @JsonIgnoreProperties("businessProfile")
+    private List<Category> categoryList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<TagsToBusinessProfile> tags = new ArrayList<>();
@@ -131,9 +137,4 @@ public class BusinessProfile extends DateAudit {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<ReviewsToBusinessProfile> reviewList = new ArrayList<>();
-
-    //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
-    @JsonIgnoreProperties("businessProfile")
-    private List<BadgesToBusinessProfile> badges = new ArrayList<>();
 }

@@ -1,7 +1,6 @@
 package com.wolverine.solutions.accountservice.enums.dto;
 
 import com.wolverine.solutions.accountservice.enums.entity.BusinessProfile;
-import com.wolverine.solutions.accountservice.enums.entity.ParentCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +20,6 @@ public class CategoryDTO extends AbstractDTO<String> {
     private boolean isfeatured;
     private boolean isforecastingenabled;
     private String status;
-    private ParentCategory parentCategoryId;
+//    private ParentCategory parentCategoryId;
     private BusinessProfile businessProfile;
 }

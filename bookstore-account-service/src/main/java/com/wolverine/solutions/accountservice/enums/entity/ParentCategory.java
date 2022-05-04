@@ -1,14 +1,9 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -60,6 +55,6 @@ public class ParentCategory extends DateAudit {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parentCategory", targetEntity = Category.class)
-    private List<Category> categoryList = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parentCategory", targetEntity = Category.class)
+//    private List<Category> categoryList = new ArrayList<>();
 }
