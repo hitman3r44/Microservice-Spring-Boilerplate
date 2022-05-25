@@ -2,6 +2,7 @@ package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,7 +53,7 @@ public class User extends DateAudit {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "user_id", updatable = false, nullable = false)
-    private String userId;
+    private String userId = UUID.randomUUID().toString();
 
     @Column(name = "user_name", updatable = false, nullable = false)
     private String userName;
@@ -75,5 +76,15 @@ public class User extends DateAudit {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public User(String userId, String firstName, String lastName, String password, String userName, String email, Set<Role> roles) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
     }
 }

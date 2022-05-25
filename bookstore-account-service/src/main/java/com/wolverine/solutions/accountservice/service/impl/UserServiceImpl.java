@@ -54,11 +54,11 @@ public class UserServiceImpl implements UserService {
 
         String encodedPassword = passwordEncoder.encode(createUserRequest.getPassword());
 
-        if (userRepository.existsByUserName(createUserRequest.getUserName())) {
+        if (Boolean.TRUE.equals(userRepository.existsByUserName(createUserRequest.getUserName()))) {
             throw new RunTimeExceptionPlaceHolder("Username is already taken!!");
         }
 
-        if (userRepository.existsByEmail(createUserRequest.getEmail())) {
+        if (Boolean.TRUE.equals(userRepository.existsByEmail(createUserRequest.getEmail()))) {
             throw new RunTimeExceptionPlaceHolder("Email address already in use!!");
         }
 

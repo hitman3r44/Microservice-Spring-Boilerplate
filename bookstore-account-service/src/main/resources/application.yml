@@ -44,13 +44,13 @@ spring:
     tomcat:
       validation-interval: 80000
     initialization-mode: always
-#    data: classpath*:data.sql
+    data: classpath*:data.sql
 
   flyway:
     table: account_service_flyway_history
-    baseline-on-migrate: true
+    baseline-on-migrate: false
     baseline-version: 0.9
-    enabled: true
+    enabled: false
   main:
     allow-bean-definition-overriding: true
 

@@ -13,7 +13,7 @@ management:
 ---
 
 spring:
-  profiles: local, mysql, jpa
+  profiles: local, mysql, jpa, hsqldb, h2
   cloud:
     bus:
       enabled: false

@@ -2,13 +2,8 @@ package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wolverine.solutions.commons.util.DateAudit;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Getter
@@ -56,5 +55,11 @@ public class Role extends DateAudit {
     public void removeUser(User user) {
         this.users.remove(user);
         user.getRoles().remove(this);
+    }
+
+    public Role(String id, String roleName, String roleDescription) {
+        this.id = id;
+        this.roleName = roleName;
+        this.roleDescription = roleDescription;
     }
 }

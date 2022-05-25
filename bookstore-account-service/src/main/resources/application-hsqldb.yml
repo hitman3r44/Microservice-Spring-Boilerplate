@@ -1,0 +1,14 @@
+spring:
+  profiles: hsqldb
+  jpa:
+    database-platform: org.hibernate.dialect.HSQLDialect
+    database: hsql
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:bookstore_db_account
+    username: sa
+    password:
