@@ -15,7 +15,7 @@ public class UserTableSeeder {
         Set<Role> roles;
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User(
                 "asdasdsa-6727-4229-a4ab-zxczxcxczxcc",
@@ -27,8 +27,9 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
-        roles.add(new Role("f4b194d0-238b-41b5-8f18-630e5fcf3d8e", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
+        roles.add(new Role("f4b194d0-238b-41b5-8f18-630e5fcf3d8e", "ADMIN_USER", "Admin User - Has permission to perform admin tasks"));
+
 
         userRepository.save(new User(
                 "xcvcvbvv-ba5d-4b92-85be-dfgdfgdfgdfg",
@@ -40,7 +41,7 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User("rertertr-6727-4229-a4ab-erererererer", "Cores", "DevD",
                 new BCryptPasswordEncoder().encode("admin.devd123")
@@ -48,7 +49,7 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User("cvcvbcvb-ba5d-4b92-85be-fggfgtrytyty", "Admin", "Admin",
                 new BCryptPasswordEncoder().encode("admin.devd123")
@@ -56,7 +57,7 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User("cvbserte-6727-4229-a4ab-vbnbvvnvbnvb", "Cores", "DevD",
                 new BCryptPasswordEncoder().encode("admin.devd123")
@@ -64,7 +65,7 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User("xcvxvcgv-ba5d-4b92-85be-fghfghtryfgh", "Admin", "Admin",
                 new BCryptPasswordEncoder().encode("admin.devd123")
@@ -72,7 +73,7 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User("ddfgdfgh-6727-4229-a4ab-ertdfgfdgdfg", "Cores", "DevD",
                 new BCryptPasswordEncoder().encode("admin.devd123")
@@ -80,7 +81,8 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("tytryyrt-rtyr-rtyr-rtyr-fghfghfggfhg", "", ""));
+        roles.add(new Role("tytryyrt-rtyr-rtyr-rtyr-fghfghfggfhg", "PRODUCT_OWNER", "Product Owner"));
+
 
         userRepository.save(new User("dfgdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb", "Admin", "Admin",
                 new BCryptPasswordEncoder().encode("admin.devd123")
@@ -88,7 +90,7 @@ public class UserTableSeeder {
                 roles));
 
         roles = new HashSet<>();
-        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "", ""));
+        roles.add(new Role("9601409f-4691-4281-886e-8f8987763b56", "STANDARD_USER", "Standard User - Has no admin rights"));
 
         userRepository.save(new User("abcdfgdf-ba5d-4b92-85be-vbvbvbnvbnjb", "Test", "User",
                 new BCryptPasswordEncoder().encode("admin.devd123")

@@ -1,17 +1,16 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Data
@@ -38,14 +37,14 @@ public class OAuthClient extends DateAudit {
     private String scope;
     @Column(name = "resource_ids")
     private String resource_ids;
-    @Column(name = "web_server_redirect_uri")
+    @Column(name = "web_server_redirect_uri", columnDefinition = "varchar(255) default 'http://localhost:5678'")
     private String web_server_redirect_uri;
-    @Column(name = "access_token_validity")
+    @Column(name = "access_token_validity", columnDefinition = "varchar(255) default '259200'")
     private String access_token_validity;
-    @Column(name = "refresh_token_validity")
+    @Column(name = "refresh_token_validity", columnDefinition = "varchar(255) default '604800'")
     private String refresh_token_validity;
     @Column(name = "additional_information")
     private String additional_information;
-    @Column(name = "autoapprove", updatable = false, nullable = false)
-    private String auto_approve;
+    @Column(name = "autoapprove", columnDefinition = "boolean default true")
+    private Boolean auto_approve = Boolean.TRUE;
 }

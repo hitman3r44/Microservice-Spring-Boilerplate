@@ -46,14 +46,6 @@ spring:
     initialization-mode: always
     data: classpath*:data.sql
 
-  flyway:
-    table: account_service_flyway_history
-    baseline-on-migrate: false
-    baseline-version: 0.9
-    enabled: false
-  main:
-    allow-bean-definition-overriding: true
-
 logging:
   level:
     com.wolverine.solutions.*: DEBUG

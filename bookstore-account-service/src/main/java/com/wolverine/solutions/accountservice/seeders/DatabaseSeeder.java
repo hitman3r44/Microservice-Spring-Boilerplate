@@ -24,7 +24,7 @@ public class DatabaseSeeder {
         this.userRepository = userRepository;
     }
 
-    //    @EventListener
+//    @EventListener
     public void seed(ContextRefreshedEvent event) {
         RoleTableSeeder.seedRoleData(roleRepository);
         UserTableSeeder.seedUsersData(userRepository);

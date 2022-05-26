@@ -55,8 +55,7 @@ public class AuthControllerTest extends BaseTest {
         CreateOAuthClientRequest createOAuthClientRequest = new CreateOAuthClientRequest();
 
         createOAuthClientRequest.setAuthorities(Collections.singletonList("ADMIN_USER"));
-        createOAuthClientRequest.setAuthorized_grant_types(Arrays.asList("password",
-                "authorization_code", "refresh_token", "client_credentials"));
+        createOAuthClientRequest.setAuthorized_grant_types(Arrays.asList("password", "authorization_code", "refresh_token", "client_credentials"));
         createOAuthClientRequest.setResource_ids(Arrays.asList("web", "db"));
         createOAuthClientRequest.setScope(Arrays.asList("read", "write"));
 
