@@ -69,13 +69,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- hot swapping, enable live reload -->
-    <dependency>
-      <artifactId>spring-boot-devtools</artifactId>
-      <groupId>org.springframework.boot</groupId>
-      <optional>false</optional>
-    </dependency>
-
     <dependency>
       <artifactId>spring-boot-starter-web</artifactId>
       <groupId>org.springframework.boot</groupId>

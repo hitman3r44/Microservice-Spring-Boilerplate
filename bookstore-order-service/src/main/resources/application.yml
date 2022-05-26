@@ -20,6 +20,25 @@ spring:
     sampler:
       probability: 1.0
 
+  jpa:
+    open-in-view: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+  datasource:
+    dbcp2:
+      validation-query: SELECT 1;
+    tomcat:
+      validation-interval: 80000
+    initialization-mode: always
+    data: classpath*:data.sql
+
   main:
     allow-bean-definition-overriding: true
 
