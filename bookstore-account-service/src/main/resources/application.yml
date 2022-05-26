@@ -12,15 +12,18 @@ security:
 spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:local}
+
   zipkin:
     base-url: http://${ZIPKIN_HOST:localhost:9411}
     enabled: true
     service:
       name: bookstore-account-service
     message-timeout: 10
+
   sleuth:
     sampler:
       probability: 1.0
+
   devtools:
     remote:
       secret: KALSDJFLNVMSDJFGIERJGLESALRGJLAJFGLASDFJLASDFM
@@ -37,6 +40,9 @@ spring:
         format_sql: true
         jdbc:
           time_zone: UTC
+
+  main:
+    allow-bean-definition-overriding: true
 
   datasource:
     dbcp2:

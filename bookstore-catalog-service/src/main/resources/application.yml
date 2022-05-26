@@ -21,6 +21,7 @@ spring:
     table: catalog_service_flyway_history
     baseline-on-migrate: true
     baseline-version: 0.9
+
   main:
     allow-bean-definition-overriding: true
 

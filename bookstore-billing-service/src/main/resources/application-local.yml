@@ -3,9 +3,19 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     database: h2
+    open-in-view: true
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
   datasource:
     driver-class-name: org.h2.Driver
-#    url: jdbc:h2:mem:bookstore_db_billing;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE
+    #    url: jdbc:h2:mem:bookstore_db_billing;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE
     url: jdbc:h2:./file-based-db/database_h2/bookstore_db_billing;AUTO_SERVER=true
     username: sa
     password:
