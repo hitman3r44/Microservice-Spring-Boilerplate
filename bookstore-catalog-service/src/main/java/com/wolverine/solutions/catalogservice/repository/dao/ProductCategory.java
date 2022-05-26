@@ -27,10 +27,10 @@ public class ProductCategory extends DateAudit {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "PRODUCT_CATEGORY_ID", updatable = false, nullable = false)
+    @Column(name = "product_category_id", updatable = false, nullable = false)
     private String productCategoryId;
 
-    @Column(name = "PRODUCT_CATEGORY_NAME", nullable = false)
+    @Column(name = "product_category_name", nullable = false)
     private String productCategoryName;
 
     @OneToMany(
@@ -38,5 +38,7 @@ public class ProductCategory extends DateAudit {
             cascade = CascadeType.ALL
     )
     private List<Product> products;
+
+    @Column(name = "description")
     private String description;
 }

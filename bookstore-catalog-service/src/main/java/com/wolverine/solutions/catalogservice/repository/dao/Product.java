@@ -1,16 +1,9 @@
 package com.wolverine.solutions.catalogservice.repository.dao;
 
-import com.wolverine.solutions.catalogservice.web.ProductResponse;
-import com.wolverine.solutions.commons.util.DateAudit;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
+import com.wolverine.solutions.catalogservice.web.ProductResponse;
+import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "product")
 @Builder
@@ -38,18 +39,18 @@ public class Product extends DateAudit {
     @Column(name = "product_name", nullable = false)
     private String productName;
 
-    @Column(name = "PRODUCT_DESCRIPTION")
+    @Column(name = "product_description")
     private String description;
     private double price;
 
-    @Column(name = "PRODUCT_IMAGE_ID")
+    @Column(name = "product_image_id")
     private String imageId;
 
     @ManyToOne
-    @JoinColumn(name = "PRODUCT_CATEGORY_ID")
+    @JoinColumn(name = "product_category_id")
     private ProductCategory productCategory;
 
-    @Column(name = "AVAILABLE_ITEM_COUNT")
+    @Column(name = "available_item_count")
     private int availableItemCount;
 
     public String getProductCategory() {
