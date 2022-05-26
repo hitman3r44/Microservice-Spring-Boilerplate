@@ -8,19 +8,18 @@ security:
 spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:local}
+
   zipkin:
     base-url: http://${ZIPKIN_HOST:localhost:9411}
     enabled: true
     service:
       name: bookstore-order-service
     message-timeout: 10
+
   sleuth:
     sampler:
       probability: 1.0
-  flyway:
-    table: order_service_flyway_history
-    baseline-on-migrate: true
-    baseline-version: 0.9
+
   main:
     allow-bean-definition-overriding: true
 

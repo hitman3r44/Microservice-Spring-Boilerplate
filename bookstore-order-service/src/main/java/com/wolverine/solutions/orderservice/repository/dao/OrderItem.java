@@ -1,12 +1,7 @@
 package com.wolverine.solutions.orderservice.repository.dao;
 
-import com.wolverine.solutions.commons.util.DateAudit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
+import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,15 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "order_item")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItem extends DateAudit {
-    
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -34,17 +33,16 @@ public class OrderItem extends DateAudit {
     @JoinColumn(name = "order_id")
     @JsonIgnore
     private Order order;
-    
+
     @Column(name = "product_id", nullable = false)
     private String productId;
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
-    
+
     @Column(name = "order_item_price", nullable = false)
     private double orderItemPrice;
 
     @Column(name = "order_extended_price", nullable = false)
     private double orderExtendedPrice;
-    
 }

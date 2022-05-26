@@ -1,30 +1,29 @@
 package com.wolverine.solutions.orderservice.repository.dao;
 
-import com.wolverine.solutions.commons.util.DateAudit;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.hibernate.annotations.GenericGenerator;
-
+import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "order_shipping_address")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class OrderShippingAddress extends DateAudit {
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -53,6 +52,7 @@ public class OrderShippingAddress extends DateAudit {
 
     @Pattern(regexp = "[A-Z]{2}", message = "2-letter ISO country code required")
     @NonNull
+    @Column(name = "country")
     private String country;
 
     @Column(name = "phone")
