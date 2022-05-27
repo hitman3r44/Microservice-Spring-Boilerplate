@@ -1,11 +1,9 @@
 version: "3.4"
-
 services:
-
   # Database
   bookstore-mysql-db:
-    image: mysql:5.7.37-oracle
-    container_name: bookstore-mysql-db
+    image: ${MYSQL_DOCKER_IMAGE_NAME}
+    container_name: ${MYSQL_DOCKER_CONTAINER_NAME}
     hostname: ${MYSQL_DOCKER_HOSTNAME}
     restart: always
     environment:
@@ -18,7 +16,7 @@ services:
     expose:
       - "${MYSQL_PORT}"
     volumes:
-      - ${MYSQL_DB_VOLUME_NAME}:/var/lib/mysql
+      - bookstore-db-volume:/var/lib/mysql
     networks:
       - ${APP_NETWORK_NAME}
 
@@ -41,12 +39,12 @@ services:
 
   # Core services
   bookstore-consul-discovery:
-    hostname: bookstore-consul-discovery
-    image: consul
-    container_name: bookstore-consul-discovery
+    hostname: ${CONSUL_DISCOVERY_HOST_NAME}
+    image: ${CONSUL_DISCOVERY_IMAGE_NAME}
+    container_name: ${CONSUL_DISCOVERY_DOCKER_CONTAINER_NAME}
     restart: always
     ports:
-      - "8500:8500"
+      - ${CONSUL_DISCOVERY_PORT}:8500
     networks:
       - ${APP_NETWORK_NAME}
 
@@ -56,16 +54,16 @@ services:
       args:
         JAR_FILE: bookstore-api-gateway-service-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
-    image: bookstore-zuul-api-gateway-server
-    container_name: bookstore-zuul-api-gateway-server
-    hostname: bookstore-zuul-api-gateway-server
+    image: ${API_GATEWAY_SERVICE_IMAGE_NAME}
+    container_name: ${API_GATEWAY_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${API_GATEWAY_SERVICE_HOST_NAME}
     ports:
-      - "8765:8765"
+      - ${API_GATEWAY_SERVICE_PORT}:8765
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
     environment:
-      - SERVER_PORT=8765
-      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - SERVER_PORT=${API_GATEWAY_SERVICE_PORT}
+      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-account-service:
@@ -74,16 +72,16 @@ services:
       args:
         JAR_FILE: bookstore-account-service-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
-    image: bookstore-account-service
-    container_name: bookstore-account-service
-    hostname: bookstore-account-service
+    image: ${ACCOUNT_SERVICE_IMAGE_NAME}
+    container_name: ${ACCOUNT_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${ACCOUNT_SERVICE_HOST_NAME}
     ports:
-      - "4001:4001"
+      - ${ACCOUNT_SERVICE_PORT}:4001
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
     environment:
-      - SERVER_PORT=4001
-      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - SERVER_PORT=${ACCOUNT_SERVICE_PORT}
+      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-billing-service:
@@ -92,16 +90,16 @@ services:
       args:
         JAR_FILE: bookstore-billing-service-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
-    image: bookstore-billing-service
-    container_name: bookstore-billing-service
-    hostname: bookstore-billing-service
+    image: ${BILLING_SERVICE_IMAGE_NAME}
+    container_name: ${BILLING_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${BILLING_SERVICE_HOST_NAME}
     ports:
-      - "5001:5001"
+      - ${BILLING_SERVICE_PORT}:5001
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
     environment:
-      - SERVER_PORT=5001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - SERVER_PORT=${BILLING_SERVICE_PORT}
+      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-catalog-service:
@@ -110,16 +108,16 @@ services:
       args:
         JAR_FILE: bookstore-catalog-service-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
-    image: bookstore-catalog-service
-    container_name: bookstore-catalog-service
-    hostname: bookstore-catalog-service
+    image: ${CATALOG_SERVICE_IMAGE_NAME}
+    container_name: ${CATALOG_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${CATALOG_SERVICE_HOST_NAME}
     ports:
-      - "6001:6001"
+      - ${CATALOG_SERVICE_PORT}:6001
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
     environment:
-      - SERVER_PORT=6001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - SERVER_PORT=${CATALOG_SERVICE_PORT}
+      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-order-service:
@@ -128,16 +126,16 @@ services:
       args:
         JAR_FILE: bookstore-order-service-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
-    image: bookstore-order-service
-    container_name: bookstore-order-service
-    hostname: bookstore-order-service
+    image: ${ORDER_SERVICE_IMAGE_NAME}
+    container_name: ${ORDER_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${ORDER_SERVICE_HOST_NAME}
     ports:
-      - "7001:7001"
+      - ${ORDER_SERVICE_PORT}:7001
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
     environment:
-      - SERVER_PORT=7001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - SERVER_PORT=${ORDER_SERVICE_PORT}
+      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
       - SPRING_PROFILES_ACTIVE=docker
 
   bookstore-payment-service:
@@ -146,54 +144,54 @@ services:
       args:
         JAR_FILE: bookstore-payment-service-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
-    image: bookstore-payment-service
-    container_name: bookstore-payment-service
-    hostname: bookstore-payment-service
+    image: ${PAYMENT_SERVICE_IMAGE_NAME}
+    container_name: ${PAYMENT_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${PAYMENT_SERVICE_HOST_NAME}
     ports:
-      - "8001:8001"
+      - ${PAYMENT_SERVICE_PORT}:8001
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
     environment:
-      - SERVER_PORT=8001
-#      - ZIPKIN_HOST=bookstore-zipkin:9411
+      - SERVER_PORT=${PAYMENT_SERVICE_PORT}
+      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
       - SPRING_PROFILES_ACTIVE=docker
 
   # Tracing service
   bookstore-zipkin:
-    image: openzipkin/zipkin
-    container_name: bookstore-zipkin
-    hostname: bookstore-zipkin
+    image: ${ZIPKIN_SERVICE_IMAGE_NAME}
+    container_name: ${ZIPKIN_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${ZIPKIN_SERVICE_HOST_NAME}
     ports:
-      - "9411:9411"
+      - ${ZIPKIN_SERVICE_PORT}:9411
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   # Monitoring Services
   bookstore-prometheus:
     build:
       context: ./bookstore-prometheus
       dockerfile: Dockerfile
-    image: bookstore-prometheus
-    container_name: bookstore-prometheus
-    hostname: bookstore-prometheus
+    image: ${PROMETHEUS_SERVICE_IMAGE_NAME}
+    container_name: ${PROMETHEUS_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${PROMETHEUS_SERVICE_HOST_NAME}
     ports:
-      - "9090:9090"
+      - ${PROMETHEUS_SERVICE_PORT}:9090
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   bookstore-grafana:
     build:
       context: ./bookstore-graphana
       dockerfile: Dockerfile
-    image: graphana
-    container_name: bookstore-graphana
-    hostname: bookstore-graphana
+    image: ${GRAPHANA_SERVICE_IMAGE_NAME}
+    container_name: ${GRAPHANA_SERVICE_DOCKER_CONTAINER_NAME}
+    hostname: ${GRAPHANA_SERVICE_HOST_NAME}
     ports:
-      - "3030:3000"
+      - ${GRAPHANA_SERVICE_PORT}:3000
     volumes:
       - bookstore-graphana-volume:/var/lib/grafana
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   # Monitoring using TICK stack.
   bookstore-telegraf:
@@ -210,18 +208,18 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   bookstore-influxdb:
     image: influxdb
     container_name: bookstore-influxdb
     hostname: bookstore-influxdb
     volumes:
-      - booksture-influxdb-volume:/var/lib/influxdb
+      - bookstore-influxdb-volume:/var/lib/influxdb
     ports:
       - "8086:8086"
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   bookstore-chronograf:
     image: chronograf:1.7.3
@@ -231,12 +229,12 @@ services:
       INFLUXDB_URL: http://bookstore-influxdb:8086
       KAPACITOR_URL: http://bookstore-kapacitor:9092
     volumes:
-      - booksture-chronograf-volume:/var/lib/chronograf
+      - bookstore-chronograf-volume:/var/lib/chronograf
     ports:
       - "8888:8888"
     restart: always
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
   bookstore-kapacitor:
     image: kapacitor
@@ -248,14 +246,14 @@ services:
     ports:
       - "9092:9092"
     networks:
-      - bookstore-app-network
+      - ${APP_NETWORK_NAME}
 
 volumes:
   bookstore-db-volume:
   bookstore-graphana-volume:
-  booksture-telegraph-volume:
-  booksture-influxdb-volume:
-  booksture-chronograf-volume:
+  bookstore-telegraph-volume:
+  bookstore-influxdb-volume:
+  bookstore-chronograf-volume:
 
 networks:
   bookstore-app-network:

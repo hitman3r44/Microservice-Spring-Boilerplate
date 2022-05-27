@@ -1,5 +1,9 @@
 package com.wolverine.solutions.commons.security;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -17,12 +21,6 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.apache.commons.lang.CharEncoding.UTF_8;
 
 
 
@@ -109,7 +107,7 @@ public class GlobalResourceServerConfig extends ResourceServerConfigurerAdapter 
 
     private String getPublicKeyAsString() {
         try {
-            return IOUtils.toString(publicKey.getInputStream(), UTF_8);
+            return IOUtils.toString(publicKey.getInputStream(), String.valueOf(StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

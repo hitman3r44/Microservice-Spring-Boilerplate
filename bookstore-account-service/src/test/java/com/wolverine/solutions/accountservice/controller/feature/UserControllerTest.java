@@ -10,7 +10,6 @@ import com.wolverine.solutions.accountservice.enums.ConstentVariableTests;
 import com.wolverine.solutions.accountservice.enums.entity.User;
 import com.wolverine.solutions.accountservice.enums.request.CreateUserRequest;
 import com.wolverine.solutions.accountservice.enums.response.GetUserInfoResponse;
-import com.wolverine.solutions.accountservice.service.BaseTest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
@@ -18,8 +17,6 @@ import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
@@ -32,8 +29,6 @@ import org.springframework.util.MultiValueMap;
  * @author Sumit Sarkar
  */
 @SpringBootTest
-@ExtendWith(BaseTest.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserControllerTest {
     @Test
     public void createUserTest() {
