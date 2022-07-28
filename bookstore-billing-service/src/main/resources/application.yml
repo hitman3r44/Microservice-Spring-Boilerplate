@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:5001}
+  port: ${BILLING_SERVICE_PORT:5001}
 
 security:
   jwt:

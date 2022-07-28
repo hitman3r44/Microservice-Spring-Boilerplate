@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:7001}
+  port: ${ORDER_SERVICE_PORT:7001}
 
 security:
   jwt:

@@ -61,10 +61,11 @@ services:
       - ${API_GATEWAY_SERVICE_PORT}:8765
     networks:
       - ${APP_NETWORK_NAME}
-    environment:
-      - SERVER_PORT=${API_GATEWAY_SERVICE_PORT}
-      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-      - SPRING_PROFILES_ACTIVE=docker
+    #    environment:
+    #      - SERVER_PORT=${API_GATEWAY_SERVICE_PORT}
+    #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
+    #      - SPRING_PROFILES_ACTIVE=docker
+    env_file: .env
 
   bookstore-account-service:
     build:
@@ -79,10 +80,11 @@ services:
       - ${ACCOUNT_SERVICE_PORT}:4001
     networks:
       - ${APP_NETWORK_NAME}
-    environment:
-      - SERVER_PORT=${ACCOUNT_SERVICE_PORT}
-      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-      - SPRING_PROFILES_ACTIVE=docker
+    #    environment:
+    #      - SERVER_PORT=${ACCOUNT_SERVICE_PORT}
+    #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
+    #      - SPRING_PROFILES_ACTIVE=docker
+    env_file: .env
 
   bookstore-billing-service:
     build:
@@ -97,10 +99,11 @@ services:
       - ${BILLING_SERVICE_PORT}:5001
     networks:
       - ${APP_NETWORK_NAME}
-    environment:
-      - SERVER_PORT=${BILLING_SERVICE_PORT}
-      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-      - SPRING_PROFILES_ACTIVE=docker
+    #    environment:
+    #      - SERVER_PORT=${BILLING_SERVICE_PORT}
+    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
+    #      - SPRING_PROFILES_ACTIVE=docker
+    env_file: .env
 
   bookstore-catalog-service:
     build:
@@ -115,10 +118,11 @@ services:
       - ${CATALOG_SERVICE_PORT}:6001
     networks:
       - ${APP_NETWORK_NAME}
-    environment:
-      - SERVER_PORT=${CATALOG_SERVICE_PORT}
-      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-      - SPRING_PROFILES_ACTIVE=docker
+    #    environment:
+    #      - SERVER_PORT=${CATALOG_SERVICE_PORT}
+    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
+    #      - SPRING_PROFILES_ACTIVE=docker
+    env_file: .env
 
   bookstore-order-service:
     build:
@@ -133,10 +137,11 @@ services:
       - ${ORDER_SERVICE_PORT}:7001
     networks:
       - ${APP_NETWORK_NAME}
-    environment:
-      - SERVER_PORT=${ORDER_SERVICE_PORT}
-      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-      - SPRING_PROFILES_ACTIVE=docker
+    #    environment:
+    #      - SERVER_PORT=${ORDER_SERVICE_PORT}
+    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
+    #      - SPRING_PROFILES_ACTIVE=docker
+    env_file: .env
 
   bookstore-payment-service:
     build:
@@ -151,10 +156,11 @@ services:
       - ${PAYMENT_SERVICE_PORT}:8001
     networks:
       - ${APP_NETWORK_NAME}
-    environment:
-      - SERVER_PORT=${PAYMENT_SERVICE_PORT}
-      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-      - SPRING_PROFILES_ACTIVE=docker
+    #    environment:
+    #      - SERVER_PORT=${PAYMENT_SERVICE_PORT}
+    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
+    #      - SPRING_PROFILES_ACTIVE=docker
+    env_file: .env
 
   # Tracing service
   bookstore-zipkin:
