@@ -1,9 +1,9 @@
 version: "3.4"
 services:
-  jrebel-brains-license-serverfor-java:
+  jrebel-brains-license-server-for-java:
     build:
       context: .
-      dockerfile: Dockerfile-JRebel
+      dockerfile: Dockerfile
     image: jrebel-brains-license-serverfor-java
     container_name: jrebel-brains-license-serverfor-java
     hostname: jrebel-brains-license-serverfor-java
