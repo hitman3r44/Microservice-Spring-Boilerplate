@@ -1,0 +1,11 @@
+version: "3.4"
+services:
+  jrebel-brains-license-serverfor-java:
+    build:
+      context: .
+      dockerfile: Dockerfile-JRebel
+    image: jrebel-brains-license-serverfor-java
+    container_name: jrebel-brains-license-serverfor-java
+    hostname: jrebel-brains-license-serverfor-java
+    ports:
+      - "9876:8081"
