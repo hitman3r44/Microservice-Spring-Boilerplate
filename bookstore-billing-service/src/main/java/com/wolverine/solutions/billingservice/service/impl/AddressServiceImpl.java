@@ -1,20 +1,19 @@
 package com.wolverine.solutions.billingservice.service.impl;
 
+import com.wolverine.solutions.billingservice.enums.entity.AddressDao;
+import com.wolverine.solutions.billingservice.enums.request.CreateAddressRequest;
+import com.wolverine.solutions.billingservice.enums.request.UpdateAddressRequest;
+import com.wolverine.solutions.billingservice.enums.response.GetAddressResponse;
 import com.wolverine.solutions.billingservice.repository.AddressRepository;
-import com.wolverine.solutions.billingservice.repository.dao.AddressDao;
 import com.wolverine.solutions.billingservice.service.AddressService;
-import com.wolverine.solutions.billingservice.web.CreateAddressRequest;
-import com.wolverine.solutions.billingservice.web.GetAddressResponse;
-import com.wolverine.solutions.billingservice.web.UpdateAddressRequest;
 import com.wolverine.solutions.commons.util.CommonUtilityMethods;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 
 @Service

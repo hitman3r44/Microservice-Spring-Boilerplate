@@ -1,23 +1,18 @@
-package com.wolverine.solutions.billingservice.web;
+package com.wolverine.solutions.billingservice.enums.request;
 
+import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdateAddressRequest {
-
-    @NotBlank
-    private String addressId;
+public class CreateAddressRequest {
 
     @NonNull
     private String addressLine1;

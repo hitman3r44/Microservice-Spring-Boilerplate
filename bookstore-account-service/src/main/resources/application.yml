@@ -1,5 +1,5 @@
 server:
-  port: ${ACCOUNT_SERVICE_PORT:4002}
+  port: ${ACCOUNT_SERVICE_PORT:4001}
 
 security:
   jwt:

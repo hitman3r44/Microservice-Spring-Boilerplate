@@ -1,4 +1,4 @@
-package com.wolverine.solutions.billingservice.repository.dao;
+package com.wolverine.solutions.billingservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.Column;

@@ -2,14 +2,13 @@ package com.wolverine.solutions.accountservice.repository;
 
 
 import com.wolverine.solutions.accountservice.enums.entity.User;
-import org.springframework.data.repository.CrudRepository;
-
-import javax.transaction.Transactional;
 import java.util.Optional;
+import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Transactional
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUserName(String username);
 

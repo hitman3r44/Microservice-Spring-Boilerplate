@@ -16,9 +16,9 @@ public abstract class ConstentVariableTests {
     public static final String CONTROLLER_ROUTE = "business-profile/";
     public static final String jsonDumpFileName = "businessProfile";
     public static final String SERVER_NAME = "http://localhost:";
-    //    public static final String PORT = "8765";
+//        public static final String PORT = "8765";
     public static final String PORT = "4001";
-    //    public static final String URI = "/api/account/";
+    //        public static final String URI = "/api/account/";
     public static final String URI = "/";
     public final static String PAGE_QUERY = "page-query?page=1&size=20&sort=id,asc";
     public static String lastID;

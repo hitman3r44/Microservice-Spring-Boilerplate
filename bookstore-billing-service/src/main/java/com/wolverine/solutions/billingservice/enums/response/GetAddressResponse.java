@@ -1,4 +1,4 @@
-package com.wolverine.solutions.billingservice.web;
+package com.wolverine.solutions.billingservice.enums.response;
 
 import lombok.Builder;
 import lombok.Data;
