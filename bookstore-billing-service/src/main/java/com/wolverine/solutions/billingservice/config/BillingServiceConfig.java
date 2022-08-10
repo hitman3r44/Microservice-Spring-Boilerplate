@@ -1,6 +1,7 @@
 package com.wolverine.solutions.billingservice.config;
 
 import feign.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,5 +21,9 @@ public class BillingServiceConfig {
     RestTemplate restTemplate() {
         return new RestTemplate();
     }
-    
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 }

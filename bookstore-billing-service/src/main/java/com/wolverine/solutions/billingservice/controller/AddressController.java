@@ -1,5 +1,6 @@
 package com.wolverine.solutions.billingservice.controller;
 
+import com.wolverine.solutions.billingservice.enums.dto.AddressDTO;
 import com.wolverine.solutions.billingservice.enums.request.CreateAddressRequest;
 import com.wolverine.solutions.billingservice.enums.request.UpdateAddressRequest;
 import com.wolverine.solutions.billingservice.enums.response.GetAddressResponse;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface AddressController {
     @PostMapping("/address")
-    ResponseEntity<Object> createAddress(@RequestBody CreateAddressRequest createAddressRequest);
+    AddressDTO createAddress(@RequestBody CreateAddressRequest createAddressRequest);
 
     @PutMapping("/address")
     ResponseEntity<Object> updateAddress(@RequestBody UpdateAddressRequest updateAddressRequest);
@@ -26,7 +27,7 @@ public interface AddressController {
     ResponseEntity<List<GetAddressResponse>> getAddress();
 
     @GetMapping("/address/{addressId}")
-    ResponseEntity<GetAddressResponse> getAddressById(@PathVariable("addressId") String addressId);
+    AddressDTO getAddressById(@PathVariable("addressId") String addressId);
 
     @DeleteMapping("/address/{addressId}")
     ResponseEntity<?> deleteAddressById(@PathVariable("addressId") String addressId);
