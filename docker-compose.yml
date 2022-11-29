@@ -37,6 +37,18 @@ services:
     networks:
       - ${APP_NETWORK_NAME}
 
+  # JRebel Server
+  jrebel-server:
+    image: hitman3r44/jrebel-jetbrains-license-server:latest
+    container_name: jrebel-server
+    hostname: jrebel-server
+    ports:
+      - "9876:8081"
+    expose:
+      - 9876
+    networks:
+      - ${APP_NETWORK_NAME}
+
   # Core services
   bookstore-consul-discovery:
     hostname: ${CONSUL_DISCOVERY_HOST_NAME}
