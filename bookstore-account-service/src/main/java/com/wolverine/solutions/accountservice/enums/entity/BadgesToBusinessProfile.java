@@ -1,10 +1,10 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wolverine.solutions.commons.util.DateAudit;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,10 +32,16 @@ public class BadgesToBusinessProfile extends DateAudit {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
-    @JsonIgnoreProperties("badges")
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
-    private BusinessProfile businessProfile;
+  //    @JsonIgnoreProperties("badges")
+  //    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne()
+  @JoinColumn(
+      name = "business_profile_id",
+      nullable = false,
+      referencedColumnName = "id",
+      foreignKey = @ForeignKey(name = "FKEY_PROFILE_SEQ_IN_MOBILE"))
+  @JsonBackReference
+  private BusinessProfile businessProfile;
 
     @Column(name = "badge_name")
     String badgeName;

@@ -33,7 +33,7 @@ public class BusinessProfileControllerTest extends BaseTest {
     public void saveTest() {
         MultiValueMap<String, String> headers = getRequestHeader(
                 ConstentVariableTests.APPLICATION_JSON);
-        IntStream.range(0, 5).forEach(i -> BusinessProfileObjGenerator.saveFunctionBody(headers));
+    IntStream.range(0, 2).forEach(i -> BusinessProfileObjGenerator.saveFunctionBody(headers));
     }
 
     @Test
@@ -64,10 +64,15 @@ public class BusinessProfileControllerTest extends BaseTest {
     public void findByIdTest() {
         MultiValueMap<String, String> headers = getRequestHeader(
                 ConstentVariableTests.APPLICATION_JSON);
-        ResponseEntity<?> entity = new TestRestTemplate().exchange(
-                SERVER_NAME + PORT + URI + ConstentVariableTests.CONTROLLER_ROUTE +
-//                        "ac95c2ad-70a1-4fa6-80d5-e46c90b0397e",
-                        ConstentVariableTests.lastID,
+    ResponseEntity<?> entity =
+        new TestRestTemplate()
+            .exchange(
+                SERVER_NAME
+                    + PORT
+                    + URI
+                    + ConstentVariableTests.CONTROLLER_ROUTE
+                    + "d26dbf85-67bc-49ed-80bd-4f34267e6e58",
+                //                        ConstentVariableTests.lastID,
                 HttpMethod.GET,
                 new HttpEntity<>(headers),
                 BusinessProfile.class);

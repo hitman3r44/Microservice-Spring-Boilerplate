@@ -11,6 +11,7 @@ import com.wolverine.solutions.accountservice.enums.dto.BusinessProfileDTO;
 import com.wolverine.solutions.accountservice.enums.entity.BadgesToBusinessProfile;
 import com.wolverine.solutions.accountservice.enums.entity.BusinessProfile;
 import com.wolverine.solutions.accountservice.enums.entity.Category;
+import com.wolverine.solutions.accountservice.enums.entity.CertificationtoBusinessProfile;
 import com.wolverine.solutions.accountservice.enums.entity.ParentCategory;
 import com.wolverine.solutions.accountservice.enums.service.BusinessProfileService;
 import com.wolverine.solutions.accountservice.enums.service.impl.BusinessProfileServiceImpl;
@@ -42,6 +43,9 @@ public class BusinessProfileObjGenerator {
                 HttpMethod.POST,
                 new HttpEntity<>(businessProfileDTO, headers),
                 BusinessProfile.class);
+
+    int counter = 0;
+    System.out.println(counter++);
 
         Assert.assertEquals(HttpStatus.CREATED, entity.getStatusCode());
         BusinessProfile businessProfile = (BusinessProfile) entity.getBody();
@@ -103,15 +107,18 @@ public class BusinessProfileObjGenerator {
 //        businessProfileDTO.setCategoryList(Collections.singletonList(category));
         businessProfileDTO.setCategoryList(new ArrayList<>());
 
-//        CertificationtoBusinessProfile certificationtoBusinessProfile = new CertificationtoBusinessProfile();
-//        certificationtoBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
-//        businessProfileDTO.setCertification((List<CertificationtoBusinessProfile>) certificationtoBusinessProfile);
-        businessProfileDTO.setCertification(new ArrayList<>());
+    CertificationtoBusinessProfile certificationtoBusinessProfile =
+        getCertificationtoBusinessProfile(businessProfileDTO);
+    businessProfileDTO.setCertification(Collections.singletonList(certificationtoBusinessProfile));
+    //        businessProfileDTO.setCertification(new ArrayList<>());
 
-//        EmergencysToBusinessProfile emergencysToBusinessProfile = new EmergencysToBusinessProfile();
-//        emergencysToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
-//        businessProfileDTO.setEmergencyLists((List<EmergencysToBusinessProfile>) emergencysToBusinessProfile);
-        businessProfileDTO.setEmergencyLists(new ArrayList<>());
+    //        EmergencysToBusinessProfile emergencysToBusinessProfile = new
+    // EmergencysToBusinessProfile();
+    //
+    // emergencysToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
+    //        businessProfileDTO.setEmergencyLists((List<EmergencysToBusinessProfile>)
+    // emergencysToBusinessProfile);
+    businessProfileDTO.setEmergencyLists(new ArrayList<>());
 
 //        ItemTypeToBusinessProfile itemTypeToBusinessProfile = new ItemTypeToBusinessProfile();
 //        itemTypeToBusinessProfile.setBusinessProfile(businessProfileService.asEntity(businessProfileDTO));
@@ -142,6 +149,18 @@ public class BusinessProfileObjGenerator {
         return businessProfileDTO;
     }
 
+  private static CertificationtoBusinessProfile getCertificationtoBusinessProfile(
+      BusinessProfileDTO businessProfileDTO) {
+
+    CertificationtoBusinessProfile certificationtoBusinessProfile =
+        new CertificationtoBusinessProfile();
+
+    certificationtoBusinessProfile.setBusinessProfile(
+        businessProfileService.asEntity(businessProfileDTO));
+    certificationtoBusinessProfile.setId(String.valueOf(UUID.randomUUID()));
+    return certificationtoBusinessProfile;
+  }
+
     private static BadgesToBusinessProfile getBadgesToBusinessProfile(BusinessProfileDTO businessProfileDTO) {
         BadgesToBusinessProfile badgesToBusinessProfile = new BadgesToBusinessProfile();
 
@@ -162,10 +181,10 @@ public class BusinessProfileObjGenerator {
         category.setIsfeatured(faker.bool().bool());
         category.setId(UUID.randomUUID().toString());
 
-        ParentCategory parentCategory = getParentCategory(category);
-        category.setParentCategory(parentCategory);
+    //        ParentCategory parentCategory = getParentCategory(category);
+    //        category.setParentCategory(parentCategory);
 
-        return category;
+    return category;
     }
 
     private static ParentCategory getParentCategory(Category category) {

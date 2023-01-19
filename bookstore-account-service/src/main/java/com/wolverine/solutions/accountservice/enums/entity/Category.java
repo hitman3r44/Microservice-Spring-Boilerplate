@@ -1,5 +1,6 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,7 +54,8 @@ public class Category extends DateAudit {
     @JoinColumn(name = "parent_category_id", referencedColumnName = "id")
     private ParentCategory parentCategory;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
-    private BusinessProfile businessProfile;
+  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
+  @JsonBackReference
+  private BusinessProfile businessProfile;
 }

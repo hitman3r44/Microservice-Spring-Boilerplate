@@ -1,6 +1,6 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wolverine.solutions.commons.util.DateAudit;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,19 +108,34 @@ public class BusinessProfile extends DateAudit {
     @Column(name = "isPublish")
     private boolean ispublish;
 
-    //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "businessProfile", targetEntity = BadgesToBusinessProfile.class)
-    @JsonIgnoreProperties("businessProfile")
-    private List<BadgesToBusinessProfile> badges = new ArrayList<>();
+  //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+  @OneToMany(
+      cascade = CascadeType.ALL,
+      fetch = FetchType.LAZY,
+      orphanRemoval = true,
+      mappedBy = "businessProfile",
+      targetEntity = BadgesToBusinessProfile.class)
+  @JsonManagedReference
+  private List<BadgesToBusinessProfile> badges = new ArrayList<>();
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessProfile", targetEntity = Category.class)
-//    private List<Category> categoryList = new ArrayList<>();
+  @OneToMany(
+      cascade = CascadeType.DETACH,
+      fetch = FetchType.LAZY,
+      mappedBy = "businessProfile",
+      targetEntity = Category.class)
+  @JsonManagedReference
+  private List<Category> categoryList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<TagsToBusinessProfile> tags = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
-    private List<CertificationtoBusinessProfile> certification = new ArrayList<>();
+  @OneToMany(
+      cascade = CascadeType.DETACH,
+      fetch = FetchType.LAZY,
+      mappedBy = "businessProfile",
+      targetEntity = CertificationtoBusinessProfile.class)
+  @JsonManagedReference
+  private List<CertificationtoBusinessProfile> certification = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "businessProfile")
     private List<EmergencysToBusinessProfile> emergencyLists = new ArrayList<>();

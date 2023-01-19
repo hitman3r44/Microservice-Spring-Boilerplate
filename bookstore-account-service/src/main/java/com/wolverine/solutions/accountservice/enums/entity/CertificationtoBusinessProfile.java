@@ -1,6 +1,8 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wolverine.solutions.commons.util.DateAudit;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +21,10 @@ public class CertificationtoBusinessProfile extends DateAudit {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "business_profile_id")
-    private BusinessProfile businessProfile;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
+  @JsonBackReference
+  private BusinessProfile businessProfile;
 
     public BusinessProfile getBusinessProfile() {
         return businessProfile;
