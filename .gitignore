@@ -37,3 +37,6 @@ HELP.md
 *.db
 *.log
 rebel.xml
+
+### ELK ###
+elasticsearch

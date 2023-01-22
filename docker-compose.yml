@@ -73,10 +73,6 @@ services:
       - ${API_GATEWAY_SERVICE_PORT}:8765
     networks:
       - ${APP_NETWORK_NAME}
-    #    environment:
-    #      - SERVER_PORT=${API_GATEWAY_SERVICE_PORT}
-    #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-    #      - SPRING_PROFILES_ACTIVE=docker
     env_file: .env
 
   bookstore-account-service:
@@ -92,10 +88,6 @@ services:
       - ${ACCOUNT_SERVICE_PORT}:4001
     networks:
       - ${APP_NETWORK_NAME}
-    #    environment:
-    #      - SERVER_PORT=${ACCOUNT_SERVICE_PORT}
-    #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-    #      - SPRING_PROFILES_ACTIVE=docker
     env_file: .env
 
   bookstore-billing-service:
@@ -111,10 +103,6 @@ services:
       - ${BILLING_SERVICE_PORT}:5001
     networks:
       - ${APP_NETWORK_NAME}
-    #    environment:
-    #      - SERVER_PORT=${BILLING_SERVICE_PORT}
-    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-    #      - SPRING_PROFILES_ACTIVE=docker
     env_file: .env
 
   bookstore-catalog-service:
@@ -130,10 +118,6 @@ services:
       - ${CATALOG_SERVICE_PORT}:6001
     networks:
       - ${APP_NETWORK_NAME}
-    #    environment:
-    #      - SERVER_PORT=${CATALOG_SERVICE_PORT}
-    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-    #      - SPRING_PROFILES_ACTIVE=docker
     env_file: .env
 
   bookstore-order-service:
@@ -149,10 +133,6 @@ services:
       - ${ORDER_SERVICE_PORT}:7001
     networks:
       - ${APP_NETWORK_NAME}
-    #    environment:
-    #      - SERVER_PORT=${ORDER_SERVICE_PORT}
-    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-    #      - SPRING_PROFILES_ACTIVE=docker
     env_file: .env
 
   bookstore-payment-service:
@@ -168,10 +148,6 @@ services:
       - ${PAYMENT_SERVICE_PORT}:8001
     networks:
       - ${APP_NETWORK_NAME}
-    #    environment:
-    #      - SERVER_PORT=${PAYMENT_SERVICE_PORT}
-    #      #      - ZIPKIN_HOST=${ZIPKIN_SERVICE_NAME}:${ZIPKIN_SERVICE_PORT}
-    #      - SPRING_PROFILES_ACTIVE=docker
     env_file: .env
 
   # Tracing service
@@ -265,6 +241,64 @@ services:
       - "9092:9092"
     networks:
       - ${APP_NETWORK_NAME}
+
+  ## ELK STACK
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: service-elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - node.name=elasticsearch
+      - cluster.name=es-docker-cluster
+      #- cluster.initial_master_nodes=elasticsearch
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data:rw
+    networks:
+      - ${APP_NETWORK_NAME}
+
+    kibana:
+      image: docker.elastic.co/kibana/kibana:7.8.0
+      container_name: service-kibana
+      ports:
+        - 5601:5601
+      environment:
+        ELASTICSEARCH_URL: http://elasticsearch:9200
+        ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      depends_on:
+        - elasticsearch
+      networks:
+        - ${APP_NETWORK_NAME}
+
+    logstash:
+      image: docker.elastic.co/logstash/logstash:7.8.0
+      container_name: service-logstash
+      restart: unless-stopped
+      command: logstash -f /usr/share/logstash/pipeline
+      volumes:
+        - ./containerized-logstash/config:/usr/share/logstash/config:ro
+        - ./containerized-logstash/pipeline:/usr/share/logstash/pipeline:ro
+      ports:
+        - "5000:5000"
+        - "12204:12204"
+      depends_on:
+        - elasticsearch
+      networks:
+        - ${APP_NETWORK_NAME}
 
 volumes:
   bookstore-db-volume:
