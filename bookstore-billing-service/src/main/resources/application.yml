@@ -17,8 +17,9 @@ spring:
       org.springframework: WARN
       org.hibernate: WARN
   logstash:
-    server: logstash
+    server: ${LOGSTASH_SERVICE_NAME}
     port: 5000
+
   zipkin:
     base-url: http://${ZIPKIN_HOST:localhost:9411}
     enabled: true

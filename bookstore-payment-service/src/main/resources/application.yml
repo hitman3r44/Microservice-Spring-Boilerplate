@@ -55,7 +55,7 @@ spring:
       org.springframework: WARN
       org.hibernate: WARN
   logstash:
-    server: logstash
+    server: ${LOGSTASH_SERVICE_NAME}
     port: 5000
 
 logging:
