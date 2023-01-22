@@ -3,6 +3,22 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+  <artifactId>bookstore-application-parent</artifactId>
+  <groupId>com.wolverine.solutions</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>bookstore-commons</module>
+    <module>bookstore-feign</module>
+    <module>bookstore-api-gateway-service</module>
+    <module>bookstore-eureka-discovery-service</module>
+    <module>bookstore-account-service</module>
+    <module>bookstore-billing-service</module>
+    <module>bookstore-catalog-service</module>
+    <module>bookstore-order-service</module>
+    <module>bookstore-payment-service</module>
+  </modules>
+  <packaging>pom</packaging>
+
   <build>
     <plugins>
       <plugin>
@@ -23,22 +39,6 @@
     </plugins>
   </build>
 
-  <artifactId>bookstore-application-parent</artifactId>
-  <groupId>com.wolverine.solutions</groupId>
-  <modelVersion>4.0.0</modelVersion>
-  <modules>
-    <module>bookstore-commons</module>
-    <module>bookstore-feign</module>
-    <module>bookstore-api-gateway-service</module>
-    <module>bookstore-eureka-discovery-service</module>
-    <module>bookstore-account-service</module>
-    <module>bookstore-billing-service</module>
-    <module>bookstore-catalog-service</module>
-    <module>bookstore-order-service</module>
-    <module>bookstore-payment-service</module>
-  </modules>
-  <packaging>pom</packaging>
-
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
     <groupId>org.springframework.boot</groupId>
@@ -51,7 +51,7 @@
     <java.version>1.8</java.version>
     <javafaker.version>1.0.2</javafaker.version>
     <junit.version>4.13.2</junit.version>
-    <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
+    <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
     <mapstruct.version>1.2.0.Final</mapstruct.version>
     <modelmapper.version>3.1.0</modelmapper.version>
     <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
@@ -192,5 +192,4 @@
   </dependencyManagement>
 
   <version>0.0.1-SNAPSHOT</version>
-
 </project>

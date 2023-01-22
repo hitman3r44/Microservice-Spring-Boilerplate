@@ -271,34 +271,34 @@ services:
     networks:
       - ${APP_NETWORK_NAME}
 
-    kibana:
-      image: docker.elastic.co/kibana/kibana:7.8.0
-      container_name: service-kibana
-      ports:
-        - 5601:5601
-      environment:
-        ELASTICSEARCH_URL: http://elasticsearch:9200
-        ELASTICSEARCH_HOSTS: http://elasticsearch:9200
-      depends_on:
-        - elasticsearch
-      networks:
-        - ${APP_NETWORK_NAME}
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.8.0
+    container_name: service-kibana
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - ${APP_NETWORK_NAME}
 
-    logstash:
-      image: docker.elastic.co/logstash/logstash:7.8.0
-      container_name: service-logstash
-      restart: unless-stopped
-      command: logstash -f /usr/share/logstash/pipeline
-      volumes:
-        - ./containerized-logstash/config:/usr/share/logstash/config:ro
-        - ./containerized-logstash/pipeline:/usr/share/logstash/pipeline:ro
-      ports:
-        - "5000:5000"
-        - "12204:12204"
-      depends_on:
-        - elasticsearch
-      networks:
-        - ${APP_NETWORK_NAME}
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.8.0
+    container_name: service-logstash
+    restart: unless-stopped
+    command: logstash -f /usr/share/logstash/pipeline
+    volumes:
+      - ./containerized-logstash/config:/usr/share/logstash/config:ro
+      - ./containerized-logstash/pipeline:/usr/share/logstash/pipeline:ro
+    ports:
+      - "5000:5000"
+      - "12204:12204"
+    depends_on:
+      - elasticsearch
+    networks:
+      - ${APP_NETWORK_NAME}
 
 volumes:
   bookstore-db-volume:
