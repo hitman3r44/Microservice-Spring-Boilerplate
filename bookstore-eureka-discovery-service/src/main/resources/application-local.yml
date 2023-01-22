@@ -18,5 +18,5 @@ spring:
       org.springframework: WARN
       org.hibernate: WARN
   logstash:
-    server: logstash
+    server: localhost
     port: 5000

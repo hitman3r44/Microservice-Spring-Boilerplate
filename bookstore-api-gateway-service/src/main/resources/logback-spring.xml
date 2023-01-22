@@ -2,9 +2,34 @@
 <configuration>
 
     <springProperty name="SpringAppName" source="spring.application.name"/>
-    <property name="LogFileName" value="Logs/ApiGatewayLog"/>
+    <appender class="net.logstash.logback.appender.LogstashTcpSocketAppender" name="LOGSTASH_TCP">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <param name="Encoding" value="UTF-8"/>
+        <port>${logstash-port}</port>
+        <!-- encoder is required -->
+        <remoteHost>${logstash-server}</remoteHost>
+    </appender>
+    <appender class="ch.qos.logback.classic.AsyncAppender" name="ASYNC_FILE">
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <appender class="ch.qos.logback.classic.AsyncAppender" name="ASYNC_LOGSTASH_TCP">
+        <appender-ref ref="LOGSTASH_TCP"/>
+    </appender>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <property name="LogFileName" value="Logs/AccountServiceLog"/>
     <property name="CONSOLE_LOG_PATTERN"
-              value="[%d{yyyy-MM-dd HH:mm:ss z}] %p [Service Name -> ${SpringAppName}], [TraceId -> %X{X-B3-TraceId:-}], [SpanId -> %X{X-B3-SpanId:-}] \n      &lt;%t&gt; %logger : %m%n"/>
+      value="[%d{yyyy-MM-dd HH:mm:ss z}] %p [Service Name -> ${SpringAppName}], [TraceId -> %X{X-B3-TraceId:-}], [SpanId -> %X{X-B3-SpanId:-}] \n      &lt;%t&gt; %logger : %m%n"/>
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <!--        <appender-ref ref="FILE"/>-->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="JSONLOG"/>
+        <!--        <appender-ref ref="JSONLOG"/>-->
+        <!--        <appender-ref ref="LOGSTASH_TCP"/>-->
+        <appender-ref ref="ASYNC_LOGSTASH_TCP"/>
+    </root>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -22,6 +47,12 @@
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </layout>
     </appender>
+
+    <springProperty name="SpringAppName" scope="context" source="spring.application.name"/>
+
+    <springProperty name="logstash-server" scope="context" source="spring.logstash.server"/>
+
+    <springProperty name="logstash-port" scope="context" source="spring.logstash.port"/>
 
     <!-- Appender to log to file in a JSON format -->
     <appender name="JSONLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -55,10 +86,7 @@
     </appender>
 
 
-    <root level="INFO">
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="JSONLOG"/>
-    </root>
+    <springProperty name="environment" scope="context" source="spring.profiles.active"/>
 
 </configuration>
+
