@@ -244,18 +244,17 @@ services:
 
   ## ELK STACK
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
-    container_name: service-elasticsearch
+  bookstore-elasticsearch:
+    image: ${ELASTICSEARCH_SERVICE_IMAGE_NAME}
+    container_name: ${ELASTICSEARCH_SERVICE_DOCKER_CONTAINER_NAME}
     ports:
-      - "9200:9200"
+      - ${ELASTICSEARCH_SERVICE_PORT}:9200
       - "9300:9300"
     restart: unless-stopped
     environment:
       - discovery.type=single-node
       - node.name=elasticsearch
       - cluster.name=es-docker-cluster
-      #- cluster.initial_master_nodes=elasticsearch
       - bootstrap.memory_lock=true
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -271,32 +270,32 @@ services:
     networks:
       - ${APP_NETWORK_NAME}
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.8.0
-    container_name: service-kibana
+  bookstore-kibana:
+    image: ${KIBANA_SERVICE_IMAGE_NAME}
+    container_name: ${KIBANA_SERVICE_DOCKER_CONTAINER_NAME}
     ports:
-      - 5601:5601
+      - ${KIBANA_SERVICE_PORT}:5601
     environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
-      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      ELASTICSEARCH_URL: http://${ELASTICSEARCH_SERVICE_DOCKER_CONTAINER_NAME}:9200
+      ELASTICSEARCH_HOSTS: http://${ELASTICSEARCH_SERVICE_DOCKER_CONTAINER_NAME}:9200
     depends_on:
-      - elasticsearch
+      - bookstore-elasticsearch
     networks:
       - ${APP_NETWORK_NAME}
 
-  logstash:
-    image: docker.elastic.co/logstash/logstash:7.8.0
-    container_name: service-logstash
+  bookstore-logstash:
+    image: ${LOGSTASH_SERVICE_IMAGE_NAME}
+    container_name: ${LOGSTASH_SERVICE_DOCKER_CONTAINER_NAME}
     restart: unless-stopped
     command: logstash -f /usr/share/logstash/pipeline
     volumes:
-      - ./containerized-logstash/config:/usr/share/logstash/config:ro
-      - ./containerized-logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ./bookstore-logstash/config:/usr/share/logstash/config:ro
+      - ./bookstore-logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
-      - "5000:5000"
+      - ${LOGSTASH_SERVICE_PORT}:5000
       - "12204:12204"
     depends_on:
-      - elasticsearch
+      - bookstore-elasticsearch
     networks:
       - ${APP_NETWORK_NAME}
 
@@ -306,6 +305,8 @@ volumes:
   bookstore-telegraph-volume:
   bookstore-influxdb-volume:
   bookstore-chronograf-volume:
+  elasticsearch-volume:
+  logstash-volume:
 
 networks:
   bookstore-app-network:
