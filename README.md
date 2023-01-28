@@ -218,3 +218,9 @@ docker rm $(docker ps -a -q) ## delete all stopped containers
 docker rmi $(docker images -q) ## delete all images with
 ```
 <hr>
+
+*To free all the port before start the project, run*
+
+```bash 
+python free_port.py
+```
