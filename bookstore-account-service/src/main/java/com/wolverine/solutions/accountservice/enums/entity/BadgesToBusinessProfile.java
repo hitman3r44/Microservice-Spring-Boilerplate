@@ -1,6 +1,5 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wolverine.solutions.commons.util.DateAudit;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,7 +31,6 @@ public class BadgesToBusinessProfile extends DateAudit {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
-    @JsonIgnoreProperties("badges")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_profile_id", nullable = false, referencedColumnName = "id")
     private BusinessProfile businessProfile;
