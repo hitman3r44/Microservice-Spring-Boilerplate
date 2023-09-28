@@ -5,6 +5,7 @@ from subprocess import Popen, PIPE
 def get_env_file_ports(env_file_path):
     port_contain_word = '_PORT='
     ports = []
+
     try:
         with open(env_file_path) as f:
             for line in f:
@@ -12,9 +13,7 @@ def get_env_file_ports(env_file_path):
                     line = line.replace('\n', '')
                     port = line.split(port_contain_word)[1]
                     ports.append(port)
-
-            return ports    
-
+            return ports
     except FileNotFoundError:
         print("FileNotFoundError ")
 
@@ -33,9 +32,6 @@ def terminate_port(port):
     except:
         print("Can not close this port :" +port)
         return None
-    
-
-
 
 """ Collect all port number from .env file """
 ports = get_env_file_ports('.env')
