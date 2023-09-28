@@ -10,7 +10,6 @@ import com.wolverine.solutions.accountservice.enums.dto.BusinessProfileDTO;
 import com.wolverine.solutions.accountservice.enums.entity.BusinessProfile;
 import com.wolverine.solutions.accountservice.service.BaseTest;
 import com.wolverine.solutions.accountservice.service.BusinessProfileObjGenerator;
-import java.util.stream.IntStream;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -33,7 +32,8 @@ public class BusinessProfileControllerTest extends BaseTest {
     public void saveTest() {
         MultiValueMap<String, String> headers = getRequestHeader(
                 ConstentVariableTests.APPLICATION_JSON);
-        IntStream.range(0, 5).forEach(i -> BusinessProfileObjGenerator.saveFunctionBody(headers));
+//        IntStream.range(0, 5).forEach(i -> BusinessProfileObjGenerator.saveFunctionBody(headers));
+        BusinessProfileObjGenerator.saveFunctionBody(headers);
     }
 
     @Test
@@ -66,8 +66,8 @@ public class BusinessProfileControllerTest extends BaseTest {
                 ConstentVariableTests.APPLICATION_JSON);
         ResponseEntity<?> entity = new TestRestTemplate().exchange(
                 SERVER_NAME + PORT + URI + ConstentVariableTests.CONTROLLER_ROUTE +
-//                        "ac95c2ad-70a1-4fa6-80d5-e46c90b0397e",
-                        ConstentVariableTests.lastID,
+                        "c888f661-ce92-4334-a45e-e971f2aed1d4",
+//                        ConstentVariableTests.lastID,
                 HttpMethod.GET,
                 new HttpEntity<>(headers),
                 BusinessProfile.class);

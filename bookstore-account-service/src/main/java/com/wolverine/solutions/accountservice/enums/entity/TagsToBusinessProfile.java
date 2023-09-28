@@ -1,17 +1,19 @@
 package com.wolverine.solutions.accountservice.enums.entity;
 
 import com.wolverine.solutions.commons.util.DateAudit;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "tags_to_business_profile")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 
 public class TagsToBusinessProfile extends DateAudit {
     @Id
@@ -20,23 +22,11 @@ public class TagsToBusinessProfile extends DateAudit {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "business_profile_id")
+    private String name;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_profile_id", nullable = false)
     private BusinessProfile businessProfile;
 
-    public BusinessProfile getBusinessProfile() {
-        return businessProfile;
-    }
 
-    public void setBusinessProfile(BusinessProfile businessProfile) {
-        this.businessProfile = businessProfile;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
